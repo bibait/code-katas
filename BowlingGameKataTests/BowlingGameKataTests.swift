@@ -79,6 +79,7 @@ public class BowlingGame: FrameObserverConnector {
             lastFrame.addSecondRoll(.init(pins: pins))
         } else {
             _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
+            notifyObservers(pins)
         }
     }
     
@@ -106,6 +107,12 @@ public class BowlingGame: FrameObserverConnector {
         }
 
         return result
+    }
+    
+    private func notifyObservers(_ pins: Int) {
+        for observer in _observers {
+            observer.didRoll(pins: pins)
+        }
     }
     
     func addObserver(_ observer: any FrameObserver) {
