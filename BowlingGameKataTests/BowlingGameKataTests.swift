@@ -18,7 +18,7 @@ struct BowlingGameKataTests {
     func gutterGame() {
         let sut = makeSUT()
         
-        roll(pins: 0, times: 20, sut: sut)
+        gutterGame(sut: sut)
         
         #expect(sut.score() == 0)
     }
@@ -44,6 +44,10 @@ struct BowlingGameKataTests {
         let sut = BowlingGame()
         
         return sut
+    }
+    
+    private func gutterGame(sut: BowlingGame) {
+        roll(pins: 0, times: 20, sut: sut)
     }
     
     private func roll(pins: Int, times: Int, sut: BowlingGame) {
