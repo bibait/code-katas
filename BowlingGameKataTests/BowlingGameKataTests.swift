@@ -4,16 +4,16 @@ struct Roll {
     let pins: Int
 }
 
-protocol PinObserver: AnyObject {
+protocol RollObserver: AnyObject {
     func didRoll(pins: Int)
 }
 
 protocol GameObserver {
-    func addObserver(_ observer: PinObserver)
-    func removeObserver(_ observer: PinObserver)
+    func addObserver(_ observer: RollObserver)
+    func removeObserver(_ observer: RollObserver)
 }
 
-class Frame: PinObserver {
+class Frame: RollObserver {
     private let firstRoll: Roll
     private let gameObserver: GameObserver
     
@@ -80,7 +80,7 @@ class Frame: PinObserver {
 
 public class BowlingGame: GameObserver {
     private var _frames: [Frame] = []
-    private var _observers: [PinObserver] = []
+    private var _observers: [RollObserver] = []
 
     public func roll(_ pins: Int) {
         guard let lastFrame = _frames.last else {
@@ -107,11 +107,11 @@ public class BowlingGame: GameObserver {
         _observers.forEach { $0.didRoll(pins: pins) }
     }
     
-    func addObserver(_ observer: any PinObserver) {
+    func addObserver(_ observer: any RollObserver) {
         _observers.append(observer)
     }
     
-    func removeObserver(_ observer: any PinObserver) {
+    func removeObserver(_ observer: any RollObserver) {
         _observers.removeAll { $0 === observer }
     }
 }
