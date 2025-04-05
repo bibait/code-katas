@@ -2,7 +2,7 @@
 
 I did the bowling game kata many times. The one I did in particular was from Jon Reid ([source](https://qualitycoding.org/swift-code-kata/#t-1601857680311)).
 
-I started off the usual route but had an idea and wanted to see if I can make it work. Initially I wanted each frame to have a reference to the next two frames so that it can calculate its score based on those frame's rolls. Just when I was going for it, another thought struck me that appeared way simpler to me. That was to use the observer pattern such that each `Frame` can decide whether or not to observe changes to `didRoll` and apply any bonuses (`spare` or `strike`). The result was a much simpler score calculation as each `Frame` keeps track of its own score. The only place I suppose that may not seem to obvious is the `roll` method in `BowlingGame`.
+I started off the usual route but had an idea and wanted to see if I can make it work. Initially I wanted each frame to have a reference to the next two frames so that it can calculate its score based on those frame's rolls. Just when I was going for it, another thought struck me - one that appeared way simpler to me. That was to use the observer pattern such that each `Frame` can decide whether or not to observe changes to `didRoll` and apply any bonuses (`spare` or `strike`). The result was a much simpler score calculation as each `Frame` keeps track of its own score. The only place I suppose that may not seem to obvious is the `roll` method in `BowlingGame`.
 
 ```swift
 public func roll(_ pins: Int) {
@@ -28,6 +28,8 @@ It may be confusing why in the last else block, `notifyObservers` are called and
 The code works but that does not have to mean it's necessarily good code. Looking at the dependency diagram we can see that it almost looks like there is a circular dependency. What really happens in code is that the `BowlingGame` creates a new instance of `Frame` and passes itself as the `RollNotifier`.
 
 ![Dependency Diagram](dependency_diagram.png "Dependency Diagram")
+
+One last thought. Compared to a solution with two if's and one else block this solution seems way more complicated and convoluted. Regardless, I learned a lot with this exercise.
 
 ### What I have not Considered
 
