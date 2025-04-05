@@ -4,25 +4,25 @@ struct Roll {
     let pins: Int
 }
 
-protocol FrameObserver: AnyObject {
+protocol PinObserver: AnyObject {
     func didRoll(pins: Int)
 }
 
-protocol FrameObserverConnector {
-    func addObserver(_ observer: FrameObserver)
-    func removeObserver(_ observer: FrameObserver)
+protocol GameObserver {
+    func addObserver(_ observer: PinObserver)
+    func removeObserver(_ observer: PinObserver)
 }
 
-class Frame: FrameObserver {
+class Frame: PinObserver {
     private let firstRoll: Roll
-    private let frameObserverConnector: FrameObserverConnector
+    private let gameObserver: GameObserver
     
-    init(firstRoll: Roll, frameObserverConnector: FrameObserverConnector) {
+    init(firstRoll: Roll, gameObserver: GameObserver) {
         self.firstRoll = firstRoll
-        self.frameObserverConnector = frameObserverConnector
+        self.gameObserver = gameObserver
         
         if isStrike {
-            frameObserverConnector.addObserver(self)
+            gameObserver.addObserver(self)
         }
     }
     
@@ -50,7 +50,7 @@ class Frame: FrameObserver {
         secondRoll = roll
         
         if isSpare {
-            frameObserverConnector.addObserver(self)
+            gameObserver.addObserver(self)
         }
     }
         
@@ -61,7 +61,7 @@ class Frame: FrameObserver {
         }
 
         if hasCollectedSpareBonus() || hasCollectedStrikeBonus() {
-            frameObserverConnector.removeObserver(self)
+            gameObserver.removeObserver(self)
         }
     }
     
@@ -74,13 +74,13 @@ class Frame: FrameObserver {
     }
 }
 
-public class BowlingGame: FrameObserverConnector {
+public class BowlingGame: GameObserver {
     private var _frames: [Frame] = []
-    private var _observers: [FrameObserver] = []
+    private var _observers: [PinObserver] = []
 
     public func roll(_ pins: Int) {
         guard let lastFrame = _frames.last else {
-            _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
+            _frames.append(.init(firstRoll: .init(pins: pins), gameObserver: self))
             return
         }
         
@@ -89,7 +89,7 @@ public class BowlingGame: FrameObserverConnector {
         if lastFrame.canAddSecondRoll() {
             lastFrame.addSecondRoll(.init(pins: pins))
         } else if _frames.count < 10 {
-            _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
+            _frames.append(.init(firstRoll: .init(pins: pins), gameObserver: self))
         } else {
             notifyObservers(pins)
         }
@@ -103,11 +103,11 @@ public class BowlingGame: FrameObserverConnector {
         _observers.forEach { $0.didRoll(pins: pins) }
     }
     
-    func addObserver(_ observer: any FrameObserver) {
+    func addObserver(_ observer: any PinObserver) {
         _observers.append(observer)
     }
     
-    func removeObserver(_ observer: any FrameObserver) {
+    func removeObserver(_ observer: any PinObserver) {
         _observers.removeAll { $0 === observer }
     }
 }
