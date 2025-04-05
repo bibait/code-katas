@@ -13,7 +13,7 @@ protocol FrameObserverConnector {
     func removeObserver(_ observer: FrameObserver)
 }
 
-class ObserverFrame: FrameObserver {
+class Frame: FrameObserver {
     private let firstRoll: Roll
     private let frameObserverConnector: FrameObserverConnector
     
@@ -62,36 +62,9 @@ class ObserverFrame: FrameObserver {
     }
 }
 
-class Frame {
-    private let firstRoll: Roll
-    
-    init(firstRoll: Roll) {
-        self.firstRoll = firstRoll
-    }
-    
-    private var secondRoll: Roll?
-    private var bonus = 0
-    
-    var isStrike: Bool {
-        firstRoll.pins == 10
-    }
-    
-    var isSpare: Bool {
-        firstRoll.pins + (secondRoll?.pins ?? 0) == 10
-    }
-    
-    func addSecondRoll(_ roll: Roll) {
-        secondRoll = roll
-    }
-    
-    func addBonus(_ pins: Int) {
-        bonus += pins
-    }
-}
-
 public class BowlingGame: FrameObserverConnector {
     private var _rolls: [Int] = []
-    private var _frames: [ObserverFrame] = []
+    private var _frames: [Frame] = []
     private var _observers: [FrameObserver] = []
 
     public func roll(_ pins: Int) {
