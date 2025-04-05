@@ -18,7 +18,7 @@ public class BowlingGame {
                     result += 10 + _rolls[frameIndex+1] + _rolls[frameIndex+2]
                     frameIndex += 1
                 } else if isSpare(frameIndex) {
-                    result += 10 + _rolls[frameIndex+2]
+                    result += spareBonus(frameIndex)
                     frameIndex += 2
                 } else {
                     result += _rolls[frameIndex]
@@ -39,6 +39,10 @@ public class BowlingGame {
     
     private func isSpare(_ frameIndex: Int) -> Bool {
         _rolls[frameIndex] + _rolls[frameIndex+1] == 10
+    }
+    
+    private func spareBonus(_ frameIndex: Int) -> Int {
+        10 + _rolls[frameIndex+2]
     }
 }
 
