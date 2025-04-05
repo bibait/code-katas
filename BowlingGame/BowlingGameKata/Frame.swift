@@ -15,16 +15,16 @@ public class Frame: RollObserver {
     private var bonus = 0
     private var bonusCount = 0
     
-    var score: Int {
-        firstRoll.pins + (secondRoll?.pins ?? 0) + bonus
-    }
+    private var isStrike: Bool { firstRoll.pins == 10 }
     
-    var isStrike: Bool { firstRoll.pins == 10 }
-    
-    var isSpare: Bool {
+    private var isSpare: Bool {
         guard let secondRoll = secondRoll else { return false }
         
         return firstRoll.pins + secondRoll.pins == 10
+    }
+
+    var score: Int {
+        firstRoll.pins + (secondRoll?.pins ?? 0) + bonus
     }
     
     func canAddSecondRoll() -> Bool {
@@ -38,7 +38,7 @@ public class Frame: RollObserver {
             rollNotifier.addObserver(self)
         }
     }
-        
+    
     public func didRoll(_ roll: Roll) {
         guard canCollectBonus() else { return }
         
