@@ -8,21 +8,21 @@ protocol RollObserver: AnyObject {
     func didRoll(pins: Int)
 }
 
-protocol GameObserver {
+protocol RollNotifier {
     func addObserver(_ observer: RollObserver)
     func removeObserver(_ observer: RollObserver)
 }
 
 class Frame: RollObserver {
     private let firstRoll: Roll
-    private let gameObserver: GameObserver
+    private let rollNotifier: RollNotifier
     
-    init(firstRoll: Roll, gameObserver: GameObserver) {
+    init(firstRoll: Roll, rollNotifier: RollNotifier) {
         self.firstRoll = firstRoll
-        self.gameObserver = gameObserver
+        self.rollNotifier = rollNotifier
         
         if isStrike {
-            gameObserver.addObserver(self)
+            rollNotifier.addObserver(self)
         }
     }
     
@@ -50,7 +50,7 @@ class Frame: RollObserver {
         secondRoll = roll
         
         if isSpare {
-            gameObserver.addObserver(self)
+            rollNotifier.addObserver(self)
         }
     }
         
@@ -61,7 +61,7 @@ class Frame: RollObserver {
         bonusCount += 1
 
         if hasCollectedSpareBonus() || hasCollectedStrikeBonus() {
-            gameObserver.removeObserver(self)
+            rollNotifier.removeObserver(self)
         }
     }
     
@@ -78,7 +78,7 @@ class Frame: RollObserver {
     }
 }
 
-public class BowlingGame: GameObserver {
+public class BowlingGame: RollNotifier {
     private var _frames: [Frame] = []
     private var _observers: [RollObserver] = []
 
@@ -100,7 +100,7 @@ public class BowlingGame: GameObserver {
     }
     
     private func addNewFrame(_ pins: Int) {
-        _frames.append(.init(firstRoll: .init(pins: pins), gameObserver: self))
+        _frames.append(.init(firstRoll: .init(pins: pins), rollNotifier: self))
     }
     
     public func score() -> Int {
