@@ -34,9 +34,7 @@ class Frame: FrameObserver {
         firstRoll.pins + (secondRoll?.pins ?? 0) + bonus
     }
     
-    var isStrike: Bool {
-        firstRoll.pins == 10
-    }
+    var isStrike: Bool { firstRoll.pins == 10 }
     
     var isSpare: Bool {
         guard let secondRoll = secondRoll else { return false }
