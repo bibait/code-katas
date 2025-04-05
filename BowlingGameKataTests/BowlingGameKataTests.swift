@@ -1,14 +1,33 @@
 import Testing
 
 public class BowlingGame {
-    private var _score = 0
+    private var _rolls: [Int] = []
 
     public func roll(_ pins: Int) {
-        _score += pins
+        _rolls.append(pins)
     }
     
     public func score() -> Int {
-        _score
+        var result = 0
+        
+        var frameIndex = 0
+        
+        for _ in 0..<_rolls.count {
+            if frameIndex + 2 <= _rolls.count {
+                if _rolls[frameIndex] + _rolls[frameIndex+1] == 10 {
+                    result += 10 + _rolls[frameIndex+2]
+                    frameIndex += 2
+                } else {
+                    result += _rolls[frameIndex]
+                    frameIndex += 1
+                }
+            } else if frameIndex + 1 <= _rolls.count{
+                result += _rolls[frameIndex]
+                frameIndex += 1
+            }
+        }
+
+        return result
     }
 }
 
@@ -36,6 +55,17 @@ struct BowlingGameKataTests {
         roll(pins: 0, times: 14, sut: sut)
         
         #expect(sut.score() == 15)
+    }
+    
+    @Test
+    func roll_withSpare() {
+        let sut = makeSUT()
+
+        sut.roll(5)
+        sut.roll(5)
+        sut.roll(3)
+        
+        #expect(sut.score() == 16)
     }
     
     // MARK: - Helpers
