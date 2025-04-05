@@ -1,7 +1,23 @@
 import Testing
 
+struct Roll {
+    let pins: Int
+}
+
+class Frame {
+    private let firstRoll: Roll
+    
+    init(firstRoll: Roll) {
+        self.firstRoll = firstRoll
+    }
+    
+    private var secondRoll: Roll?
+    private var bonus = 0
+}
+
 public class BowlingGame {
     private var _rolls: [Int] = []
+    private var _frames: [Frame] = []
 
     public func roll(_ pins: Int) {
         _rolls.append(pins)
