@@ -61,11 +61,11 @@ struct BowlingGameKataTests {
     func roll_withSpare() {
         let sut = makeSUT()
 
-        sut.roll(5)
-        sut.roll(5)
+        rollSpare(sut: sut)
         sut.roll(3)
+        sut.roll(2)
         
-        #expect(sut.score() == 16)
+        #expect(sut.score() == 18)
     }
     
     // MARK: - Helpers
@@ -78,6 +78,11 @@ struct BowlingGameKataTests {
     
     private func gutterGame(sut: BowlingGame) {
         roll(pins: 0, times: 20, sut: sut)
+    }
+    
+    private func rollSpare(sut: BowlingGame) {
+        sut.roll(5)
+        sut.roll(5)
     }
     
     private func roll(pins: Int, times: Int, sut: BowlingGame) {
