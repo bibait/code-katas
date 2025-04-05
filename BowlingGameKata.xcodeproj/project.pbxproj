@@ -25,22 +25,9 @@
 		0E093DFA2DA15C100043D3DD /* BowlingGameKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BowlingGameKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E093DF02DA15C070043D3DD /* Exceptions for "BowlingGameKata" folder in "BowlingGameKata" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				BowlingGameKata.h,
-			);
-			target = 0E093DEA2DA15C070043D3DD /* BowlingGameKata */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0E093DED2DA15C070043D3DD /* BowlingGameKata */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0E093DF02DA15C070043D3DD /* Exceptions for "BowlingGameKata" folder in "BowlingGameKata" target */,
-			);
 			path = BowlingGameKata;
 			sourceTree = "<group>";
 		};
@@ -237,7 +224,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -272,7 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
