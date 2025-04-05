@@ -75,7 +75,7 @@ struct BowlingGameKataTests {
     func roll_withStrike() {
         let sut = makeSUT()
 
-        sut.roll(10)
+        rollStrike(sut: sut)
         sut.roll(3)
         sut.roll(2)
         
@@ -92,6 +92,10 @@ struct BowlingGameKataTests {
     
     private func gutterGame(sut: BowlingGame) {
         roll(pins: 0, times: 20, sut: sut)
+    }
+    
+    private func rollStrike(sut: BowlingGame) {
+        sut.roll(10)
     }
     
     private func rollSpare(sut: BowlingGame) {
