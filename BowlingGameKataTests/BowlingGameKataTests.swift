@@ -13,6 +13,18 @@ class Frame {
     
     private var secondRoll: Roll?
     private var bonus = 0
+    
+    var isStrike: Bool {
+        firstRoll.pins == 10
+    }
+    
+    var isSpare: Bool {
+        firstRoll.pins + (secondRoll?.pins ?? 0) == 10
+    }
+    
+    func addSecondRoll(_ roll: Roll) {
+        secondRoll = roll
+    }
 }
 
 public class BowlingGame {
@@ -24,6 +36,16 @@ public class BowlingGame {
         
         if _frames.isEmpty {
             _frames.append(Frame(firstRoll: Roll(pins: pins)))
+        }
+        
+        let lastFrame = _frames.last!
+        
+        if lastFrame.isStrike {
+            
+        } else if lastFrame.isSpare {
+            
+        } else {
+            lastFrame.addSecondRoll(Roll(pins: pins))
         }
     }
     
