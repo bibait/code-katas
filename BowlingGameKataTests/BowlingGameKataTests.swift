@@ -39,7 +39,9 @@ class Frame: FrameObserver {
     }
     
     var isSpare: Bool {
-        firstRoll.pins + (secondRoll?.pins ?? -1) == 10
+        guard let secondRoll = secondRoll else { return false }
+        
+        return firstRoll.pins + secondRoll.pins == 10
     }
     
     func canAddSecondRoll() -> Bool {
