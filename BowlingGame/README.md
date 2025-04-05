@@ -1,6 +1,6 @@
 # Bowling Game Kata
 
-I did the bowling game kata many times. The one I did in particular was from Jon Reid ([source](https://qualitycoding.org/swift-code-kata/#t-1601857680312)).
+I did the bowling game kata many times. The one I did in particular was from Jon Reid ([source](https://qualitycoding.org/swift-code-kata/#t-1601857680311)).
 
 I started off the usual route but had an idea and wanted to see if I can make it work. Initially I wanted each frame to have a reference to the next two frames so that it can calculate its score based on those frame's rolls. Just when I was going for it, another thought struck me that appeared way simpler to me. That was to use the observer pattern such that each `Frame` can decide whether or not to observe changes to `didRoll` and apply any bonuses (`spare` or `strike`). The result was a much simpler score calculation as each `Frame` keeps track of its own score. The only place I suppose that may not seem to obvious is the `roll` method in `BowlingGame`.
 
