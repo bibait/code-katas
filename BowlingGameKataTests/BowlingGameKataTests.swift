@@ -15,7 +15,7 @@ public class BowlingGame {
         for _ in 0..<_rolls.count {
             if frameIndex + 2 <= _rolls.count {
                 if isStrike(frameIndex) {
-                    result += 10 + _rolls[frameIndex+1] + _rolls[frameIndex+2]
+                    result += strikeBonus(frameIndex)
                     frameIndex += 1
                 } else if isSpare(frameIndex) {
                     result += spareBonus(frameIndex)
@@ -35,6 +35,10 @@ public class BowlingGame {
     
     private func isStrike(_ frameIndex: Int) -> Bool {
         _rolls[frameIndex] == 10
+    }
+
+    private func strikeBonus(_ frameIndex: Int) -> Int {
+        10 + _rolls[frameIndex+1] + _rolls[frameIndex+2]
     }
     
     private func isSpare(_ frameIndex: Int) -> Bool {
