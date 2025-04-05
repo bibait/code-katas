@@ -38,11 +38,10 @@ public class BowlingGame {
     public func roll(_ pins: Int) {
         _rolls.append(pins)
         
-        if _frames.isEmpty {
+        guard let lastFrame = _frames.last else {
             _frames.append(Frame(firstRoll: Roll(pins: pins)))
+            return
         }
-        
-        let lastFrame = _frames.last!
         
         if lastFrame.isStrike {
             
