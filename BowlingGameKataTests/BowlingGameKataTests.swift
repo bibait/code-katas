@@ -39,80 +39,58 @@ class Frame: FrameObserver {
     }
     
     var isSpare: Bool {
-        firstRoll.pins + (secondRoll?.pins ?? 0) == 10
+        firstRoll.pins + (secondRoll?.pins ?? -1) == 10
     }
     
     func canAddSecondRoll() -> Bool {
-        return !isStrike || secondRoll == nil
+        !isStrike && secondRoll == nil
     }
     
     func addSecondRoll(_ roll: Roll) {
         secondRoll = roll
+        
+        if isSpare {
+            frameObserverConnector.addObserver(self)
+        }
     }
         
     func didRoll(pins: Int) {
-        bonus += pins
-        bonusCount += 1
-        
-        if isSpare && bonusCount == 1 {
-            frameObserverConnector.removeObserver(self)
-        } else if isStrike && bonusCount == 2 {
+        if isSpare || isStrike {
+            bonus += pins
+            bonusCount += 1
+        }
+
+        if isSpare && bonusCount == 1 || isStrike && bonusCount == 2 {
             frameObserverConnector.removeObserver(self)
         }
     }
 }
 
 public class BowlingGame: FrameObserverConnector {
-    private var _rolls: [Int] = []
     private var _frames: [Frame] = []
     private var _observers: [FrameObserver] = []
 
     public func roll(_ pins: Int) {
-        _rolls.append(pins)
-        
         guard let lastFrame = _frames.last else {
             _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
             return
         }
         
+        notifyObservers(pins)
+
         if lastFrame.canAddSecondRoll() {
             lastFrame.addSecondRoll(.init(pins: pins))
         } else {
             _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
-            notifyObservers(pins)
         }
     }
     
     public func score() -> Int {
-        var result = 0
-        
-        var frameIndex = 0
-        
-        for _ in 0..<_rolls.count {
-            if frameIndex + 2 <= _rolls.count {
-                if isStrike(frameIndex) {
-                    result += strikeBonus(frameIndex)
-                    frameIndex += 1
-                } else if isSpare(frameIndex) {
-                    result += spareBonus(frameIndex)
-                    frameIndex += 2
-                } else {
-                    result += _rolls[frameIndex]
-                    frameIndex += 1
-                }
-            } else if frameIndex + 1 <= _rolls.count{
-                result += _rolls[frameIndex]
-                frameIndex += 1
-            }
-        }
-
-        return result
+        _frames.reduce(0) { $0 + $1.score }
     }
     
     private func notifyObservers(_ pins: Int) {
-        for observer in _observers {
-            observer.didRoll(pins: pins)
-        }
+        _observers.forEach { $0.didRoll(pins: pins) }
     }
     
     func addObserver(_ observer: any FrameObserver) {
@@ -121,22 +99,6 @@ public class BowlingGame: FrameObserverConnector {
     
     func removeObserver(_ observer: any FrameObserver) {
         _observers.removeAll { $0 === observer }
-    }
-    
-    private func isStrike(_ frameIndex: Int) -> Bool {
-        _rolls[frameIndex] == 10
-    }
-
-    private func strikeBonus(_ frameIndex: Int) -> Int {
-        10 + _rolls[frameIndex+1] + _rolls[frameIndex+2]
-    }
-    
-    private func isSpare(_ frameIndex: Int) -> Bool {
-        _rolls[frameIndex] + _rolls[frameIndex+1] == 10
-    }
-    
-    private func spareBonus(_ frameIndex: Int) -> Int {
-        10 + _rolls[frameIndex+2]
     }
 }
 
