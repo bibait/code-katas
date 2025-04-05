@@ -25,6 +25,10 @@ class Frame {
     func addSecondRoll(_ roll: Roll) {
         secondRoll = roll
     }
+    
+    func addBonus(_ pins: Int) {
+        bonus += pins
+    }
 }
 
 public class BowlingGame {
@@ -43,7 +47,7 @@ public class BowlingGame {
         if lastFrame.isStrike {
             
         } else if lastFrame.isSpare {
-            
+            lastFrame.addBonus(pins)
         } else {
             lastFrame.addSecondRoll(Roll(pins: pins))
         }
