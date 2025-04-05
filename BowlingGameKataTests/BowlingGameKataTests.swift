@@ -4,6 +4,64 @@ struct Roll {
     let pins: Int
 }
 
+protocol FrameObserver {
+    func didRoll(pins: Int)
+}
+
+protocol FrameObserverConnector {
+    func addObserver(_ observer: FrameObserver)
+    func removeObserver(_ observer: FrameObserver)
+}
+
+class ObserverFrame: FrameObserver {
+    private let firstRoll: Roll
+    private let frameObserverConnector: FrameObserverConnector
+    
+    init(firstRoll: Roll, frameObserverConnector: FrameObserverConnector) {
+        self.firstRoll = firstRoll
+        self.frameObserverConnector = frameObserverConnector
+        
+        if isStrike {
+            frameObserverConnector.addObserver(self)
+        }
+    }
+    
+    private var secondRoll: Roll?
+    private var bonus = 0
+    private var bonusCount = 0
+    
+    var score: Int {
+        firstRoll.pins + (secondRoll?.pins ?? 0) + bonus
+    }
+    
+    var isStrike: Bool {
+        firstRoll.pins == 10
+    }
+    
+    var isSpare: Bool {
+        firstRoll.pins + (secondRoll?.pins ?? 0) == 10
+    }
+    
+    func canAddSecondRoll() -> Bool {
+        return !isStrike || secondRoll == nil
+    }
+    
+    func addSecondRoll(_ roll: Roll) {
+        secondRoll = roll
+    }
+        
+    func didRoll(pins: Int) {
+        bonus += pins
+        bonusCount += 1
+        
+        if isSpare && bonusCount == 1 {
+            frameObserverConnector.removeObserver(self)
+        } else if isStrike && bonusCount == 2 {
+            frameObserverConnector.removeObserver(self)
+        }
+    }
+}
+
 class Frame {
     private let firstRoll: Roll
     
