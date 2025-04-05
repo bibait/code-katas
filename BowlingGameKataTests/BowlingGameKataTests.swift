@@ -1,10 +1,14 @@
 import Testing
 
+public class BowlingGame {
+    
+}
+
 struct BowlingGameKataTests {
 
     @Test
-    func zero() {
-        
+    func canInit() {
+        let sut = BowlingGame()
     }
 
 }
