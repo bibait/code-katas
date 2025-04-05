@@ -39,10 +39,10 @@ public class Frame: RollObserver {
         }
     }
         
-    public func didRoll(pins: Int) {
+    public func didRoll(_ roll: Roll) {
         guard canCollectBonus() else { return }
         
-        bonus += pins
+        bonus += roll.pins
         bonusCount += 1
 
         if hasCollectedSpareBonus() || hasCollectedStrikeBonus() {

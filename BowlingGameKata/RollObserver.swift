@@ -1,3 +1,3 @@
 public protocol RollObserver: AnyObject {
-    func didRoll(pins: Int)
+    func didRoll(_ roll: Roll)
 }

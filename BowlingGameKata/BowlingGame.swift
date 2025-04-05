@@ -30,7 +30,7 @@ public class BowlingGame: RollNotifier {
     }
     
     private func notifyObservers(_ pins: Int) {
-        _observers.forEach { $0.didRoll(pins: pins) }
+        _observers.forEach { $0.didRoll(.init(pins: pins)) }
     }
     
     public func addObserver(_ observer: any RollObserver) {
