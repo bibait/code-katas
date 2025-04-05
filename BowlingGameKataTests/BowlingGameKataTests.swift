@@ -83,15 +83,15 @@ public class BowlingGame: GameObserver {
     private var _observers: [RollObserver] = []
 
     public func roll(_ pins: Int) {
-        guard let lastFrame = _frames.last else {
+        guard let currentFrame = _frames.last else {
             _frames.append(.init(firstRoll: .init(pins: pins), gameObserver: self))
             return
         }
         
         notifyObservers(pins)
 
-        if lastFrame.canAddSecondRoll() {
-            lastFrame.addSecondRoll(.init(pins: pins))
+        if currentFrame.canAddSecondRoll() {
+            currentFrame.addSecondRoll(.init(pins: pins))
         } else if _frames.count < 10 {
             _frames.append(.init(firstRoll: .init(pins: pins), gameObserver: self))
         } else {
