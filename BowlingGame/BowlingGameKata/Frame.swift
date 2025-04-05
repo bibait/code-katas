@@ -6,6 +6,10 @@ public class Frame: RollObserver {
         self.firstRoll = firstRoll
         self.rollNotifier = rollNotifier
         
+        checkStrike()
+    }
+    
+    private func checkStrike() {
         if isStrike {
             rollNotifier.addObserver(self)
         }
