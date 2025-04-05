@@ -80,8 +80,10 @@ public class BowlingGame: FrameObserverConnector {
 
         if lastFrame.canAddSecondRoll() {
             lastFrame.addSecondRoll(.init(pins: pins))
-        } else {
+        } else if _frames.count < 10 {
             _frames.append(.init(firstRoll: .init(pins: pins), frameObserverConnector: self))
+        } else {
+            notifyObservers(pins)
         }
     }
     
@@ -148,6 +150,15 @@ struct BowlingGameKataTests {
         sut.roll(2)
         
         #expect(sut.score() == 20)
+    }
+    
+    @Test
+    func perfectGame() {
+        let sut = makeSUT()
+
+        roll(pins: 10, times: 12, sut: sut)
+        
+        #expect(sut.score() == 300)
     }
     
     // MARK: - Helpers
