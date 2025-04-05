@@ -26,16 +26,6 @@ struct BowlingGameKataTests {
     }
     
     @Test
-    func roll_withoutBonus() {
-        let sut = makeSUT()
-        
-        sut.roll(5)
-        sut.roll(3)
-        
-        #expect(sut.score() == 8)
-    }
-    
-    @Test
     func game_withoutBonus() {
         let sut = makeSUT()
         
