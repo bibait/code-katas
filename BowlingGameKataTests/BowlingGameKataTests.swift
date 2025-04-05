@@ -55,7 +55,7 @@ class Frame: PinObserver {
     }
         
     func didRoll(pins: Int) {
-        if isSpare || isStrike {
+        if canCollectBonus() {
             bonus += pins
             bonusCount += 1
         }
@@ -63,6 +63,10 @@ class Frame: PinObserver {
         if hasCollectedSpareBonus() || hasCollectedStrikeBonus() {
             gameObserver.removeObserver(self)
         }
+    }
+    
+    private func canCollectBonus() -> Bool {
+        isSpare || isStrike
     }
     
     private func hasCollectedSpareBonus() -> Bool {
