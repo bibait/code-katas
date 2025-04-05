@@ -21,6 +21,10 @@ public class BowlingGame {
 
     public func roll(_ pins: Int) {
         _rolls.append(pins)
+        
+        if _frames.isEmpty {
+            _frames.append(Frame(firstRoll: Roll(pins: pins)))
+        }
     }
     
     public func score() -> Int {
