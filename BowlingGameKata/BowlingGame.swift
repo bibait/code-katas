@@ -14,11 +14,15 @@ public class BowlingGame: RollNotifier {
 
         if currentFrame.canAddSecondRoll() {
             currentFrame.addSecondRoll(.init(pins: pins))
-        } else if _frames.count < 10 {
+        } else if !hasReachedLastFrame() {
             addNewFrame(pins)
         } else {
             notifyObservers(pins)
         }
+    }
+    
+    private func hasReachedLastFrame() -> Bool {
+        _frames.count == 10
     }
     
     private func addNewFrame(_ pins: Int) {
