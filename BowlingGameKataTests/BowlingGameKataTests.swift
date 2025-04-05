@@ -35,6 +35,23 @@ struct BowlingGameKataTests {
         #expect(sut.score() == 8)
     }
     
+    @Test
+    func game_withoutBonus() {
+        let sut = makeSUT()
+        
+        sut.roll(5)
+        sut.roll(3)
+        sut.roll(2)
+        sut.roll(4)
+        sut.roll(1)
+        sut.roll(0)
+        for _ in 0..<14 {
+            sut.roll(0)
+        }
+        
+        #expect(sut.score() == 15)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> BowlingGame {
