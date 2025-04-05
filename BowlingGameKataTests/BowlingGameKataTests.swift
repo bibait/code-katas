@@ -14,7 +14,10 @@ public class BowlingGame {
         
         for _ in 0..<_rolls.count {
             if frameIndex + 2 <= _rolls.count {
-                if _rolls[frameIndex] + _rolls[frameIndex+1] == 10 {
+                if _rolls[frameIndex] == 10 {
+                    result += 10 + _rolls[frameIndex+1] + _rolls[frameIndex+2]
+                    frameIndex += 1
+                } else if _rolls[frameIndex] + _rolls[frameIndex+1] == 10 {
                     result += 10 + _rolls[frameIndex+2]
                     frameIndex += 2
                 } else {
@@ -66,6 +69,17 @@ struct BowlingGameKataTests {
         sut.roll(2)
         
         #expect(sut.score() == 18)
+    }
+    
+    @Test
+    func roll_withStrike() {
+        let sut = makeSUT()
+
+        sut.roll(10)
+        sut.roll(3)
+        sut.roll(2)
+        
+        #expect(sut.score() == 20)
     }
     
     // MARK: - Helpers
