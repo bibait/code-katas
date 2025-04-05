@@ -6,8 +6,23 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0E093DFE2DA15C100043D3DD /* BowlingGameKata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E093DEB2DA15C070043D3DD /* BowlingGameKata.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0E093DFF2DA15C100043D3DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E093DE22DA15C070043D3DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E093DEA2DA15C070043D3DD;
+			remoteInfo = BowlingGameKata;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0E093DEB2DA15C070043D3DD /* BowlingGameKata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BowlingGameKata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E093DFA2DA15C100043D3DD /* BowlingGameKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BowlingGameKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,6 +44,11 @@
 			path = BowlingGameKata;
 			sourceTree = "<group>";
 		};
+		0E093DFB2DA15C100043D3DD /* BowlingGameKataTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BowlingGameKataTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +59,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0E093DF72DA15C100043D3DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E093DFE2DA15C100043D3DD /* BowlingGameKata.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				0E093DED2DA15C070043D3DD /* BowlingGameKata */,
+				0E093DFB2DA15C100043D3DD /* BowlingGameKataTests */,
 				0E093DEC2DA15C070043D3DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				0E093DEB2DA15C070043D3DD /* BowlingGameKata.framework */,
+				0E093DFA2DA15C100043D3DD /* BowlingGameKataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +124,29 @@
 			productReference = 0E093DEB2DA15C070043D3DD /* BowlingGameKata.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		0E093DF92DA15C100043D3DD /* BowlingGameKataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E093E012DA15C100043D3DD /* Build configuration list for PBXNativeTarget "BowlingGameKataTests" */;
+			buildPhases = (
+				0E093DF62DA15C100043D3DD /* Sources */,
+				0E093DF72DA15C100043D3DD /* Frameworks */,
+				0E093DF82DA15C100043D3DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E093E002DA15C100043D3DD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0E093DFB2DA15C100043D3DD /* BowlingGameKataTests */,
+			);
+			name = BowlingGameKataTests;
+			packageProductDependencies = (
+			);
+			productName = BowlingGameKataTests;
+			productReference = 0E093DFA2DA15C100043D3DD /* BowlingGameKataTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,9 +154,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					0E093DEA2DA15C070043D3DD = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					0E093DF92DA15C100043D3DD = {
 						CreatedOnToolsVersion = 16.1;
 					};
 				};
@@ -123,12 +180,20 @@
 			projectRoot = "";
 			targets = (
 				0E093DEA2DA15C070043D3DD /* BowlingGameKata */,
+				0E093DF92DA15C100043D3DD /* BowlingGameKataTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0E093DE92DA15C070043D3DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E093DF82DA15C100043D3DD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -145,7 +210,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0E093DF62DA15C100043D3DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0E093E002DA15C100043D3DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E093DEA2DA15C070043D3DD /* BowlingGameKata */;
+			targetProxy = 0E093DFF2DA15C100043D3DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0E093DF22DA15C070043D3DD /* Debug */ = {
@@ -338,6 +418,36 @@
 			};
 			name = Release;
 		};
+		0E093E022DA15C100043D3DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BZ7SLAR29;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.bilalbas.BowlingGameKataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0E093E032DA15C100043D3DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BZ7SLAR29;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.bilalbas.BowlingGameKataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -355,6 +465,15 @@
 			buildConfigurations = (
 				0E093DF22DA15C070043D3DD /* Debug */,
 				0E093DF32DA15C070043D3DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E093E012DA15C100043D3DD /* Build configuration list for PBXNativeTarget "BowlingGameKataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E093E022DA15C100043D3DD /* Debug */,
+				0E093E032DA15C100043D3DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
