@@ -60,9 +60,17 @@ class Frame: FrameObserver {
             bonusCount += 1
         }
 
-        if isSpare && bonusCount == 1 || isStrike && bonusCount == 2 {
+        if hasCollectedSpareBonus() || hasCollectedStrikeBonus() {
             frameObserverConnector.removeObserver(self)
         }
+    }
+    
+    private func hasCollectedSpareBonus() -> Bool {
+        isSpare && bonusCount == 1
+    }
+    
+    private func hasCollectedStrikeBonus() -> Bool {
+        isStrike && bonusCount == 2
     }
 }
 
