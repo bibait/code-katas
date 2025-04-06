@@ -19,16 +19,20 @@ public class BowlingGame: RollNotifier {
         } else if !hasReachedLastFrame() {
             addNewFrame(pins)
         } else {
-            notifyObservers(pins)
+            notifyForLastFrame(pins)
         }
-    }
-    
-    private func hasReachedLastFrame() -> Bool {
-        _frames.count == maxNumberOfFrames
     }
     
     private func addNewFrame(_ pins: Int) {
         _frames.append(.init(firstRoll: .init(pins: pins), rollNotifier: self))
+    }
+
+    private func hasReachedLastFrame() -> Bool {
+        _frames.count == maxNumberOfFrames
+    }
+
+    private func notifyForLastFrame(_ pins: Int) {
+        notifyObservers(pins)
     }
     
     public func score() -> Int {
