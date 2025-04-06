@@ -33,6 +33,6 @@ One last thought. Compared to a solution with two if's and one else block this s
 
 ### What I have not Considered
 
-> "*Good code gives you options*" ~ Cannot remember who but I heard it somewhere. I think it was Kent Beck 😄
+> "*Good code gives you options*" ~ Kent Beck (I suppose 😄)
 
 I am not in a position yet where I can judge how many options I have. The only question I can think of right now is *Can I add new game modes easily?* I'd say maybe. I could extract a `Frame` protocol. Then I'd have to create new frames for the game mode and perhaps pass in a factory to `BowlingGame` so that the right frame for the game mode is created. I'd then need to inject the number of played rounds. Then again, I am no bowling expert and I may be totally wrong here.
