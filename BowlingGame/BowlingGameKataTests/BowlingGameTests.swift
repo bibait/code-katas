@@ -1,7 +1,7 @@
 import Testing
 import BowlingGameKata
 
-struct BowlingGameKataTests {
+struct BowlingGameTests {
 
     @Test
     func gutterGame() {
