@@ -23,7 +23,7 @@ public func roll(_ pins: Int) {
 }
 ```
 
-It may be confusing why in the last else block, `notifyObservers` are called and why `!hasReachedLastFrame` is checked. I needed to account for the last frame with two strikes. As this is a special case and no new frames are added, I still needed to notify observers (the last frame) without adding new frames.
+It may be confusing why in the last else block, `notifyForLastFrame` is called and why `!hasReachedLastFrame` is checked. I needed to account for the last frame with two strikes. As this is a special case and no new frames are added, I still needed to notify observers (the last frame) without adding new frames.
 
 The code works but that does not have to mean it's necessarily good code. Looking at the dependency diagram we can see that it almost looks like there is a circular dependency. What really happens in code is that the `BowlingGame` creates a new instance of `Frame` and passes itself as the `RollNotifier`.
 
