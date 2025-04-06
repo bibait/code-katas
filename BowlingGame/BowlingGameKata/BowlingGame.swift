@@ -3,6 +3,8 @@ public class BowlingGame: RollNotifier {
     private var _observers: [RollObserver] = []
     
     public init() {}
+    
+    private let maxNumberOfFrames = 10
 
     public func roll(_ pins: Int) {
         guard let currentFrame = _frames.last else {
@@ -22,7 +24,7 @@ public class BowlingGame: RollNotifier {
     }
     
     private func hasReachedLastFrame() -> Bool {
-        _frames.count == 10
+        _frames.count == maxNumberOfFrames
     }
     
     private func addNewFrame(_ pins: Int) {
