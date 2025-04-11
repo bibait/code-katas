@@ -9,7 +9,7 @@ public class PasswordVerifier {
     }
     
     public func verify(_ password: String) throws {
-        if (password.count < 8) {
+        guard password.count >= 8 else {
             throw Error.lessThanEightCharacters
         }
     }
