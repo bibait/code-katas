@@ -65,6 +65,26 @@ public class MinimumOneLowercase: PasswordRule {
     }
 }
 
+public class MinimumOneNumber: PasswordRule {
+    public struct NoNumber: Error {}
+
+    public func verify(_ password: String) throws {
+        guard hasNumber(password) else {
+            throw NoNumber()
+        }
+    }
+    
+    private func hasNumber(_ input: String) -> Bool {
+        for char in input {
+            if char.isNumber {
+                return true
+            }
+        }
+        
+        return false
+    }
+}
+
 public class PasswordVerifier {
     public init() {}
     
@@ -84,6 +104,7 @@ public class PasswordRuleFactory {
             InputNotNull(),
             MinimumOneUppercase(),
             MinimumOneLowercase(),
+            MinimumOneNumber(),
         ]
     }
 }
@@ -94,7 +115,7 @@ public class PasswordRuleFactory {
  1. password should be larger than 8 chars ✅
  2. password should not be null ✅
  3. password should have one uppercase letter at least ✅
- 4. password should have one lowercase letter at least
+ 4. password should have one lowercase letter at least ✅
  5. password should have one number at least
  
  Each one of these should throw an exception with a different message of your choosing.
@@ -138,6 +159,15 @@ struct PasswordVerifierKataTests {
         
         #expect(throws: MinimumOneLowercase.NoLowercase.self) {
             try sut.verify("PASSWORD")
+        }
+    }
+    
+    @Test
+    func withNoNumber_throwsError() {
+        let sut = PasswordVerifier()
+        
+        #expect(throws: MinimumOneNumber.NoNumber.self) {
+            try sut.verify("Password")
         }
     }
 
