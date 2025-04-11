@@ -1,6 +1,10 @@
 import Testing
 @testable import PasswordVerifierKata
 
+public class PasswordVerifier {
+    public init() {}
+}
+
 /**
  Password Verifier Kata:
  
@@ -17,8 +21,8 @@ import Testing
 struct PasswordVerifierKataTests {
 
     @Test
-    func example() {
-        
+    func canInit() {
+        let sut = PasswordVerifier()
     }
 
 }
