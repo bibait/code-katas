@@ -1,9 +1,19 @@
 import Testing
 import PasswordVerifierKata
 
-//public protocol PasswordRule {
-//    func verify(_ password: String) throws
-//}
+public protocol PasswordRule {
+    func verify(_ password: String) throws
+}
+
+public class MinimumEightCharacters: PasswordRule {
+    public struct LessThanEightCharacters: Error {}
+
+    public func verify(_ password: String) throws {
+        guard password.count >= 8 else {
+            throw LessThanEightCharacters()
+        }
+    }
+}
 
 public class PasswordVerifier {
     public init() {}
