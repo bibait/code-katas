@@ -1,16 +1,30 @@
 import Testing
 import PasswordVerifierKata
 
+//public protocol PasswordRule {
+//    func verify(_ password: String) throws
+//}
+
 public class PasswordVerifier {
     public init() {}
     
     enum Error: Swift.Error {
         case lessThanEightCharacters
+        case emptyPassword
+        case noUppercase
     }
     
     public func verify(_ password: String) throws {
-        guard password.trimmingCharacters(in: .whitespacesAndNewlines).count >= 8 && hasUppercaseLetter(password) else {
+        guard password.count >= 8 else {
             throw Error.lessThanEightCharacters
+        }
+        
+        guard !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            throw Error.emptyPassword
+        }
+
+        guard hasUppercaseLetter(password) else {
+            throw Error.noUppercase
         }
     }
     
@@ -55,7 +69,7 @@ struct PasswordVerifierKataTests {
     func emptyString_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: (any Error).self) {
+        #expect(throws: PasswordVerifier.Error.emptyPassword) {
             try sut.verify("        ")
         }
     }
@@ -64,7 +78,7 @@ struct PasswordVerifierKataTests {
     func withNoUppercaseLetter_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: (any Error).self) {
+        #expect(throws: PasswordVerifier.Error.noUppercase) {
             try sut.verify("invalidpassword")
         }
     }
