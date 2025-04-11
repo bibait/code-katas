@@ -4,8 +4,12 @@ import Testing
 public class PasswordVerifier {
     public init() {}
     
+    enum Error: Swift.Error {
+        case lessThanEightCharacters
+    }
+    
     public func verify(_ password: String) throws {
-        throw NSError(domain: "Test", code: -1)
+        throw Error.lessThanEightCharacters
     }
 }
 
@@ -30,7 +34,7 @@ struct PasswordVerifierKataTests {
     func lessThanEightCharacters_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: (any Error).self) {
+        #expect(throws: PasswordVerifier.Error.lessThanEightCharacters) {
             try sut.verify("invalid")
         }
     }
