@@ -9,7 +9,7 @@ public class PasswordVerifier {
     }
     
     public func verify(_ password: String) throws {
-        guard password.count >= 8 else {
+        guard password.trimmingCharacters(in: .whitespacesAndNewlines).count >= 8 else {
             throw Error.lessThanEightCharacters
         }
     }
@@ -18,7 +18,7 @@ public class PasswordVerifier {
 /**
  Password Verifier Kata:
  
- 1. password should be larger than 8 chars
+ 1. password should be larger than 8 chars ✅
  2. password should not be null
  3. password should have one uppercase letter at least
  4. password should have one lowercase letter at least
@@ -48,6 +48,15 @@ struct PasswordVerifierKataTests {
         #expect(throws: Never.self, performing: {
             try sut.verify("valid password")
         })
+    }
+    
+    @Test
+    func emptyString_throwsError() {
+        let sut = PasswordVerifier()
+        
+        #expect(throws: (any Error).self) {
+            try sut.verify("        ")
+        }
     }
 
 }
