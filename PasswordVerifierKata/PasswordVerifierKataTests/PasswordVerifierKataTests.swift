@@ -1,5 +1,5 @@
 import Testing
-@testable import PasswordVerifierKata
+import PasswordVerifierKata
 
 public class PasswordVerifier {
     public init() {}
