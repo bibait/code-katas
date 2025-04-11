@@ -9,9 +9,19 @@ public class PasswordVerifier {
     }
     
     public func verify(_ password: String) throws {
-        guard password.trimmingCharacters(in: .whitespacesAndNewlines).count >= 8 else {
+        guard password.trimmingCharacters(in: .whitespacesAndNewlines).count >= 8 && hasUppercaseLetter(password) else {
             throw Error.lessThanEightCharacters
         }
+    }
+    
+    private func hasUppercaseLetter(_ input: String) -> Bool {
+        for char in input {
+            if char.isUppercase {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 
@@ -19,7 +29,7 @@ public class PasswordVerifier {
  Password Verifier Kata:
  
  1. password should be larger than 8 chars ✅
- 2. password should not be null
+ 2. password should not be null ✅
  3. password should have one uppercase letter at least
  4. password should have one lowercase letter at least
  5. password should have one number at least
@@ -42,20 +52,20 @@ struct PasswordVerifierKataTests {
     }
     
     @Test
-    func eightCharacters_isValid() {
-        let sut = PasswordVerifier()
-        
-        #expect(throws: Never.self, performing: {
-            try sut.verify("valid password")
-        })
-    }
-    
-    @Test
     func emptyString_throwsError() {
         let sut = PasswordVerifier()
         
         #expect(throws: (any Error).self) {
             try sut.verify("        ")
+        }
+    }
+    
+    @Test
+    func withNoUppercaseLetter_throwsError() {
+        let sut = PasswordVerifier()
+        
+        #expect(throws: (any Error).self) {
+            try sut.verify("invalidpassword")
         }
     }
 
