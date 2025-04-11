@@ -9,7 +9,9 @@ public class PasswordVerifier {
     }
     
     public func verify(_ password: String) throws {
-        throw Error.lessThanEightCharacters
+        if (password.count < 8) {
+            throw Error.lessThanEightCharacters
+        }
     }
 }
 
@@ -37,6 +39,15 @@ struct PasswordVerifierKataTests {
         #expect(throws: PasswordVerifier.Error.lessThanEightCharacters) {
             try sut.verify("invalid")
         }
+    }
+    
+    @Test
+    func eightCharacters_isValid() {
+        let sut = PasswordVerifier()
+        
+        #expect(throws: Never.self, performing: {
+            try sut.verify("valid password")
+        })
     }
 
 }
