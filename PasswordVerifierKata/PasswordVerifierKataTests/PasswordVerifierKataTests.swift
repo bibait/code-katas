@@ -49,11 +49,11 @@ public class PasswordVerifier {
     public init() {}
     
     public func verify(_ password: String) throws {
-        let rules = PasswordRuleFactory.makeRules()
-        
-        for rule in rules {
-            try rule.verify(password)
-        }
+        try PasswordRuleFactory
+            .makeRules()
+            .forEach {
+                try $0.verify(password)
+            }
     }
 }
 
