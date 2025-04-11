@@ -5,7 +5,9 @@ public class PasswordVerifier {
         try PasswordRuleFactory
             .makeRules()
             .forEach {
-                try $0.verify(password)
+                if !$0.isValid(password) {
+                    throw $0.error
+                }
             }
     }
 }

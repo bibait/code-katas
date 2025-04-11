@@ -1,10 +1,12 @@
 public class MinimumOneLowercase: PasswordRule {
     public struct NoLowercase: Error {}
 
-    public func verify(_ password: String) throws {
-        guard hasLowercaseLetter(password) else {
-            throw NoLowercase()
-        }
+    public var error: Error {
+        NoLowercase()
+    }
+    
+    public func isValid(_ password: String) -> Bool {
+        hasLowercaseLetter(password)
     }
     
     private func hasLowercaseLetter(_ input: String) -> Bool {

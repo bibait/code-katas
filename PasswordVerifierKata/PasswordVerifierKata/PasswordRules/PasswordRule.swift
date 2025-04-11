@@ -1,3 +1,5 @@
 public protocol PasswordRule {
-    func verify(_ password: String) throws
+    var error: Error { get }
+
+    func isValid(_ password: String) -> Bool
 }

@@ -1,10 +1,12 @@
 public class MinimumOneNumber: PasswordRule {
     public struct NoNumber: Error {}
 
-    public func verify(_ password: String) throws {
-        guard hasNumber(password) else {
-            throw NoNumber()
-        }
+    public var error: Error {
+        NoNumber()
+    }
+    
+    public func isValid(_ password: String) -> Bool {
+        hasNumber(password)
     }
     
     private func hasNumber(_ input: String) -> Bool {
