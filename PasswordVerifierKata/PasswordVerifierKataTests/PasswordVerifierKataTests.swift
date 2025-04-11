@@ -25,22 +25,12 @@ public class InputNotNull: PasswordRule {
     }
 }
 
-public class PasswordVerifier {
-    public init() {}
-    
-    enum Error: Swift.Error {
-        case noUppercase
-    }
-    
+public class MinimumOneUppercase: PasswordRule {
+    public struct NoUppercase: Error {}
+
     public func verify(_ password: String) throws {
-        let eightCharactersRule = MinimumEightCharacters()
-        let inputNotNullRule = InputNotNull()
-
-        try eightCharactersRule.verify(password)
-        try inputNotNullRule.verify(password)
-
         guard hasUppercaseLetter(password) else {
-            throw Error.noUppercase
+            throw NoUppercase()
         }
     }
     
@@ -52,6 +42,20 @@ public class PasswordVerifier {
         }
         
         return false
+    }
+}
+
+public class PasswordVerifier {
+    public init() {}
+    
+    public func verify(_ password: String) throws {
+        let eightCharactersRule = MinimumEightCharacters()
+        let inputNotNullRule = InputNotNull()
+        let uppercaseRule = MinimumOneUppercase()
+
+        try eightCharactersRule.verify(password)
+        try inputNotNullRule.verify(password)
+        try uppercaseRule.verify(password)
     }
 }
 
@@ -94,7 +98,7 @@ struct PasswordVerifierKataTests {
     func withNoUppercaseLetter_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: PasswordVerifier.Error.noUppercase) {
+        #expect(throws: MinimumOneUppercase.NoUppercase.self) {
             try sut.verify("invalidpassword")
         }
     }
