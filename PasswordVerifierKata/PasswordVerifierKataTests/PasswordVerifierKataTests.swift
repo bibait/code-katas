@@ -25,9 +25,8 @@ public class PasswordVerifier {
     }
     
     public func verify(_ password: String) throws {
-        guard password.count >= 8 else {
-            throw Error.lessThanEightCharacters
-        }
+        let eightCharactersRule = MinimumEightCharacters()
+        try eightCharactersRule.verify(password)
         
         guard !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             throw Error.emptyPassword
@@ -70,7 +69,7 @@ struct PasswordVerifierKataTests {
     func lessThanEightCharacters_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: PasswordVerifier.Error.lessThanEightCharacters) {
+        #expect(throws: MinimumEightCharacters.LessThanEightCharacters.self) {
             try sut.verify("invalid")
         }
     }
