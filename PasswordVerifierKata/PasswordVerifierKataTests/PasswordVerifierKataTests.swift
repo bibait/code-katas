@@ -19,7 +19,6 @@ public class PasswordVerifier {
     public init() {}
     
     enum Error: Swift.Error {
-        case lessThanEightCharacters
         case emptyPassword
         case noUppercase
     }
