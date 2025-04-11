@@ -15,21 +15,29 @@ public class MinimumEightCharacters: PasswordRule {
     }
 }
 
+public class InputNotNull: PasswordRule {
+    public struct EmptyPassword: Error {}
+
+    public func verify(_ password: String) throws {
+        guard !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            throw EmptyPassword()
+        }
+    }
+}
+
 public class PasswordVerifier {
     public init() {}
     
     enum Error: Swift.Error {
-        case emptyPassword
         case noUppercase
     }
     
     public func verify(_ password: String) throws {
         let eightCharactersRule = MinimumEightCharacters()
+        let inputNotNullRule = InputNotNull()
+
         try eightCharactersRule.verify(password)
-        
-        guard !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            throw Error.emptyPassword
-        }
+        try inputNotNullRule.verify(password)
 
         guard hasUppercaseLetter(password) else {
             throw Error.noUppercase
@@ -77,7 +85,7 @@ struct PasswordVerifierKataTests {
     func emptyString_throwsError() {
         let sut = PasswordVerifier()
         
-        #expect(throws: PasswordVerifier.Error.emptyPassword) {
+        #expect(throws: InputNotNull.EmptyPassword.self) {
             try sut.verify("        ")
         }
     }
