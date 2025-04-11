@@ -49,13 +49,21 @@ public class PasswordVerifier {
     public init() {}
     
     public func verify(_ password: String) throws {
-        let eightCharactersRule = MinimumEightCharacters()
-        let inputNotNullRule = InputNotNull()
-        let uppercaseRule = MinimumOneUppercase()
+        let rules = PasswordRuleFactory.makeRules()
+        
+        for rule in rules {
+            try rule.verify(password)
+        }
+    }
+}
 
-        try eightCharactersRule.verify(password)
-        try inputNotNullRule.verify(password)
-        try uppercaseRule.verify(password)
+public class PasswordRuleFactory {
+    static func makeRules() -> [PasswordRule] {
+        [
+            MinimumEightCharacters(),
+            InputNotNull(),
+            MinimumOneUppercase(),
+        ]
     }
 }
 
