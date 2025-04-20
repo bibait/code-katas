@@ -38,11 +38,15 @@ public struct MoveForward: Command {
     }
     
     private func isObstacle(at position: Coordinate, on map: Map) -> Bool {
-        if position.x < 0 || position.y < 0 || position.x >= map.tiles[0].count || position.y >= map.tiles.count {
+        if isAtEdge(of: map, position: position) {
             return true
         }
 
         return map.tiles[position.y][position.x].isObstacle
+    }
+    
+    private func isAtEdge(of map: Map, position: Coordinate) -> Bool {
+        position.x < 0 || position.y < 0 || position.x >= map.tiles[0].count || position.y >= map.tiles.count
     }
 }
 
