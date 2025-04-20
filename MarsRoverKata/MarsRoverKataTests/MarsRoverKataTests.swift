@@ -98,10 +98,10 @@ public class MarsRover {
                 MoveForwardCommand().execute(on: self)
                 
             case .turnLeft:
-                TurnRightCommand().execute(on: self)
+                TurnLeftCommand().execute(on: self)
                 
             case .turnRight:
-                roverPosition.direction = roverPosition.direction.turnRight()
+                TurnRightCommand().execute(on: self)
             }
         }
     }
@@ -143,9 +143,15 @@ public class MoveForwardCommand: Command2 {
     }
 }
 
-public struct TurnRightCommand: Command2 {
+public struct TurnLeftCommand: Command2 {
     public func execute(on rover: MarsRover) {
         rover.roverPosition.direction = rover.roverPosition.direction.turnLeft()
+    }
+}
+
+public struct TurnRightCommand: Command2 {
+    public func execute(on rover: MarsRover) {
+        rover.roverPosition.direction = rover.roverPosition.direction.turnRight()
     }
 }
 
