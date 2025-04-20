@@ -4,9 +4,17 @@ import PrimeFactorsKata
 public class PrimeFactors {
     public static func generate(_ number: Int) -> [Int] {
         var result = [Int]()
+        var number = number
 
         if number > 1 {
-            result.append(contentsOf: [number])
+            if number % 2 == 0 {
+                result.append(2)
+                number /= 2
+            }
+
+            if number > 1 {
+                result.append(contentsOf: [number])                
+            }
         }
         
         return result
@@ -34,6 +42,13 @@ struct PrimeFactorsTests {
         let result = PrimeFactors.generate(3)
         
         #expect(result == [3])
+    }
+    
+    @Test
+    func generate_4() {
+        let result = PrimeFactors.generate(4)
+        
+        #expect(result == [2, 2])
     }
 
 }
