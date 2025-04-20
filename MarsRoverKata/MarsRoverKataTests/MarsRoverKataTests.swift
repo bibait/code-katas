@@ -95,19 +95,7 @@ public class MarsRover {
         for command in commands {
             switch command.type {
             case .moveForward:
-                switch roverPosition.direction {
-                case .north:
-                    roverPosition.position = roverPosition.position.moveY(by: -1)
-                    
-                case .south:
-                    roverPosition.position = roverPosition.position.moveY(by: 1)
-                    
-                case .east:
-                    roverPosition.position = roverPosition.position.moveX(by: 1)
-                    
-                case .west:
-                    roverPosition.position = roverPosition.position.moveX(by: -1)
-                }
+                MoveForwardCommand().execute(on: self)
                 
             case .turnLeft:
                 roverPosition.direction = roverPosition.direction.turnLeft()
