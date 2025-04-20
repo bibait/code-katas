@@ -63,17 +63,17 @@ struct PasswordVerifierKataTests {
         }
     }
     
-//    @Test
-//    func minimumThreeRules_doesNotThrow() {
-//        let sut = PasswordVerifier()
-//        
-//        #expect(throws: Never.self) {
-//            try sut.verify("Ul1")
-//        }
-//        
-//        #expect(throws: Never.self) {
-//            try sut.verify("password1")
-//        }
-//    }
+    @Test
+    func minimumThreeRules_doesNotThrow() {
+        let sut = PasswordVerifier()
+        
+        #expect(throws: Never.self) {
+            try sut.verify("Ul1")
+        }
+        
+        #expect(throws: Never.self) {
+            try sut.verify("password1")
+        }
+    }
 
 }
