@@ -13,7 +13,14 @@ public class PrimeFactors {
             }
 
             if number > 1 {
-                result.append(contentsOf: [number])
+                if number % 2 == 0 {
+                    result.append(2)
+                    number /= 2
+                }
+
+                if number > 1 {
+                    result.append(contentsOf: [number])
+                }
             }
         }
         
@@ -49,6 +56,13 @@ struct PrimeFactorsTests {
         let result = PrimeFactors.generate(6)
         
         #expect(result == [2, 3])
+    }
+    
+    @Test
+    func generate_8() {
+        let result = PrimeFactors.generate(8)
+        
+        #expect(result == [2, 2, 2])
     }
 
 }
