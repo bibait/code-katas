@@ -1,3 +1,6 @@
+import Foundation
+
+@Observable
 public class MarsRover {
     public let map: Map
     public var roverPosition: Position

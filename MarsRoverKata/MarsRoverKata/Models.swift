@@ -1,3 +1,6 @@
+import Foundation
+
+@Observable
 public class Position {
     public var position: Coordinate
     public var direction: Direction
