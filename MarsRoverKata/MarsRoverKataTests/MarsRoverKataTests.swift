@@ -133,6 +133,28 @@ public struct Command {
     }
 }
 
+public protocol Command2 {
+    func execute(on rover: MarsRover)
+}
+
+public class MoveForwardCommand: Command2 {
+    public func execute(on rover: MarsRover) {
+        switch rover.roverPosition.direction {
+        case .north:
+            rover.roverPosition.position = rover.roverPosition.position.moveY(by: -1)
+            
+        case .south:
+            rover.roverPosition.position = rover.roverPosition.position.moveY(by: 1)
+            
+        case .east:
+            rover.roverPosition.position = rover.roverPosition.position.moveX(by: 1)
+            
+        case .west:
+            rover.roverPosition.position = rover.roverPosition.position.moveX(by: -1)
+        }
+    }
+}
+
 struct MarsRoverKataTests {
 
     @Test
