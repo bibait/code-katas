@@ -125,7 +125,7 @@ public protocol Command2 {
     func execute(on rover: MarsRover)
 }
 
-public class MoveForwardCommand: Command2 {
+public struct MoveForwardCommand: Command2 {
     public func execute(on rover: MarsRover) {
         switch rover.roverPosition.direction {
         case .north:
