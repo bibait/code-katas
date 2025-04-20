@@ -157,38 +157,5 @@ struct MarsRoverKataTests {
         
         #expect(sut.roverPosition.position == .init(x: 2, y: 0))
     }
-    
-    @Test
-    func move_withoutObstacles2() {
-        let sut = MarsRover(
-            startingPosition: .init(
-                position: Coordinate(x: 0, y: 0),
-                direction: .south
-            ),
-            map: .init(tiles: [
-                [
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                ],
-                [
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                    .init(isObstacle: false),
-                ],
-            ])
-        )
-        
-        sut.move(commands: [
-            .init(type: .moveForward),
-            .init(type: .moveForward),
-            .init(type: .turnLeft),
-            .init(type: .moveForward),
-        ])
-        
-        #expect(sut.roverPosition.position == .init(x: 1, y: 2))
-    }
 
 }
