@@ -100,7 +100,7 @@ public protocol Command {
     func execute(on rover: MarsRover)
 }
 
-public struct MoveForwardCommand: Command {
+public struct MoveForward: Command {
     public func execute(on rover: MarsRover) {
         switch rover.roverPosition.direction {
         case .north:
@@ -118,13 +118,13 @@ public struct MoveForwardCommand: Command {
     }
 }
 
-public struct TurnLeftCommand: Command {
+public struct TurnLeft: Command {
     public func execute(on rover: MarsRover) {
         rover.roverPosition.direction = rover.roverPosition.direction.turnLeft()
     }
 }
 
-public struct TurnRightCommand: Command {
+public struct TurnRight: Command {
     public func execute(on rover: MarsRover) {
         rover.roverPosition.direction = rover.roverPosition.direction.turnRight()
     }
@@ -156,8 +156,8 @@ struct MarsRoverKataTests {
         )
         
         sut.move(commands: [
-            MoveForwardCommand(),
-            MoveForwardCommand(),
+            MoveForward(),
+            MoveForward(),
         ])
         
         #expect(sut.roverPosition.position == .init(x: 2, y: 0))
