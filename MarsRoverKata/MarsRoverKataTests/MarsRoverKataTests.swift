@@ -92,9 +92,7 @@ public class MarsRover {
     }
     
     public func move(commands: [Command]) {
-        for command in commands {
-            command.execute(on: self)
-        }
+        commands.forEach { $0.execute(on: self) }
     }
 }
 
