@@ -13,6 +13,38 @@ public class Position {
 
 public enum Direction {
     case north, south, east, west
+    
+    func turnLeft() -> Direction {
+        switch self {
+        case .north:
+            return .west
+            
+        case .south:
+            return .east
+            
+        case .east:
+            return .north
+            
+        case .west:
+            return .south
+        }
+    }
+    
+    func turnRight() -> Direction {
+        switch self {
+        case .north:
+            return .east
+            
+        case .south:
+            return .west
+            
+        case .east:
+            return .south
+            
+        case .west:
+            return .north
+        }
+    }
 }
 
 public struct Coordinate: Equatable {
@@ -78,34 +110,10 @@ public class MarsRover {
                 }
                 
             case .turnLeft:
-                switch roverPosition.direction {
-                case .north:
-                    roverPosition.direction = .west
-                    
-                case .south:
-                    roverPosition.direction = .east
-                    
-                case .east:
-                    roverPosition.direction = .north
-                    
-                case .west:
-                    roverPosition.direction = .south
-                }
+                roverPosition.direction = roverPosition.direction.turnLeft()
                 
             case .turnRight:
-                switch roverPosition.direction {
-                case .north:
-                    roverPosition.direction = .east
-                    
-                case .south:
-                    roverPosition.direction = .west
-                    
-                case .east:
-                    roverPosition.direction = .south
-                    
-                case .west:
-                    roverPosition.direction = .north
-                }
+                roverPosition.direction = roverPosition.direction.turnRight()
             }
         }
     }
