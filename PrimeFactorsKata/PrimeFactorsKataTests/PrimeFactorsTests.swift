@@ -13,7 +13,7 @@ public class PrimeFactors {
             }
 
             if number > 1 {
-                result.append(contentsOf: [number])                
+                result.append(contentsOf: [number])
             }
         }
         
@@ -30,18 +30,11 @@ struct PrimeFactorsTests {
         #expect(result.isEmpty)
     }
     
-    @Test
-    func generate_2() {
-        let result = PrimeFactors.generate(2)
+    @Test(arguments: [2, 3])
+    func generate_sameNumber(number: Int) {
+        let result = PrimeFactors.generate(number)
         
-        #expect(result == [2])
-    }
-    
-    @Test
-    func generate_3() {
-        let result = PrimeFactors.generate(3)
-        
-        #expect(result == [3])
+        #expect(result == [number])
     }
     
     @Test
