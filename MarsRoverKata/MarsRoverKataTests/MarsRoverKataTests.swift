@@ -1,9 +1,9 @@
 import Testing
 import MarsRoverKata
 
-public struct Position {
-    let position: Coordinate
-    let direction: Direction
+public class Position {
+    var position: Coordinate
+    var direction: Direction
     
     public init(position: Coordinate, direction: Direction) {
         self.position = position
@@ -22,6 +22,14 @@ public struct Coordinate: Equatable {
     public init(x: Int, y: Int) {
         self.x = x
         self.y = y
+    }
+    
+    func moveX(by value: Int) -> Coordinate {
+        return Coordinate(x: x + value, y: y)
+    }
+    
+    func moveY(by value: Int) -> Coordinate {
+        return Coordinate(x: x, y: y + value)
     }
 }
 
@@ -42,20 +50,64 @@ public struct Tile {
 }
 
 public class MarsRover {
-    private let startingPosition: Position
     private let map: Map
     
+    public var roverPosition: Position
+
     public init(startingPosition: Position, map: Map) {
-        self.startingPosition = startingPosition
+        self.roverPosition = startingPosition
         self.map = map
     }
     
-    public var roverPosition: Coordinate {
-        .init(x: 2, y: 0)
-    }
-    
     public func move(commands: [Command]) {
-        
+        for command in commands {
+            switch command.type {
+            case .moveForward:
+                switch roverPosition.direction {
+                case .north:
+                    roverPosition.position = roverPosition.position.moveY(by: -1)
+                    
+                case .south:
+                    roverPosition.position = roverPosition.position.moveY(by: 1)
+                    
+                case .east:
+                    roverPosition.position = roverPosition.position.moveX(by: 1)
+                    
+                case .west:
+                    roverPosition.position = roverPosition.position.moveX(by: -1)
+                }
+                
+            case .turnLeft:
+                switch roverPosition.direction {
+                case .north:
+                    roverPosition.direction = .west
+                    
+                case .south:
+                    roverPosition.direction = .east
+                    
+                case .east:
+                    roverPosition.direction = .north
+                    
+                case .west:
+                    roverPosition.direction = .south
+                }
+                
+            case .turnRight:
+                switch roverPosition.direction {
+                case .north:
+                    roverPosition.direction = .east
+                    
+                case .south:
+                    roverPosition.direction = .west
+                    
+                case .east:
+                    roverPosition.direction = .south
+                    
+                case .west:
+                    roverPosition.direction = .north
+                }
+            }
+        }
     }
 }
 
@@ -103,7 +155,40 @@ struct MarsRoverKataTests {
             .init(type: .moveForward),
         ])
         
-        #expect(sut.roverPosition == .init(x: 2, y: 0))
+        #expect(sut.roverPosition.position == .init(x: 2, y: 0))
+    }
+    
+    @Test
+    func move_withoutObstacles2() {
+        let sut = MarsRover(
+            startingPosition: .init(
+                position: Coordinate(x: 0, y: 0),
+                direction: .south
+            ),
+            map: .init(tiles: [
+                [
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                ],
+                [
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                    .init(isObstacle: false),
+                ],
+            ])
+        )
+        
+        sut.move(commands: [
+            .init(type: .moveForward),
+            .init(type: .moveForward),
+            .init(type: .turnLeft),
+            .init(type: .moveForward),
+        ])
+        
+        #expect(sut.roverPosition.position == .init(x: 1, y: 2))
     }
 
 }
