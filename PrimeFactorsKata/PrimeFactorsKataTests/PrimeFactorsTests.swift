@@ -6,15 +6,18 @@ public class PrimeFactors {
         var result = [Int]()
         var number = number
 
-        if number > 1 {
-            while number % 2 == 0 {
-                result.append(2)
-                number /= 2
-            }
+        var candidate = 2
 
-            if number > 1 {
-                result.append(contentsOf: [number])
+        while number > 1 {
+            while number % candidate == 0 {
+                result.append(candidate)
+                number /= candidate
             }
+            candidate += 1
+        }
+        
+        if number > 1 {
+            result.append(contentsOf: [number])
         }
         
         return result
@@ -56,6 +59,13 @@ struct PrimeFactorsTests {
         let result = PrimeFactors.generate(8)
         
         #expect(result == [2, 2, 2])
+    }
+    
+    @Test
+    func generate_9() {
+        let result = PrimeFactors.generate(9)
+        
+        #expect(result == [3, 3])
     }
 
 }
