@@ -7,20 +7,13 @@ public class PrimeFactors {
         var number = number
 
         if number > 1 {
-            if number % 2 == 0 {
+            while number % 2 == 0 {
                 result.append(2)
                 number /= 2
             }
 
             if number > 1 {
-                if number % 2 == 0 {
-                    result.append(2)
-                    number /= 2
-                }
-
-                if number > 1 {
-                    result.append(contentsOf: [number])
-                }
+                result.append(contentsOf: [number])
             }
         }
         
