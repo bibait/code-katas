@@ -16,10 +16,6 @@ public class PrimeFactors {
             candidate += 1
         }
         
-        if number > 1 {
-            result.append(contentsOf: [number])
-        }
-        
         return result
     }
 }
