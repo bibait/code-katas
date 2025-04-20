@@ -93,39 +93,16 @@ public class MarsRover {
     
     public func move(commands: [Command]) {
         for command in commands {
-            switch command.type {
-            case .moveForward:
-                MoveForwardCommand().execute(on: self)
-                
-            case .turnLeft:
-                TurnLeftCommand().execute(on: self)
-                
-            case .turnRight:
-                TurnRightCommand().execute(on: self)
-            }
+            command.execute(on: self)
         }
     }
 }
 
-public struct Command {
-    let type: CommandType
-    
-    public init(type: CommandType) {
-        self.type = type
-    }
-    
-    public enum CommandType {
-        case moveForward
-        case turnLeft
-        case turnRight
-    }
-}
-
-public protocol Command2 {
+public protocol Command {
     func execute(on rover: MarsRover)
 }
 
-public struct MoveForwardCommand: Command2 {
+public struct MoveForwardCommand: Command {
     public func execute(on rover: MarsRover) {
         switch rover.roverPosition.direction {
         case .north:
@@ -143,13 +120,13 @@ public struct MoveForwardCommand: Command2 {
     }
 }
 
-public struct TurnLeftCommand: Command2 {
+public struct TurnLeftCommand: Command {
     public func execute(on rover: MarsRover) {
         rover.roverPosition.direction = rover.roverPosition.direction.turnLeft()
     }
 }
 
-public struct TurnRightCommand: Command2 {
+public struct TurnRightCommand: Command {
     public func execute(on rover: MarsRover) {
         rover.roverPosition.direction = rover.roverPosition.direction.turnRight()
     }
@@ -181,8 +158,8 @@ struct MarsRoverKataTests {
         )
         
         sut.move(commands: [
-            .init(type: .moveForward),
-            .init(type: .moveForward),
+            MoveForwardCommand(),
+            MoveForwardCommand(),
         ])
         
         #expect(sut.roverPosition.position == .init(x: 2, y: 0))
