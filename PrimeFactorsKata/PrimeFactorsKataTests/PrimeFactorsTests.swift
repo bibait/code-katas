@@ -26,5 +26,12 @@ struct PrimeFactorsTests {
         
         #expect(result == [2])
     }
+    
+    @Test
+    func generate_3() {
+        let result = PrimeFactors.generate(3)
+        
+        #expect(result == [3])
+    }
 
 }
