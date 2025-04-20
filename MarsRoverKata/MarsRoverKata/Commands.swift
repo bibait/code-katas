@@ -38,6 +38,10 @@ public struct MoveForward: Command {
     }
     
     private func isObstacle(at position: Coordinate, on map: Map) -> Bool {
+        if position.x < 0 || position.y < 0 || position.x >= map.tiles[0].count || position.y >= map.tiles.count {
+            return true
+        }
+
         return map.tiles[position.y][position.x].isObstacle
     }
 }
