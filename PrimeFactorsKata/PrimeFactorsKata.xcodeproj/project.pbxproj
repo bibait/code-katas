@@ -25,22 +25,9 @@
 		0E7AF7352DB50C07007C6887 /* PrimeFactorsKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrimeFactorsKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E7AF73D2DB50C07007C6887 /* Exceptions for "PrimeFactorsKata" folder in "PrimeFactorsKata" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				PrimeFactorsKata.h,
-			);
-			target = 0E7AF72C2DB50C06007C6887 /* PrimeFactorsKata */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0E7AF72F2DB50C07007C6887 /* PrimeFactorsKata */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0E7AF73D2DB50C07007C6887 /* Exceptions for "PrimeFactorsKata" folder in "PrimeFactorsKata" target */,
-			);
 			path = PrimeFactorsKata;
 			sourceTree = "<group>";
 		};
@@ -237,7 +224,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -272,7 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
