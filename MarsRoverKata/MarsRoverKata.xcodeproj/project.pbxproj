@@ -25,22 +25,9 @@
 		0E7AF7762DB53A5A007C6887 /* MarsRoverKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsRoverKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E7AF77E2DB53A5A007C6887 /* Exceptions for "MarsRoverKata" folder in "MarsRoverKata" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				MarsRoverKata.h,
-			);
-			target = 0E7AF76D2DB53A5A007C6887 /* MarsRoverKata */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0E7AF7702DB53A5A007C6887 /* MarsRoverKata */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0E7AF77E2DB53A5A007C6887 /* Exceptions for "MarsRoverKata" folder in "MarsRoverKata" target */,
-			);
 			path = MarsRoverKata;
 			sourceTree = "<group>";
 		};
@@ -237,7 +224,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -272,7 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
