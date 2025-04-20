@@ -1,6 +1,5 @@
 public class MarsRover {
-    private let map: Map
-    
+    public let map: Map
     public var roverPosition: Position
 
     public init(startingPosition: Position, map: Map) {

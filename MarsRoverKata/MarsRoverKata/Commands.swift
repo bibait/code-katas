@@ -8,17 +8,37 @@ public struct MoveForward: Command {
     public func execute(on rover: MarsRover) {
         switch rover.roverPosition.direction {
         case .north:
+            if isObstacle(at: rover.roverPosition.position.moveY(by: -1), on: rover.map) {
+                return
+            }
+
             rover.roverPosition.position = rover.roverPosition.position.moveY(by: -1)
             
         case .south:
+            if isObstacle(at: rover.roverPosition.position.moveY(by: 1), on: rover.map) {
+                return
+            }
+            
             rover.roverPosition.position = rover.roverPosition.position.moveY(by: 1)
             
         case .east:
+            if isObstacle(at: rover.roverPosition.position.moveX(by: 1), on: rover.map) {
+                return
+            }
+
             rover.roverPosition.position = rover.roverPosition.position.moveX(by: 1)
             
         case .west:
+            if isObstacle(at: rover.roverPosition.position.moveX(by: -1), on: rover.map) {
+                return
+            }
+
             rover.roverPosition.position = rover.roverPosition.position.moveX(by: -1)
         }
+    }
+    
+    private func isObstacle(at position: Coordinate, on map: Map) -> Bool {
+        return map.tiles[position.y][position.x].isObstacle
     }
 }
 
