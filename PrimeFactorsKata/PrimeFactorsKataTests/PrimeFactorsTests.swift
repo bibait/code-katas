@@ -3,11 +3,13 @@ import PrimeFactorsKata
 
 public class PrimeFactors {
     public static func generate(_ number: Int) -> [Int] {
-        if number == 1 {
-            return []
+        var result = [Int]()
+
+        if number > 1 {
+            result.append(contentsOf: [number])
         }
         
-        return [number]
+        return result
     }
 }
 
