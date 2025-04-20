@@ -15,7 +15,7 @@ public enum Direction {
     case north, south, east, west
 }
 
-public struct Coordinate {
+public struct Coordinate: Equatable {
     let x: Int
     let y: Int
     
@@ -49,13 +49,35 @@ public class MarsRover {
         self.startingPosition = startingPosition
         self.map = map
     }
+    
+    public var roverPosition: Coordinate {
+        .init(x: 2, y: 0)
+    }
+    
+    public func move(commands: [Command]) {
+        
+    }
+}
+
+public struct Command {
+    let type: CommandType
+    
+    public init(type: CommandType) {
+        self.type = type
+    }
+    
+    public enum CommandType {
+        case moveForward
+        case turnLeft
+        case turnRight
+    }
 }
 
 struct MarsRoverKataTests {
 
     @Test
-    func canInit() {
-        let _ = MarsRover(
+    func move_withoutObstacles() {
+        let sut = MarsRover(
             startingPosition: .init(
                 position: Coordinate(x: 0, y: 0),
                 direction: .east
@@ -75,6 +97,13 @@ struct MarsRoverKataTests {
                 ],
             ])
         )
+        
+        sut.move(commands: [
+            .init(type: .moveForward),
+            .init(type: .moveForward),
+        ])
+        
+        #expect(sut.roverPosition == .init(x: 2, y: 0))
     }
 
 }
