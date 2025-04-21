@@ -46,7 +46,7 @@ struct TodoListTests {
     func addTodo_withFailingOperation_throwsError() throws {
         let (sut, _) = makeSUT(error: error)
 
-        #expect(throws: error) {
+        expectError {
             try sut.add(todoItem)
         }
     }
@@ -77,7 +77,7 @@ struct TodoListTests {
     func removeTodo_withFailingOperation_throwsError() throws {
         let (sut, _) = makeSUT(items: [todoItem], error: error)
 
-        #expect(throws: error) {
+        expectError {
             try sut.remove(todoItem)
         }
     }
@@ -108,7 +108,7 @@ struct TodoListTests {
     func toggleCompleted_withFailingOperation_throwsError() throws {
         let (sut, _) = makeSUT(items: [todoItem], error: error)
 
-        #expect(throws: error) {
+        expectError {
             try sut.toggleCompleted(todoItem)
         }
     }
@@ -135,6 +135,12 @@ struct TodoListTests {
     
     private func executeNonThrowingAction(_ action: () throws -> Void) {
         #expect(throws: Never.self) {
+            try action()
+        }
+    }
+    
+    private func expectError(when action: () throws -> Void) {
+        #expect(throws: error) {
             try action()
         }
     }
