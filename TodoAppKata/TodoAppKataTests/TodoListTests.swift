@@ -90,7 +90,6 @@ struct TodoListTests {
             try sut.toggleCompleted(todoItem)
         }
         
-        #expect(sut.todos.first!.isCompleted == true)
         #expect(sut.todos == [todoItem.toggleCompleted()])
         #expect(repository.updatedTodos == [todoItem.toggleCompleted()])
     }
