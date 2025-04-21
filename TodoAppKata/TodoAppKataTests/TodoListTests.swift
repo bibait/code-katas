@@ -20,18 +20,22 @@ public class TodoList {
     public var todos: [TodoItem] { _todos }
     
     public func add(_ todo: TodoItem) throws {
-        do {
+        try execute {
             try repository.save(todo)
             _todos.append(todo)
-        } catch {
-            throw error
         }
     }
     
     public func remove(_ todo: TodoItem) throws {
-        do {
+        try execute {
             try repository.remove(todo)
             _todos.removeAll { $0.id == todo.id }
+        }
+    }
+    
+    private func execute(action: () throws -> Void) throws {
+        do {
+            try action()
         } catch {
             throw error
         }
@@ -154,6 +158,12 @@ struct TodoListTests {
     private func addWithNonFailingOperation(sut: TodoList, newTodo: TodoItem) {
         #expect(throws: Never.self) {
             try sut.add(newTodo)
+        }
+    }
+    
+    private func removeWithNonFailingOperation(sut: TodoList, todo: TodoItem) {
+        #expect(throws: Never.self) {
+            try sut.remove(todo)
         }
     }
     
