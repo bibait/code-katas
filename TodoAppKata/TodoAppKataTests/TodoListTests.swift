@@ -7,7 +7,10 @@ struct TodoListTests {
     private let id = UUID(uuidString: "B1495D7E-B662-4BA2-89CB-BAAD9D3D29B3")!
     
     private var todoItem: TodoItem {
-        TodoItemFactory.makeTodoItem(id: id)
+        TodoItemFactory.makeTodoItem(
+            id: id,
+            isCompleted: false
+        )
     }
     
     @Test
@@ -78,6 +81,38 @@ struct TodoListTests {
             try sut.remove(todoItem)
         }
     }
+    
+    @Test
+    func toggleCompleted_updatesItems_withToggledItem() throws {
+        let (sut, repository) = makeSUT(items: [todoItem])
+        
+        #expect(throws: Never.self) {
+            try sut.toggleCompleted(todoItem)
+        }
+        
+        #expect(sut.todos.first!.isCompleted == true)
+        #expect(sut.todos == [todoItem.toggleCompleted()])
+        #expect(repository.updatedTodos == [todoItem.toggleCompleted()])
+    }
+    
+//    @Test
+//    func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
+//        let (sut, repository) = makeSUT(items: [todoItem], error: error)
+//
+//        try? sut.remove(todoItem)
+//        
+//        #expect(repository.removedTodos.isEmpty)
+//        #expect(sut.todos == [todoItem])
+//    }
+//    
+//    @Test
+//    func removeTodo_withFailingOperation_throwsError() throws {
+//        let (sut, _) = makeSUT(items: [todoItem], error: error)
+//
+//        #expect(throws: error) {
+//            try sut.remove(todoItem)
+//        }
+//    }
     
     // MARK: - Helpers
     

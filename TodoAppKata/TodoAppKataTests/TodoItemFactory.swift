@@ -4,8 +4,13 @@ import TodoAppKata
 class TodoItemFactory {
     static func makeTodoItem(
         id: UUID,
-        title: String = "Any"
+        title: String = "Any",
+        isCompleted: Bool
     ) -> TodoItem {
-        TodoItem(id: id, title: title)
+        TodoItem(
+            id: id,
+            title: title,
+            isCompleted: isCompleted
+        )
     }
 }

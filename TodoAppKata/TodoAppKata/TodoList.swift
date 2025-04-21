@@ -23,6 +23,13 @@ public class TodoList {
         }
     }
     
+    public func toggleCompleted(_ todo: TodoItem) throws {
+        try! repository.update(todo.toggleCompleted())
+        if let index = _todos.firstIndex(where: { $0.id == todo.id }) {
+            _todos[index] = todo.toggleCompleted()
+        }
+    }
+    
     private func execute(action: () throws -> Void) throws {
         do {
             try action()
