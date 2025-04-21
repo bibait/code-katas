@@ -65,6 +65,7 @@ struct TodoListTests {
         try! sut.add(newTodo)
         
         #expect(repository.savedTodos.isEmpty)
+        #expect(sut.todos.isEmpty)
     }
     
     @Test
