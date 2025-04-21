@@ -21,7 +21,9 @@ struct TodoListTests {
     func addTodo_updatesItems_withNewItem() throws {
         let (sut, repository) = makeSUT()
         
-        addWithNonFailingOperation(sut: sut, newTodo: todoItem)
+        #expect(throws: Never.self) {
+            try sut.add(todoItem)
+        }
         
         #expect(sut.todos == [todoItem])
         #expect(repository.savedTodos == [todoItem])
@@ -95,12 +97,6 @@ struct TodoListTests {
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
-    }
-    
-    private func addWithNonFailingOperation(sut: TodoList, newTodo: TodoItem) {
-        #expect(throws: Never.self) {
-            try sut.add(newTodo)
-        }
     }
 
 }
