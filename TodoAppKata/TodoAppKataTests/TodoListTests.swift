@@ -35,7 +35,7 @@ struct TodoListTests {
 
     @Test
     func addTodo() {
-        let sut = TodoList(repository: FakeRepository())
+        let (sut, _) = makeSUT()
         let newTodo = TodoItem(title: "New Todo")
         
         sut.add(newTodo)
@@ -45,8 +45,7 @@ struct TodoListTests {
     
     @Test
     func addTodo_persistsInRepository() {
-        let repository = FakeRepository()
-        let sut = TodoList(repository: repository)
+        let (sut, repository) = makeSUT()
         let newTodo = TodoItem(title: "New Todo")
         
         sut.add(newTodo)
@@ -55,6 +54,16 @@ struct TodoListTests {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (
+        sut: TodoList,
+        repository: FakeRepository
+    ) {
+        let repository = FakeRepository()
+        let sut = TodoList(repository: repository)
+        
+        return (sut, repository)
+    }
     
     private class FakeRepository: TodoItemRepository {
         private(set) var savedTodos: [TodoItem] = []
