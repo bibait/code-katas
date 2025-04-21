@@ -161,12 +161,6 @@ struct TodoListTests {
         }
     }
     
-    private func removeWithNonFailingOperation(sut: TodoList, todo: TodoItem) {
-        #expect(throws: Never.self) {
-            try sut.remove(todo)
-        }
-    }
-    
     private class FakeRepository: TodoItemRepository {
         private(set) var savedTodos: [TodoItem] = []
         private(set) var removedTodos: [TodoItem] = []
