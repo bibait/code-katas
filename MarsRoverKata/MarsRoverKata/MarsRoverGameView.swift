@@ -18,23 +18,8 @@ struct MarsRoverGameView : View {
                                         .fill(Color.green)
                                         .frame(width: 20, height: 20)
                                         .overlay {
-                                            switch marsRover.roverPosition.direction {
-                                            case .north:
-                                                Image(systemName: "arrow.up")
-                                                    .foregroundColor(.white)
-                                                
-                                            case .south:
-                                                Image(systemName: "arrow.down")
-                                                    .foregroundColor(.white)
-                                                
-                                            case .east:
-                                                Image(systemName: "arrow.right")
-                                                    .foregroundColor(.white)
-                                                
-                                            case .west:
-                                                Image(systemName: "arrow.left")
-                                                    .foregroundColor(.white)
-                                            }
+                                            Image(systemName: "arrow.\(getArrowDirection(from: marsRover.roverPosition.direction))")
+                                                .foregroundColor(.white)
                                         }
                                 }
                             }
@@ -57,6 +42,22 @@ struct MarsRoverGameView : View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    private func getArrowDirection(from direction: Direction) -> String {
+        switch direction {
+        case .north:
+            return "up"
+            
+        case .south:
+            return "down"
+            
+        case .east:
+            return "right"
+            
+        case .west: 
+            return "left"
+        }
     }
 }
 
