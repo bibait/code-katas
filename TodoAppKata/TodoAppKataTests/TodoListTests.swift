@@ -39,6 +39,7 @@ public struct TodoItem: Equatable {
 }
 
 struct TodoListTests {
+    private let error = NSError(domain: "Test", code: -1)
     
     @Test
     func init_fetchesItemsFromRepository() {
@@ -62,7 +63,7 @@ struct TodoListTests {
     func addTodo_withFailingOperation_doesNotAddNewItem() throws {
         let (sut, repository) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
-        repository.stub(error: NSError(domain: "Test", code: -1))
+        repository.stub(error: error)
 
         try? sut.add(newTodo)
         
@@ -74,9 +75,9 @@ struct TodoListTests {
     func addTodo_withFailingOperation_throwsError() throws {
         let (sut, repository) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
-        repository.stub(error: NSError(domain: "Test", code: -1))
+        repository.stub(error: error)
 
-        #expect(throws: NSError(domain: "Test", code: -1)) {
+        #expect(throws: error) {
             try sut.add(newTodo)
         }
     }
