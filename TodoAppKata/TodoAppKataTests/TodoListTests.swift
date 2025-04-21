@@ -36,7 +36,7 @@ struct TodoListTests {
     @Test
     func addTodo() {
         let (sut, _) = makeSUT()
-        let newTodo = TodoItem(title: "New Todo")
+        let newTodo = makeTodoItem(title: "New Todo")
         
         sut.add(newTodo)
         
@@ -46,7 +46,7 @@ struct TodoListTests {
     @Test
     func addTodo_persistsInRepository() {
         let (sut, repository) = makeSUT()
-        let newTodo = TodoItem(title: "New Todo")
+        let newTodo = makeTodoItem(title: "New Todo")
         
         sut.add(newTodo)
         
@@ -63,6 +63,10 @@ struct TodoListTests {
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
+    }
+    
+    private func makeTodoItem(title: String = "Any") -> TodoItem {
+        TodoItem(title: title)
     }
     
     private class FakeRepository: TodoItemRepository {
