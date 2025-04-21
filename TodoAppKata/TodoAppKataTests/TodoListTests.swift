@@ -98,7 +98,7 @@ struct TodoListTests {
     }
     
     @Test
-    func deleteTodo_updatesItems_withRemovedItem() throws {
+    func removeTodo_updatesItems_withRemovedItem() throws {
         let todo = makeTodoItem(id: .init())
         let (sut, repository) = makeSUT(items: [todo])
         
