@@ -13,9 +13,7 @@ public class TodoList {
         self.repository = repository
     }
     
-    public var todos: [TodoItem] {
-        _todos
-    }
+    public var todos: [TodoItem] { _todos }
     
     public func add(_ todo: TodoItem) {
         repository.save(todo)
@@ -34,7 +32,7 @@ public struct TodoItem: Equatable {
 struct TodoListTests {
 
     @Test
-    func addTodo() {
+    func addTodo_updatesItems_withNewItem() {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(title: "New Todo")
         
