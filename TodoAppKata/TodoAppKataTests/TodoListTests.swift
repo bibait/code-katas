@@ -51,12 +51,13 @@ struct TodoListTests {
 
     @Test
     func addTodo_updatesItems_withNewItem() throws {
-        let (sut, _) = makeSUT()
+        let (sut, repository) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
         
         addWithNonFailingOperation(sut: sut, newTodo: newTodo)
         
         #expect(sut.todos == [newTodo])
+        #expect(repository.savedTodos == [newTodo])
     }
     
     @Test
