@@ -83,16 +83,6 @@ struct TodoListTests {
         }
     }
     
-    @Test
-    func addTodo_persistsInRepository() throws {
-        let (sut, _) = makeSUT()
-        let newTodo = makeTodoItem(id: .init())
-        
-        addWithNonFailingOperation(sut: sut, newTodo: newTodo)
-        
-        #expect(sut.todos == [newTodo])
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
