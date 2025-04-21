@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MarsRoverGameView : View {
+    @Namespace private var namespace
+
     var marsRover: MarsRover
 
     var body: some View {
@@ -21,6 +23,7 @@ struct MarsRoverGameView : View {
                                             Image(systemName: "arrow.\(getArrowDirection(from: marsRover.roverPosition.direction))")
                                                 .foregroundColor(.white)
                                         }
+                                        .matchedGeometryEffect(id: "rover", in: namespace)
                                 }
                             }
                     }
@@ -33,7 +36,9 @@ struct MarsRoverGameView : View {
                 }
 
                 Button("Move Forward") {
-                    marsRover.move(commands: [MoveForward()])
+                    withAnimation {
+                        marsRover.move(commands: [MoveForward()])
+                    }
                 }
 
                 Button("Turn Right") {
