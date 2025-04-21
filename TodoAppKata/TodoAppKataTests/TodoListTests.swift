@@ -4,6 +4,7 @@ import TodoAppKata
 
 public protocol TodoItemRepository {
     func save(_ todo: TodoItem) throws
+    func remove(_ todo: TodoItem) throws
     func fetchAllItems() -> [TodoItem]
 }
 
@@ -25,6 +26,12 @@ public class TodoList {
         } catch {
             throw error
         }
+    }
+    
+    public func remove(_ todo: TodoItem) throws {
+        try! repository.remove(todo)
+        
+        _todos.removeAll { $0.id == todo.id }
     }
 }
 
@@ -83,6 +90,42 @@ struct TodoListTests {
         }
     }
     
+    @Test
+    func deleteTodo_updatesItems_withRemovedItem() throws {
+        let todo = makeTodoItem(id: .init())
+        let (sut, repository) = makeSUT(items: [todo])
+        
+        #expect(throws: Never.self) {
+            try sut.remove(todo)
+        }
+        
+        #expect(sut.todos.isEmpty)
+        #expect(repository.removedTodos == [todo])
+    }
+    
+//    @Test
+//    func addTodo_withFailingOperation_doesNotAddNewItem() throws {
+//        let (sut, repository) = makeSUT()
+//        let newTodo = makeTodoItem(id: .init())
+//        repository.stub(error: error)
+//
+//        try? sut.add(newTodo)
+//        
+//        #expect(repository.savedTodos.isEmpty)
+//        #expect(sut.todos.isEmpty)
+//    }
+//    
+//    @Test
+//    func addTodo_withFailingOperation_throwsError() throws {
+//        let (sut, repository) = makeSUT()
+//        let newTodo = makeTodoItem(id: .init())
+//        repository.stub(error: error)
+//
+//        #expect(throws: error) {
+//            try sut.add(newTodo)
+//        }
+//    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -113,6 +156,7 @@ struct TodoListTests {
     
     private class FakeRepository: TodoItemRepository {
         private(set) var savedTodos: [TodoItem] = []
+        private(set) var removedTodos: [TodoItem] = []
         private(set) var error: Error?
 
         func save(_ todo: TodoItem) throws {
@@ -121,6 +165,14 @@ struct TodoListTests {
             }
 
             savedTodos.append(todo)
+        }
+        
+        func remove(_ todo: TodoItem) throws {
+            if let error = error {
+                throw error
+            }
+
+            removedTodos.append(todo)
         }
         
         func fetchAllItems() -> [TodoItem] {
