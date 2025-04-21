@@ -53,9 +53,7 @@ struct TodoListTests {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
         
-        #expect(throws: Never.self) {
-            try sut.add(newTodo)
-        }
+        addWithNonFailingOperation(sut: sut, newTodo: newTodo)
         
         #expect(sut.todos == [newTodo])
     }
@@ -88,9 +86,7 @@ struct TodoListTests {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
         
-        #expect(throws: Never.self) {
-            try sut.add(newTodo)
-        }
+        addWithNonFailingOperation(sut: sut, newTodo: newTodo)
         
         #expect(sut.todos == [newTodo])
     }
@@ -115,6 +111,12 @@ struct TodoListTests {
         title: String = "Any"
     ) -> TodoItem {
         TodoItem(id: id, title: title)
+    }
+    
+    private func addWithNonFailingOperation(sut: TodoList, newTodo: TodoItem) {
+        #expect(throws: Never.self) {
+            try sut.add(newTodo)
+        }
     }
     
     private class FakeRepository: TodoItemRepository {
