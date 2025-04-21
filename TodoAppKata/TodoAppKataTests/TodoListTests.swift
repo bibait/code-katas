@@ -7,7 +7,7 @@ struct TodoListTests {
     
     @Test
     func init_fetchesItemsFromRepository() {
-        let todoItem = makeTodoItem(id: .init())
+        let todoItem = TodoItemFactory.makeTodoItem(id: .init())
         let (sut, _) = makeSUT(items: [todoItem])
         
         #expect(sut.todos == [todoItem])
@@ -16,7 +16,7 @@ struct TodoListTests {
     @Test
     func addTodo_updatesItems_withNewItem() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = makeTodoItem(id: .init())
+        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         
         addWithNonFailingOperation(sut: sut, newTodo: newTodo)
         
@@ -27,7 +27,7 @@ struct TodoListTests {
     @Test
     func addTodo_withFailingOperation_doesNotAddNewItem() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = makeTodoItem(id: .init())
+        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         repository.stub(error: error)
 
         try? sut.add(newTodo)
@@ -39,7 +39,7 @@ struct TodoListTests {
     @Test
     func addTodo_withFailingOperation_throwsError() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = makeTodoItem(id: .init())
+        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         repository.stub(error: error)
 
         #expect(throws: error) {
@@ -49,7 +49,7 @@ struct TodoListTests {
     
     @Test
     func removeTodo_updatesItems_withRemovedItem() throws {
-        let todo = makeTodoItem(id: .init())
+        let todo = TodoItemFactory.makeTodoItem(id: .init())
         let (sut, repository) = makeSUT(items: [todo])
         
         #expect(throws: Never.self) {
@@ -62,7 +62,7 @@ struct TodoListTests {
     
     @Test
     func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
-        let todo = makeTodoItem(id: .init())
+        let todo = TodoItemFactory.makeTodoItem(id: .init())
         let (sut, repository) = makeSUT(items: [todo])
         repository.stub(error: error)
 
@@ -74,7 +74,7 @@ struct TodoListTests {
     
     @Test
     func removeTodo_withFailingOperation_throwsError() throws {
-        let todo = makeTodoItem(id: .init())
+        let todo = TodoItemFactory.makeTodoItem(id: .init())
         let (sut, repository) = makeSUT(items: [todo])
         repository.stub(error: error)
 
@@ -96,13 +96,6 @@ struct TodoListTests {
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
-    }
-    
-    private func makeTodoItem(
-        id: UUID,
-        title: String = "Any"
-    ) -> TodoItem {
-        TodoItem(id: id, title: title)
     }
     
     private func addWithNonFailingOperation(sut: TodoList, newTodo: TodoItem) {
