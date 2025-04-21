@@ -4,10 +4,14 @@ import TodoAppKata
 
 struct TodoListTests {
     private let error = NSError(domain: "Test", code: -1)
+    private let id = UUID(uuidString: "B1495D7E-B662-4BA2-89CB-BAAD9D3D29B3")!
+    
+    private var todoItem: TodoItem {
+        TodoItemFactory.makeTodoItem(id: id)
+    }
     
     @Test
     func init_fetchesItemsFromRepository() {
-        let todoItem = TodoItemFactory.makeTodoItem(id: .init())
         let (sut, _) = makeSUT(items: [todoItem])
         
         #expect(sut.todos == [todoItem])
@@ -16,21 +20,19 @@ struct TodoListTests {
     @Test
     func addTodo_updatesItems_withNewItem() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         
-        addWithNonFailingOperation(sut: sut, newTodo: newTodo)
+        addWithNonFailingOperation(sut: sut, newTodo: todoItem)
         
-        #expect(sut.todos == [newTodo])
-        #expect(repository.savedTodos == [newTodo])
+        #expect(sut.todos == [todoItem])
+        #expect(repository.savedTodos == [todoItem])
     }
     
     @Test
     func addTodo_withFailingOperation_doesNotAddNewItem() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         repository.stub(error: error)
 
-        try? sut.add(newTodo)
+        try? sut.add(todoItem)
         
         #expect(repository.savedTodos.isEmpty)
         #expect(sut.todos.isEmpty)
@@ -39,47 +41,43 @@ struct TodoListTests {
     @Test
     func addTodo_withFailingOperation_throwsError() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = TodoItemFactory.makeTodoItem(id: .init())
         repository.stub(error: error)
 
         #expect(throws: error) {
-            try sut.add(newTodo)
+            try sut.add(todoItem)
         }
     }
     
     @Test
     func removeTodo_updatesItems_withRemovedItem() throws {
-        let todo = TodoItemFactory.makeTodoItem(id: .init())
-        let (sut, repository) = makeSUT(items: [todo])
+        let (sut, repository) = makeSUT(items: [todoItem])
         
         #expect(throws: Never.self) {
-            try sut.remove(todo)
+            try sut.remove(todoItem)
         }
         
         #expect(sut.todos.isEmpty)
-        #expect(repository.removedTodos == [todo])
+        #expect(repository.removedTodos == [todoItem])
     }
     
     @Test
     func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
-        let todo = TodoItemFactory.makeTodoItem(id: .init())
-        let (sut, repository) = makeSUT(items: [todo])
+        let (sut, repository) = makeSUT(items: [todoItem])
         repository.stub(error: error)
 
-        try? sut.remove(todo)
+        try? sut.remove(todoItem)
         
         #expect(repository.removedTodos.isEmpty)
-        #expect(sut.todos == [todo])
+        #expect(sut.todos == [todoItem])
     }
     
     @Test
     func removeTodo_withFailingOperation_throwsError() throws {
-        let todo = TodoItemFactory.makeTodoItem(id: .init())
-        let (sut, repository) = makeSUT(items: [todo])
+        let (sut, repository) = makeSUT(items: [todoItem])
         repository.stub(error: error)
 
         #expect(throws: error) {
-            try sut.remove(todo)
+            try sut.remove(todoItem)
         }
     }
     
