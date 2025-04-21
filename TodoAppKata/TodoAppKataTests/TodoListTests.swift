@@ -22,14 +22,16 @@ public class TodoList {
         do {
             try repository.save(todo)
             _todos.append(todo)
-        } catch { }
+        } catch {}
     }
 }
 
 public struct TodoItem: Equatable {
+    public let id: UUID
     public let title: String
     
-    public init(title: String) {
+    public init(id: UUID, title: String) {
+        self.id = id
         self.title = title
     }
 }
@@ -38,7 +40,7 @@ struct TodoListTests {
     
     @Test
     func init_fetchesItemsFromRepository() {
-        let todoItem = makeTodoItem(title: "Todo 1")
+        let todoItem = makeTodoItem(id: .init())
         let (sut, _) = makeSUT(items: [todoItem])
         
         #expect(sut.todos == [todoItem])
@@ -47,7 +49,7 @@ struct TodoListTests {
     @Test
     func addTodo_updatesItems_withNewItem() throws {
         let (sut, _) = makeSUT()
-        let newTodo = makeTodoItem(title: "New Todo")
+        let newTodo = makeTodoItem(id: .init())
         
         try! sut.add(newTodo)
         
@@ -57,7 +59,7 @@ struct TodoListTests {
     @Test
     func addTodo_withFailingOperation_doesNotAddNewItem() throws {
         let (sut, repository) = makeSUT()
-        let newTodo = makeTodoItem(title: "New Todo")
+        let newTodo = makeTodoItem(id: .init())
         repository.stub(error: NSError(domain: "Test", code: -1))
 
         try! sut.add(newTodo)
@@ -68,7 +70,7 @@ struct TodoListTests {
     @Test
     func addTodo_persistsInRepository() throws {
         let (sut, _) = makeSUT()
-        let newTodo = makeTodoItem(title: "New Todo")
+        let newTodo = makeTodoItem(id: .init())
         
         try! sut.add(newTodo)
         
@@ -90,8 +92,11 @@ struct TodoListTests {
         return (sut, repository)
     }
     
-    private func makeTodoItem(title: String = "Any") -> TodoItem {
-        TodoItem(title: title)
+    private func makeTodoItem(
+        id: UUID,
+        title: String = "Any"
+    ) -> TodoItem {
+        TodoItem(id: id, title: title)
     }
     
     private class FakeRepository: TodoItemRepository {
