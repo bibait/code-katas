@@ -33,7 +33,7 @@ public class TodoList {
             try repository.remove(todo)
             _todos.removeAll { $0.id == todo.id }
         } catch {
-            
+            throw error
         }
     }
 }
@@ -118,16 +118,16 @@ struct TodoListTests {
         #expect(sut.todos == [todo])
     }
     
-//    @Test
-//    func addTodo_withFailingOperation_throwsError() throws {
-//        let (sut, repository) = makeSUT()
-//        let newTodo = makeTodoItem(id: .init())
-//        repository.stub(error: error)
-//
-//        #expect(throws: error) {
-//            try sut.add(newTodo)
-//        }
-//    }
+    @Test
+    func removeTodo_withFailingOperation_throwsError() throws {
+        let todo = makeTodoItem(id: .init())
+        let (sut, repository) = makeSUT(items: [todo])
+        repository.stub(error: error)
+
+        #expect(throws: error) {
+            try sut.remove(todo)
+        }
+    }
     
     // MARK: - Helpers
     
