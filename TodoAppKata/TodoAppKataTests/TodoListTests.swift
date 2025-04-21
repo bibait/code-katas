@@ -22,7 +22,9 @@ public class TodoList {
         do {
             try repository.save(todo)
             _todos.append(todo)
-        } catch {}
+        } catch {
+            throw error
+        }
     }
 }
 
@@ -51,7 +53,9 @@ struct TodoListTests {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
         
-        try! sut.add(newTodo)
+        #expect(throws: Never.self) {
+            try sut.add(newTodo)
+        }
         
         #expect(sut.todos == [newTodo])
     }
@@ -62,10 +66,21 @@ struct TodoListTests {
         let newTodo = makeTodoItem(id: .init())
         repository.stub(error: NSError(domain: "Test", code: -1))
 
-        try! sut.add(newTodo)
+        try? sut.add(newTodo)
         
         #expect(repository.savedTodos.isEmpty)
         #expect(sut.todos.isEmpty)
+    }
+    
+    @Test
+    func addTodo_withFailingOperation_throwsError() throws {
+        let (sut, repository) = makeSUT()
+        let newTodo = makeTodoItem(id: .init())
+        repository.stub(error: NSError(domain: "Test", code: -1))
+
+        #expect(throws: NSError(domain: "Test", code: -1)) {
+            try sut.add(newTodo)
+        }
     }
     
     @Test
@@ -73,7 +88,9 @@ struct TodoListTests {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(id: .init())
         
-        try! sut.add(newTodo)
+        #expect(throws: Never.self) {
+            try sut.add(newTodo)
+        }
         
         #expect(sut.todos == [newTodo])
     }
