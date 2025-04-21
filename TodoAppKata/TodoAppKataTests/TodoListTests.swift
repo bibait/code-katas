@@ -3,6 +3,7 @@ import TodoAppKata
 
 public protocol TodoItemRepository {
     func save(_ todo: TodoItem)
+    func fetchAllItems() -> [TodoItem]
 }
 
 public class TodoList {
@@ -11,6 +12,7 @@ public class TodoList {
 
     public init(repository: TodoItemRepository) {
         self.repository = repository
+        _todos = repository.fetchAllItems()
     }
     
     public var todos: [TodoItem] { _todos }
@@ -30,6 +32,14 @@ public struct TodoItem: Equatable {
 }
 
 struct TodoListTests {
+    
+    @Test
+    func init_fetchesItemsFromRepository() {
+        let todoItem = makeTodoItem(title: "Todo 1")
+        let (sut, _) = makeSUT(items: [todoItem])
+        
+        #expect(sut.todos == [todoItem])
+    }
 
     @Test
     func addTodo_updatesItems_withNewItem() {
@@ -53,11 +63,14 @@ struct TodoListTests {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (
+    private func makeSUT(
+        items: [TodoItem] = []
+    ) -> (
         sut: TodoList,
         repository: FakeRepository
     ) {
         let repository = FakeRepository()
+        repository.stub(items: items)
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
@@ -72,6 +85,14 @@ struct TodoListTests {
 
         func save(_ todo: TodoItem) {
             savedTodos.append(todo)
+        }
+        
+        func fetchAllItems() -> [TodoItem] {
+            savedTodos
+        }
+        
+        func stub(items: [TodoItem]) {
+            savedTodos = items
         }
     }
 
