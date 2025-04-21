@@ -29,9 +29,12 @@ public class TodoList {
     }
     
     public func remove(_ todo: TodoItem) throws {
-        try! repository.remove(todo)
-        
-        _todos.removeAll { $0.id == todo.id }
+        do {
+            try repository.remove(todo)
+            _todos.removeAll { $0.id == todo.id }
+        } catch {
+            
+        }
     }
 }
 
@@ -103,18 +106,18 @@ struct TodoListTests {
         #expect(repository.removedTodos == [todo])
     }
     
-//    @Test
-//    func addTodo_withFailingOperation_doesNotAddNewItem() throws {
-//        let (sut, repository) = makeSUT()
-//        let newTodo = makeTodoItem(id: .init())
-//        repository.stub(error: error)
-//
-//        try? sut.add(newTodo)
-//        
-//        #expect(repository.savedTodos.isEmpty)
-//        #expect(sut.todos.isEmpty)
-//    }
-//    
+    @Test
+    func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
+        let todo = makeTodoItem(id: .init())
+        let (sut, repository) = makeSUT(items: [todo])
+        repository.stub(error: error)
+
+        try? sut.remove(todo)
+        
+        #expect(repository.removedTodos.isEmpty)
+        #expect(sut.todos == [todo])
+    }
+    
 //    @Test
 //    func addTodo_withFailingOperation_throwsError() throws {
 //        let (sut, repository) = makeSUT()
