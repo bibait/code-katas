@@ -105,14 +105,14 @@ struct TodoListTests {
         #expect(sut.todos == [todoItem])
     }
     
-//    @Test
-//    func removeTodo_withFailingOperation_throwsError() throws {
-//        let (sut, _) = makeSUT(items: [todoItem], error: error)
-//
-//        #expect(throws: error) {
-//            try sut.remove(todoItem)
-//        }
-//    }
+    @Test
+    func toggleCompleted_withFailingOperation_throwsError() throws {
+        let (sut, _) = makeSUT(items: [todoItem], error: error)
+
+        #expect(throws: error) {
+            try sut.toggleCompleted(todoItem)
+        }
+    }
     
     // MARK: - Helpers
     
