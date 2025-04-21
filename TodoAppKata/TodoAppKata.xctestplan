@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "A3B6C7F0-E926-477F-AA64-65BD2CE7FF61",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:TodoAppKata.xcodeproj",
+      "identifier" : "0E0BB84B2DB663310013D1F3",
+      "name" : "TodoAppKata"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:TodoAppKata.xcodeproj",
+        "identifier" : "0E0BB85B2DB663330013D1F3",
+        "name" : "TodoAppKataTests"
+      }
+    }
+  ],
+  "version" : 1
+}
