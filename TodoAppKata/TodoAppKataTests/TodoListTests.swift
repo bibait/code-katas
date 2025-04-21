@@ -1,8 +1,9 @@
 import Testing
+import Foundation
 import TodoAppKata
 
 public protocol TodoItemRepository {
-    func save(_ todo: TodoItem)
+    func save(_ todo: TodoItem) throws
     func fetchAllItems() -> [TodoItem]
 }
 
@@ -17,9 +18,11 @@ public class TodoList {
     
     public var todos: [TodoItem] { _todos }
     
-    public func add(_ todo: TodoItem) {
-        repository.save(todo)
-        _todos.append(todo)
+    public func add(_ todo: TodoItem) throws {
+        do {
+            try repository.save(todo)
+            _todos.append(todo)
+        } catch { }
     }
 }
 
@@ -42,23 +45,34 @@ struct TodoListTests {
     }
 
     @Test
-    func addTodo_updatesItems_withNewItem() {
+    func addTodo_updatesItems_withNewItem() throws {
         let (sut, _) = makeSUT()
         let newTodo = makeTodoItem(title: "New Todo")
         
-        sut.add(newTodo)
+        try! sut.add(newTodo)
         
         #expect(sut.todos == [newTodo])
     }
     
     @Test
-    func addTodo_persistsInRepository() {
+    func addTodo_withFailingOperation_doesNotAddNewItem() throws {
         let (sut, repository) = makeSUT()
         let newTodo = makeTodoItem(title: "New Todo")
+        repository.stub(error: NSError(domain: "Test", code: -1))
+
+        try! sut.add(newTodo)
         
-        sut.add(newTodo)
+        #expect(repository.savedTodos.isEmpty)
+    }
+    
+    @Test
+    func addTodo_persistsInRepository() throws {
+        let (sut, _) = makeSUT()
+        let newTodo = makeTodoItem(title: "New Todo")
         
-        #expect(repository.savedTodos == [newTodo])
+        try! sut.add(newTodo)
+        
+        #expect(sut.todos == [newTodo])
     }
     
     // MARK: - Helpers
@@ -82,8 +96,13 @@ struct TodoListTests {
     
     private class FakeRepository: TodoItemRepository {
         private(set) var savedTodos: [TodoItem] = []
+        private(set) var error: Error?
 
-        func save(_ todo: TodoItem) {
+        func save(_ todo: TodoItem) throws {
+            if let error = error {
+                throw error
+            }
+
             savedTodos.append(todo)
         }
         
@@ -93,6 +112,10 @@ struct TodoListTests {
         
         func stub(items: [TodoItem]) {
             savedTodos = items
+        }
+        
+        func stub(error: Error) {
+            self.error = error
         }
     }
 
