@@ -29,8 +29,7 @@ struct TodoListTests {
     
     @Test
     func addTodo_withFailingOperation_doesNotAddNewItem() throws {
-        let (sut, repository) = makeSUT()
-        repository.stub(error: error)
+        let (sut, repository) = makeSUT(error: error)
 
         try? sut.add(todoItem)
         
@@ -40,8 +39,7 @@ struct TodoListTests {
     
     @Test
     func addTodo_withFailingOperation_throwsError() throws {
-        let (sut, repository) = makeSUT()
-        repository.stub(error: error)
+        let (sut, _) = makeSUT(error: error)
 
         #expect(throws: error) {
             try sut.add(todoItem)
@@ -62,8 +60,7 @@ struct TodoListTests {
     
     @Test
     func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
-        let (sut, repository) = makeSUT(items: [todoItem])
-        repository.stub(error: error)
+        let (sut, repository) = makeSUT(items: [todoItem], error: error)
 
         try? sut.remove(todoItem)
         
@@ -73,8 +70,7 @@ struct TodoListTests {
     
     @Test
     func removeTodo_withFailingOperation_throwsError() throws {
-        let (sut, repository) = makeSUT(items: [todoItem])
-        repository.stub(error: error)
+        let (sut, _) = makeSUT(items: [todoItem], error: error)
 
         #expect(throws: error) {
             try sut.remove(todoItem)
@@ -84,13 +80,18 @@ struct TodoListTests {
     // MARK: - Helpers
     
     private func makeSUT(
-        items: [TodoItem] = []
+        items: [TodoItem] = [],
+        error: Error? = nil
     ) -> (
         sut: TodoList,
         repository: FakeRepository
     ) {
         let repository = FakeRepository()
+        if let error = error {
+            repository.stub(error: error)
+        }
         repository.stub(items: items)
+
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
