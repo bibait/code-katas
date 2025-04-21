@@ -24,7 +24,7 @@ struct TodoListTests {
     func addTodo_updatesItems_withNewItem() throws {
         let (sut, repository) = makeSUT()
         
-        #expect(throws: Never.self) {
+        executeNonThrowingAction {
             try sut.add(todoItem)
         }
         
@@ -55,7 +55,7 @@ struct TodoListTests {
     func removeTodo_updatesItems_withRemovedItem() throws {
         let (sut, repository) = makeSUT(items: [todoItem])
         
-        #expect(throws: Never.self) {
+        executeNonThrowingAction {
             try sut.remove(todoItem)
         }
         
@@ -86,7 +86,7 @@ struct TodoListTests {
     func toggleCompleted_updatesItems_withToggledItem() throws {
         let (sut, repository) = makeSUT(items: [todoItem])
         
-        #expect(throws: Never.self) {
+        executeNonThrowingAction {
             try sut.toggleCompleted(todoItem)
         }
         
@@ -131,6 +131,12 @@ struct TodoListTests {
         let sut = TodoList(repository: repository)
         
         return (sut, repository)
+    }
+    
+    private func executeNonThrowingAction(_ action: () throws -> Void) {
+        #expect(throws: Never.self) {
+            try action()
+        }
     }
 
 }
