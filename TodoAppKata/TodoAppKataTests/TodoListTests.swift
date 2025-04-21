@@ -95,16 +95,16 @@ struct TodoListTests {
         #expect(repository.updatedTodos == [todoItem.toggleCompleted()])
     }
     
-//    @Test
-//    func removeTodo_withFailingOperation_doesNotRemoveItem() throws {
-//        let (sut, repository) = makeSUT(items: [todoItem], error: error)
-//
-//        try? sut.remove(todoItem)
-//        
-//        #expect(repository.removedTodos.isEmpty)
-//        #expect(sut.todos == [todoItem])
-//    }
-//    
+    @Test
+    func toggleCompleted_withFailingOperation_doesNotUpdate() throws {
+        let (sut, repository) = makeSUT(items: [todoItem], error: error)
+
+        try? sut.toggleCompleted(todoItem)
+        
+        #expect(repository.updatedTodos.isEmpty)
+        #expect(sut.todos == [todoItem])
+    }
+    
 //    @Test
 //    func removeTodo_withFailingOperation_throwsError() throws {
 //        let (sut, _) = makeSUT(items: [todoItem], error: error)
