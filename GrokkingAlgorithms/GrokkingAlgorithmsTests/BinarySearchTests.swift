@@ -11,7 +11,7 @@ public class BinarySearch {
         var upperBound = array.count - 1
         
         while lowerBound <= upperBound {
-            var searchIndex = lowerBound + upperBound
+            let searchIndex = lowerBound + upperBound
             let guess = array[searchIndex]
             
             if guess == target {
