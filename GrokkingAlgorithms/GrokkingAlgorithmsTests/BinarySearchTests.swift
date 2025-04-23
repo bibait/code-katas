@@ -7,7 +7,7 @@ public class BinarySearch {
         var upperBound = array.count - 1
         
         while lowerBound <= upperBound {
-            let searchIndex = lowerBound + upperBound
+            let searchIndex = lowerBound + (upperBound - lowerBound) / 2
             let value = array[searchIndex]
             
             if value == target {
