@@ -2,7 +2,7 @@ import Testing
 import GrokkingAlgorithms
 
 public class BinarySearch {
-    public static func search(in array: [Int], target: Int) -> Int? {
+    public static func search<T: Comparable>(in array: [T], target: T) -> Int? {
         var lowerBound = 0
         var upperBound = array.count - 1
         
