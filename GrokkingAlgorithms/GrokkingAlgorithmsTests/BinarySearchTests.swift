@@ -3,10 +3,6 @@ import GrokkingAlgorithms
 
 public class BinarySearch {
     public static func search(in array: [Int], target: Int) -> Int? {
-        if array.isEmpty || !array.contains(target) {
-            return nil
-        }
-        
         var lowerBound = 0
         var upperBound = array.count - 1
         
