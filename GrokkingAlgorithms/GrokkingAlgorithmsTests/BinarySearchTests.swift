@@ -14,6 +14,7 @@ public class BinarySearch {
 }
 
 struct BinarySearchTests {
+    
     @Test
     func withEmptyArray_shouldReturnNil() {
         let result = search(array: [], target: 1)
@@ -29,7 +30,7 @@ struct BinarySearchTests {
     }
     
     @Test
-    func withNoneExistingElement_shouldReturnNil() {
+    func withoutElement_shouldReturnNil() {
         let result = search(array: [1], target: 2)
         
         #expect(result == nil)
