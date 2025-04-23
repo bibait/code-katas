@@ -16,29 +16,29 @@ public class BinarySearch {
 struct BinarySearchTests {
     @Test
     func withEmptyArray_shouldReturnNil() {
-        let sut = BinarySearch()
-        
-        let result = sut.search(array: [], target: 1)
+        let result = search(array: [], target: 1)
         
         #expect(result == nil)
     }
 
     @Test
     func withOneElement_shouldReturnIndexZero() {
-        let sut = BinarySearch()
-        
-        let result = sut.search(array: [1], target: 1)
+        let result = search(array: [1], target: 1)
         
         #expect(result == 0)
     }
     
     @Test
     func withNoneExistingElement_shouldReturnNil() {
-        let sut = BinarySearch()
-        
-        let result = sut.search(array: [1], target: 2)
+        let result = search(array: [1], target: 2)
         
         #expect(result == nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func search(array: [Int], target: Int) -> Int? {
+        BinarySearch().search(array: array, target: target)
     }
 
 }
