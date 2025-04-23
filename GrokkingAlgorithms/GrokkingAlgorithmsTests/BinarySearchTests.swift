@@ -8,13 +8,13 @@ public class BinarySearch {
         
         while lowerBound <= upperBound {
             let searchIndex = lowerBound + upperBound
-            let guess = array[searchIndex]
+            let value = array[searchIndex]
             
-            if guess == target {
+            if value == target {
                 return searchIndex
             }
             
-            if guess > target {
+            if value > target {
                 upperBound = searchIndex - 1
             } else {
                 lowerBound = searchIndex + 1
