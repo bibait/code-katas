@@ -4,7 +4,7 @@ import GrokkingAlgorithms
 public class BinarySearch {
     public init() {}
     
-    public func search(array: [Int], target: Int) -> Int? {
+    public func search(in array: [Int], target: Int) -> Int? {
         if array.isEmpty || !array.contains(target) {
             return nil
         }
@@ -38,7 +38,7 @@ struct BinarySearchTests {
     // MARK: - Helpers
     
     private func search(array: [Int], target: Int) -> Int? {
-        BinarySearch().search(array: array, target: target)
+        BinarySearch().search(in: array, target: target)
     }
 
 }
