@@ -7,7 +7,25 @@ public class BinarySearch {
             return nil
         }
         
-        return 0
+        var lowerBound = 0
+        var upperBound = array.count - 1
+        
+        while lowerBound <= upperBound {
+            var searchIndex = lowerBound + upperBound
+            let guess = array[searchIndex]
+            
+            if guess == target {
+                return searchIndex
+            }
+            
+            if guess > target {
+                upperBound = searchIndex - 1
+            } else {
+                lowerBound = searchIndex + 1
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -32,6 +50,13 @@ struct BinarySearchTests {
         let result = search(array: [1], target: 2)
         
         #expect(result == nil)
+    }
+    
+    @Test
+    func withExistingElement_shouldReturnIndex() {
+        let result = search(array: [1, 2], target: 2)
+        
+        #expect(result == 1)
     }
     
     // MARK: - Helpers
