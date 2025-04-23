@@ -25,22 +25,9 @@
 		0E6B17E22DB9519000C05A79 /* GrokkingAlgorithmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrokkingAlgorithmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E6B17EA2DB9519000C05A79 /* Exceptions for "GrokkingAlgorithms" folder in "GrokkingAlgorithms" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				GrokkingAlgorithms.h,
-			);
-			target = 0E6B17D92DB9519000C05A79 /* GrokkingAlgorithms */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0E6B17DC2DB9519000C05A79 /* GrokkingAlgorithms */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0E6B17EA2DB9519000C05A79 /* Exceptions for "GrokkingAlgorithms" folder in "GrokkingAlgorithms" target */,
-			);
 			path = GrokkingAlgorithms;
 			sourceTree = "<group>";
 		};
@@ -237,7 +224,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -272,7 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
