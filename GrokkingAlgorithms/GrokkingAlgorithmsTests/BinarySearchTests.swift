@@ -53,7 +53,10 @@ struct BinarySearchTests {
     }
     
     @Test(arguments: [
-        ([1, 2], 2, 1)
+        ([1, 2], 2, 1),
+        ([4, 5, 10, 20, 100, 9012], 10, 2),
+        ([10, 50, 100, 1000, 5000, 100000, 150000], 100000, 5),
+        ([1, 2, 3, 4, 5, 7, 8, 9], 1, 0),
     ])
     func withExistingElement_shouldReturnIndex(array: [Int], target: Int, expectedIndex: Int) {
         let result = search(array: array, target: target)
