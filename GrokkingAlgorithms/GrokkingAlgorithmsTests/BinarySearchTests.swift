@@ -52,11 +52,13 @@ struct BinarySearchTests {
         #expect(result == nil)
     }
     
-    @Test
-    func withExistingElement_shouldReturnIndex() {
-        let result = search(array: [1, 2], target: 2)
+    @Test(arguments: [
+        ([1, 2], 2, 1)
+    ])
+    func withExistingElement_shouldReturnIndex(array: [Int], target: Int, expectedIndex: Int) {
+        let result = search(array: array, target: target)
         
-        #expect(result == 1)
+        #expect(result == expectedIndex)
     }
     
     // MARK: - Helpers
