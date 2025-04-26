@@ -56,6 +56,11 @@ struct SelectionSortTests {
         #expect(sort(values: [2, 1]) == [1, 2])
     }
     
+    @Test
+    func sort_withSortedArray_shouldReturnArray() {
+        #expect(sort(values: [1, 2, 30, 1234, 12341234]) == [1, 2, 30, 1234, 12341234])
+    }
+    
     // MARK: - Helpers
     
     private func sort(values: [Int]) -> [Int] {
