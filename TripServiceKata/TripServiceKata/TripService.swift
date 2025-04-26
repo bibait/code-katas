@@ -2,10 +2,12 @@ import Foundation
 
 class TripService
 {
+    var userSession: UserSession = UserSession.sharedInstance
+
     func getTripsByUser(_ user:User) throws -> [Trip]?
     {
         var tripList:[Trip]? = nil
-        let loggedUser = try! UserSession.sharedInstance.getLoggedUser()
+        let loggedUser = try! userSession.getLoggedUser()
         
         var isFriend = false
         
