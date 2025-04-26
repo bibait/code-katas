@@ -4,8 +4,8 @@ import Testing
 struct TripServiceTests {
 
     @Test
-    func zero() {
-        
+    func canInit() {
+        let _ = TripService()
     }
 
 }
