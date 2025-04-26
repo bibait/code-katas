@@ -51,9 +51,11 @@ struct SelectionSortTests {
         #expect(sort(values: [1]) == [1])
     }
     
-    @Test
-    func sort_withUnsortedArray_shouldReturnSorted() {
-        #expect(sort(values: [2, 1]) == [1, 2])
+    @Test(arguments: [
+        ([2, 1], [1, 2]),
+    ])
+    func sort_withUnsortedArray_shouldReturnSorted(values: [Int], expected: [Int]) {
+        #expect(sort(values: values) == expected)
     }
     
     @Test
