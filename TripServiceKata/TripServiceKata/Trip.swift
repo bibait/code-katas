@@ -1,3 +1,3 @@
 import Foundation
 
-class Trip { }
+struct Trip: Equatable { }

@@ -29,15 +29,20 @@ struct TripServiceTests {
     
     @Test
     func getTripsByUser_withFriend() throws {
+        let trips: [Trip] = [
+            .init(),
+            .init(),
+            .init(),
+        ]
         let loggedInUser = User()
         let friend = friend(of: loggedInUser)
         userSession.user = loggedInUser
-        let tripDAO = FakeTripDAOService(trips: [])
+        let tripDAO = FakeTripDAOService(trips: trips)
         let sut = TripService(userSession: userSession, tripDAO: tripDAO)
         
         let result = try sut.getTripsByUser(friend)
         
-        #expect(result!.isEmpty)
+        #expect(result! == trips)
     }
     
     @Test
