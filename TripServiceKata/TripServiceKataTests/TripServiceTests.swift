@@ -46,6 +46,19 @@ struct TripServiceTests {
     }
     
     @Test
+    func getTripsByUser_withFriend_withoutTrips() throws {
+        let loggedInUser = User()
+        let friend = friend(of: loggedInUser)
+        userSession.user = loggedInUser
+        let tripDAO = FakeTripDAOService(trips: [])
+        let sut = TripService(userSession: userSession, tripDAO: tripDAO)
+        
+        let result = try sut.getTripsByUser(friend)
+        
+        #expect(result!.isEmpty)
+    }
+    
+    @Test
     func getTripsByUser_withoutFriend() throws {
         let loggedInUser = User()
         let unknownUser = User()
