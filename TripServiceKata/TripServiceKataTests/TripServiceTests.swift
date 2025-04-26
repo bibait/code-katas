@@ -14,9 +14,9 @@ struct TripServiceTests {
 
     @Test
     func getTripsByUser() throws {
-        userSession.user = User()
+        userSession.loggedInUser = User()
         
-        let result = try sut.getTripsByUser(userSession.user!)
+        let result = try sut.getTripsByUser(userSession.loggedInUser!)
         
         #expect(result == nil)
     }
@@ -35,9 +35,8 @@ struct TripServiceTests {
             .init(),
             .init(),
         ]
-        let loggedInUser = User()
-        let friend = friend(of: loggedInUser)
-        userSession.user = loggedInUser
+        userSession.loggedInUser = User()
+        let friend = friend(of: userSession.loggedInUser!)
         tripDAO.trips = trips
         
         let result = try sut.getTripsByUser(friend)
@@ -49,7 +48,7 @@ struct TripServiceTests {
     func getTripsByUser_withFriend_withoutTrips() throws {
         let loggedInUser = User()
         let friend = friend(of: loggedInUser)
-        userSession.user = loggedInUser
+        userSession.loggedInUser = loggedInUser
         tripDAO.trips = []
         
         let result = try sut.getTripsByUser(friend)
@@ -61,7 +60,7 @@ struct TripServiceTests {
     func getTripsByUser_withoutFriend() throws {
         let loggedInUser = User()
         let unknownUser = User()
-        userSession.user = loggedInUser
+        userSession.loggedInUser = loggedInUser
         tripDAO.trips = []
         
         let result = try sut.getTripsByUser(unknownUser)
@@ -78,10 +77,10 @@ struct TripServiceTests {
     }
     
     private class TestableUserSession: UserSession {
-        var user: User?
+        var loggedInUser: User?
 
         override func getLoggedUser() throws -> User? {
-            user
+            loggedInUser
         }
     }
     
