@@ -20,7 +20,7 @@ struct SelectionSortTests {
         ([2, 1, -1, -10, 123], [-10, -1, 1, 2, 123]),
         ([2, 1, 1, 10, 1, 2, 10, 30], [1, 1, 1, 2, 2, 10, 10, 30]),
     ])
-    func sort_withUnsortedArray_shouldReturnSorted(values: [Int], expected: [Int]) {
+    func sort_withUnsortedArray_shouldReturnDescending(values: [Int], expected: [Int]) {
         #expect(sortDescending(values: values) == expected)
     }
     
