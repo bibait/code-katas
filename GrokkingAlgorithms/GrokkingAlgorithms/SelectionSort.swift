@@ -17,7 +17,7 @@ public class SelectionSort {
     }
     
     private static func minValue<T: Comparable>(in values: [T]) -> (T, Int) {
-        var result: (T, Int) = (values[0], 0)
+        var result = (values[0], 0)
 
         for (index, value) in values.enumerated() {
             if value < result.0 {
