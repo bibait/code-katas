@@ -11,13 +11,14 @@ public class SelectionSort {
         
         var values = values
         var result = [T]()
-
-        for _ in values {
-            let (value, index) = value(matching: criteria, in: values)
-            
-            result.append(value)
-            values.remove(at: index)
-        }
+        
+        values
+            .forEach { _ in
+                let (value, index) = value(matching: criteria, in: values)
+                
+                result.append(value)
+                values.remove(at: index)
+            }
         
         return result
     }
