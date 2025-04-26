@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E21F69C2DBD4A7200BA1BEC /* ExpenseReportKata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E21F6932DBD4A7100BA1BEC /* ExpenseReportKata.framework */; };
+		0E21F6B02DBD4E9300BA1BEC /* ApprovalTests.Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E21F6AF2DBD4E9300BA1BEC /* ApprovalTests.Swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E21F6B02DBD4E9300BA1BEC /* ApprovalTests.Swift in Frameworks */,
 				0E21F69C2DBD4A7200BA1BEC /* ExpenseReportKata.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +131,7 @@
 			);
 			name = ExpenseReportKataTests;
 			packageProductDependencies = (
+				0E21F6AF2DBD4E9300BA1BEC /* ApprovalTests.Swift */,
 			);
 			productName = ExpenseReportKataTests;
 			productReference = 0E21F69B2DBD4A7200BA1BEC /* ExpenseReportKataTests.xctest */;
@@ -162,6 +165,9 @@
 			);
 			mainGroup = 0E21F6892DBD4A7100BA1BEC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0E21F6AE2DBD4E9300BA1BEC /* XCRemoteSwiftPackageReference "ApprovalTests" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0E21F6942DBD4A7100BA1BEC /* Products */;
 			projectDirPath = "";
@@ -470,6 +476,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E21F6AE2DBD4E9300BA1BEC /* XCRemoteSwiftPackageReference "ApprovalTests" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/approvals/ApprovalTests.Swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E21F6AF2DBD4E9300BA1BEC /* ApprovalTests.Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E21F6AE2DBD4E9300BA1BEC /* XCRemoteSwiftPackageReference "ApprovalTests" */;
+			productName = ApprovalTests.Swift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E21F68A2DBD4A7100BA1BEC /* Project object */;
 }

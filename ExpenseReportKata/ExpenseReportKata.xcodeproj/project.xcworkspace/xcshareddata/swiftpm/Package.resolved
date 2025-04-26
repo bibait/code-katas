@@ -1,0 +1,15 @@
+{
+  "originHash" : "fe00265694168e666feafc91f34d0a76d0d41eb5556c1afaa678f284f842a537",
+  "pins" : [
+    {
+      "identity" : "approvaltests.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/approvals/ApprovalTests.Swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "822e250a0705cf2e026c74dc747f60dc721cb8b1"
+      }
+    }
+  ],
+  "version" : 3
+}
