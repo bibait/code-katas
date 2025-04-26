@@ -6,8 +6,16 @@ protocol TripDAOService {
 
 class TripService
 {
-    var userSession: UserSession = UserSession.sharedInstance
-    var tripDAO: TripDAOService = TripDAO()
+    private let userSession: UserSession
+    private let tripDAO: TripDAOService
+    
+    init(
+        userSession: UserSession = UserSession.sharedInstance,
+        tripDAO: TripDAOService = TripDAO()
+    ) {
+        self.userSession = userSession
+        self.tripDAO = tripDAO
+    }
 
     func getTripsByUser(_ user:User) throws -> [Trip]?
     {
