@@ -10,21 +10,32 @@ public class SelectionSort {
         var result = [T]()
 
         for _ in values {
-            let (minValue, index) = minValue(in: values)
+            let (value, index) = value(matching: criteria, in: values)
             
-            result.append(minValue)
+            result.append(value)
             values.remove(at: index)
         }
         
         return result
     }
     
-    private static func minValue<T: Comparable>(in values: [T]) -> (T, Int) {
-        var result = (minValue: values[0], index: 0)
+    private static func value<T: Comparable>(
+        matching criteria: SortCriteria,
+        in values: [T]
+    ) -> (T, Int) {
+        var result = (value: values[0], index: 0)
 
         for (index, value) in values.enumerated() {
-            if value < result.minValue {
-                result = (value, index)
+            switch criteria {
+            case .ascending:
+                if value < result.value {
+                    result = (value, index)
+                }
+            
+            case .descending:
+                if value > result.value {
+                    result = (value, index)
+                }
             }
         }
         

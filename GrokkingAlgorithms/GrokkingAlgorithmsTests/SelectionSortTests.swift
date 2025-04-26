@@ -20,13 +20,24 @@ struct SelectionSortTests {
         ([2, 1, -1, -10, 123], [-10, -1, 1, 2, 123]),
         ([2, 1, 1, 10, 1, 2, 10, 30], [1, 1, 1, 2, 2, 10, 10, 30]),
     ])
+    func sort_withUnsortedArray_shouldReturnAscending(values: [Int], expected: [Int]) {
+        #expect(sortAscending(values: values) == expected)
+    }
+    
+    @Test(arguments: [
+        ([2, 1], [2, 1]),
+        ([1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]),
+        ([2, 1, 3, 10, 20], [20, 10, 3, 2, 1]),
+        ([2, 1, -1, -10, 123], [123, 2, 1, -1, -10]),
+        ([2, 1, 1, 10, 1, 2, 10, 30], [30, 10, 10, 2, 2, 1, 1, 1]),
+    ])
     func sort_withUnsortedArray_shouldReturnDescending(values: [Int], expected: [Int]) {
         #expect(sortDescending(values: values) == expected)
     }
     
     @Test
     func sort_withSortedArray_shouldReturnArray() {
-        #expect(sortDescending(values: [1, 2, 30, 1234, 12341234]) == [1, 2, 30, 1234, 12341234])
+        #expect(sortAscending(values: [1, 2, 30, 1234, 12341234]) == [1, 2, 30, 1234, 12341234])
     }
     
     // MARK: - Helpers
