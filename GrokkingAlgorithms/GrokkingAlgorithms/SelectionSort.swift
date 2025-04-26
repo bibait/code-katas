@@ -1,5 +1,9 @@
 public class SelectionSort {
-    public static func sort<T: Comparable>(values: [T]) -> [T] {
+    public enum SortCriteria {
+        case ascending, descending
+    }
+
+    public static func sort<T: Comparable>(values: [T], _ criteria: SortCriteria) -> [T] {
         guard values.count > 1 else { return values }
         
         var values = values
