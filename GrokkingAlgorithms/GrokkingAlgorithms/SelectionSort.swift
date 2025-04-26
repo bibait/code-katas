@@ -3,7 +3,10 @@ public class SelectionSort {
         case ascending, descending
     }
 
-    public static func sort<T: Comparable>(values: [T], _ criteria: SortCriteria) -> [T] {
+    public static func sort<T: Comparable>(
+        values: [T],
+        _ criteria: SortCriteria
+    ) -> [T] {
         guard values.count > 1 else { return values }
         
         var values = values
