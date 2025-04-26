@@ -1,8 +1,8 @@
 import Foundation
 
-class TripDAO
+class TripDAO: TripDAOService
 {
-    class func findTripsByUser(_ user:User) throws -> [Trip]?
+    func findTripsByUser(_ user:User) throws -> [Trip]?
     {
         throw UnitTestErrorType.dependendClassCallDuringUnitTest
     }

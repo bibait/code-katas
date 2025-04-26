@@ -1,8 +1,13 @@
 import Foundation
 
+protocol TripDAOService {
+    func findTripsByUser(_ user: User) throws -> [Trip]?
+}
+
 class TripService
 {
     var userSession: UserSession = UserSession.sharedInstance
+    var tripDAO: TripDAOService = TripDAO()
 
     func getTripsByUser(_ user:User) throws -> [Trip]?
     {
@@ -19,7 +24,7 @@ class TripService
                 }
             }
             if isFriend {
-                tripList = try! TripDAO.findTripsByUser(user)
+                tripList = try! tripDAO.findTripsByUser(user)
             }
             return tripList
         }

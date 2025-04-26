@@ -26,6 +26,24 @@ struct TripServiceTests {
         }
     }
     
+    @Test
+    func getTripsByUser_withFriend() throws {
+        let loggedInUser = User()
+        let friend = User()
+        friend.addFriend(loggedInUser)
+        let userSession = TestableUserSession()
+        userSession.user = loggedInUser
+        let tripDAO = FakeTripDAOService()
+        tripDAO.trips = []
+        let sut = TripService()
+        sut.userSession = userSession
+        sut.tripDAO = tripDAO
+        
+        let result = try sut.getTripsByUser(friend)
+        
+        #expect(result!.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private class TestableUserSession: UserSession {
@@ -33,6 +51,14 @@ struct TripServiceTests {
 
         override func getLoggedUser() throws -> User? {
             user
+        }
+    }
+    
+    private class FakeTripDAOService: TripDAO {
+        var trips: [Trip]?
+
+        override func findTripsByUser(_ user: User) throws -> [Trip]? {
+            trips
         }
     }
 
