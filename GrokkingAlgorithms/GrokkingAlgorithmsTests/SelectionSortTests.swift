@@ -3,7 +3,7 @@ import GrokkingAlgorithms
 
 public class SelectionSort {
     static func sort(values: [Int]) -> [Int] {
-        return []
+        values
     }
 }
 
@@ -14,6 +14,13 @@ struct SelectionSortTests {
         let result = SelectionSort.sort(values: [])
         
         #expect(result.isEmpty)
+    }
+    
+    @Test
+    func sort_withOneElement_shouldReturnArray() {
+        let result = SelectionSort.sort(values: [1])
+        
+        #expect(result == [1])
     }
     
 }
