@@ -2,10 +2,10 @@ import Testing
 @testable import TripServiceKata
 
 struct TripServiceTests {
+    private let userSession = TestableUserSession()
 
     @Test
     func getTripsByUser() throws {
-        let userSession = TestableUserSession()
         userSession.user = User()
         let sut = TripService(userSession: userSession)
         
@@ -16,7 +16,6 @@ struct TripServiceTests {
     
     @Test
     func getTripsByUser_withoutLoggedInUser() throws {
-        let userSession = TestableUserSession()
         let sut = TripService(userSession: userSession)
         
         #expect(throws: TripServiceErrorType.userNotLoggedIn) {
@@ -28,7 +27,6 @@ struct TripServiceTests {
     func getTripsByUser_withFriend() throws {
         let loggedInUser = User()
         let friend = friend(of: loggedInUser)
-        let userSession = TestableUserSession()
         userSession.user = loggedInUser
         let tripDAO = FakeTripDAOService()
         tripDAO.trips = []
