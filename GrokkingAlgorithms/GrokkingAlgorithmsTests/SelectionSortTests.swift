@@ -11,16 +11,18 @@ struct SelectionSortTests {
     
     @Test
     func sort_withNoElements_shouldReturnEmptyArray() {
-        let result = SelectionSort.sort(values: [])
-        
-        #expect(result.isEmpty)
+        #expect(sort(values: []).isEmpty)
     }
     
     @Test
     func sort_withOneElement_shouldReturnArray() {
-        let result = SelectionSort.sort(values: [1])
-        
-        #expect(result == [1])
+        #expect(sort(values: [1]) == [1])
+    }
+    
+    // MARK: - Helpers
+    
+    private func sort(values: [Int]) -> [Int] {
+        SelectionSort.sort(values: values)
     }
     
 }
