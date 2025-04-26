@@ -1,8 +1,6 @@
 public class SelectionSort {
     public static func sort<T: Comparable>(values: [T]) -> [T] {
-        if values.count <= 1 {
-            return values
-        }
+        guard values.count > 1 else { return values }
         
         var values = values
         let count = values.count
