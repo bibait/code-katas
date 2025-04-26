@@ -2,7 +2,11 @@ import Testing
 @testable import TripServiceKata
 
 struct TripServiceTests {
-    private let userSession = TestableUserSession()
+    private let userSession: TestableUserSession
+    
+    init() {
+        userSession = TestableUserSession()
+    }
 
     @Test
     func getTripsByUser() throws {
