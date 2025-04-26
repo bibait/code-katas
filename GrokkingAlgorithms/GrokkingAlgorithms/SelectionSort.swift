@@ -7,9 +7,9 @@ public class SelectionSort {
         var result = [T]()
         
         while result.count != count {
-            let (min, index) = minValue(in: values)
+            let (minValue, index) = minValue(in: values)
             
-            result.append(min)
+            result.append(minValue)
             values.remove(at: index)
         }
         
