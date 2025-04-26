@@ -52,7 +52,7 @@ struct SelectionSortTests {
     }
     
     @Test
-    func sort_witTwoElements_shouldReturnSorted() {
+    func sort_withTwoElements_shouldReturnSorted() {
         #expect(sort(values: [2, 1]) == [1, 2])
     }
     
