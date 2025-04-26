@@ -3,10 +3,9 @@ public class SelectionSort {
         guard values.count > 1 else { return values }
         
         var values = values
-        let count = values.count
         var result = [T]()
-        
-        while result.count != count {
+
+        for _ in values {
             let (minValue, index) = minValue(in: values)
             
             result.append(minValue)
