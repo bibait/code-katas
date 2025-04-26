@@ -27,8 +27,7 @@ struct TripServiceTests {
     @Test
     func getTripsByUser_withFriend() throws {
         let loggedInUser = User()
-        let friend = User()
-        friend.addFriend(loggedInUser)
+        let friend = friend(of: loggedInUser)
         let userSession = TestableUserSession()
         userSession.user = loggedInUser
         let tripDAO = FakeTripDAOService()
@@ -41,6 +40,12 @@ struct TripServiceTests {
     }
     
     // MARK: - Helpers
+    
+    private func friend(of user: User) -> User {
+        let friend = User()
+        friend.addFriend(user)
+        return friend
+    }
     
     private class TestableUserSession: UserSession {
         var user: User?
