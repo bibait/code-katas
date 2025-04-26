@@ -32,8 +32,7 @@ struct TripServiceTests {
         let loggedInUser = User()
         let friend = friend(of: loggedInUser)
         userSession.user = loggedInUser
-        let tripDAO = FakeTripDAOService()
-        tripDAO.trips = []
+        let tripDAO = FakeTripDAOService(trips: [])
         let sut = TripService(userSession: userSession, tripDAO: tripDAO)
         
         let result = try sut.getTripsByUser(friend)
@@ -58,7 +57,11 @@ struct TripServiceTests {
     }
     
     private class FakeTripDAOService: TripDAO {
-        var trips: [Trip]?
+        let trips: [Trip]?
+        
+        init(trips: [Trip]?) {
+            self.trips = trips
+        }
 
         override func findTripsByUser(_ user: User) throws -> [Trip]? {
             trips
