@@ -46,9 +46,8 @@ struct TripServiceTests {
     
     @Test
     func getTripsByUser_withFriend_withoutTrips() throws {
-        let loggedInUser = User()
-        let friend = friend(of: loggedInUser)
-        userSession.loggedInUser = loggedInUser
+        userSession.loggedInUser = User()
+        let friend = friend(of: userSession.loggedInUser!)
         tripDAO.trips = []
         
         let result = try sut.getTripsByUser(friend)
