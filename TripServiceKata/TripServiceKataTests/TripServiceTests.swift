@@ -15,6 +15,17 @@ struct TripServiceTests {
         #expect(result == nil)
     }
     
+    @Test
+    func getTripsByUser_withoutLoggedInUser() throws {
+        let userSession = TestableUserSession()
+        let sut = TripService()
+        sut.userSession = userSession
+        
+        #expect(throws: TripServiceErrorType.userNotLoggedIn) {
+            try sut.getTripsByUser(User())
+        }
+    }
+    
     // MARK: - Helpers
     
     private class TestableUserSession: UserSession {
