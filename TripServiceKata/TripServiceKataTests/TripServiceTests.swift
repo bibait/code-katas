@@ -4,16 +4,17 @@ import Testing
 struct TripServiceTests {
     private let userSession: TestableUserSession
     private let tripDAO: FakeTripDAOService
+    private let sut: TripService
     
     init() {
         userSession = TestableUserSession()
         tripDAO = FakeTripDAOService()
+        sut = TripService(userSession: userSession, tripDAO: tripDAO)
     }
 
     @Test
     func getTripsByUser() throws {
         userSession.user = User()
-        let sut = TripService(userSession: userSession)
         
         let result = try sut.getTripsByUser(userSession.user!)
         
@@ -22,8 +23,6 @@ struct TripServiceTests {
     
     @Test
     func getTripsByUser_withoutLoggedInUser() throws {
-        let sut = TripService(userSession: userSession)
-        
         #expect(throws: TripServiceErrorType.userNotLoggedIn) {
             try sut.getTripsByUser(User())
         }
@@ -40,7 +39,6 @@ struct TripServiceTests {
         let friend = friend(of: loggedInUser)
         userSession.user = loggedInUser
         tripDAO.trips = trips
-        let sut = TripService(userSession: userSession, tripDAO: tripDAO)
         
         let result = try sut.getTripsByUser(friend)
         
@@ -53,7 +51,6 @@ struct TripServiceTests {
         let friend = friend(of: loggedInUser)
         userSession.user = loggedInUser
         tripDAO.trips = []
-        let sut = TripService(userSession: userSession, tripDAO: tripDAO)
         
         let result = try sut.getTripsByUser(friend)
         
@@ -66,7 +63,6 @@ struct TripServiceTests {
         let unknownUser = User()
         userSession.user = loggedInUser
         tripDAO.trips = []
-        let sut = TripService(userSession: userSession, tripDAO: tripDAO)
         
         let result = try sut.getTripsByUser(unknownUser)
         
