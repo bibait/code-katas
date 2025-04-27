@@ -108,7 +108,7 @@ class ExpenseReport {
         for expense in expenses {
             let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
             
-            printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.marker)")
+            printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
             mealExpenses += expense.isMeal ? expense.amount : 0
             total += expense.amount
         }
