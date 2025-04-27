@@ -27,6 +27,15 @@ class ExpenseReport {
         printMessage("Expense Report \(getDate())")
         
         for expense in expenses {
+            switch expense.type {
+            case .breakfast:
+                break
+            case .dinner:
+                break
+            case .carRental:
+                break
+            }
+
             if (expense.type == .dinner || expense.type == .breakfast) {
                 mealExpenses += expense.amount
             }
