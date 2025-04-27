@@ -96,7 +96,7 @@ struct Expenses {
     func getTotal() -> Int {
         var result = 0
 
-        for expense in expenseList {            
+        for expense in expenseList {
             result += expense.amount
         }
         
@@ -126,7 +126,17 @@ class ExpenseReport {
             let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
             
             printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
+        }
+        
+        for expense in expenses {
+            let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
+            
             mealExpenses += expense.isMeal ? expense.amount : 0
+        }
+        
+        for expense in expenses {
+            let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
+            
             total += expense.amount
         }
         
