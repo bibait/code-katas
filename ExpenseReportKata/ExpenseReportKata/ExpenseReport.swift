@@ -35,6 +35,7 @@ class ExpenseReport {
                 expenseName = "Breakfast"
                 break
             case .dinner:
+                expenseName = "Dinner"
                 break
             case .carRental:
                 break
@@ -46,7 +47,7 @@ class ExpenseReport {
 
             switch expense.type {
             case .breakfast: break
-            case .dinner: expenseName = "Dinner"
+            case .dinner: break
             case .carRental: expenseName = "Car Rental"
             }
 
