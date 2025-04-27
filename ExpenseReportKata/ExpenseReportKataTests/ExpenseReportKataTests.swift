@@ -37,14 +37,6 @@ struct ExpenseReportKataTests {
         }
     }
     
-    private class TestableSut: ExpenseReport {
-        var messages: [String] = []
-
-        override func printMessage(_ message: String) {
-            messages.append(message)
-        }
-    }
-    
     private func date() -> Date {
         let calendar = Calendar.current
         let components = DateComponents(year: 2025, month: 6, day: 15, hour: 12)

@@ -94,8 +94,4 @@ class ExpenseReport {
         printer.printMessage("Meal Expenses: \(mealExpenses)")
         printer.printMessage("Total Expenses: \(total)")
     }
-    
-    func printMessage(_ message: String) {
-        print(message)
-    }
 }
