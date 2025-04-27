@@ -17,6 +17,7 @@ protocol ExpenseProtocol {
     var name: String { get }
     var isMeal: Bool { get }
     var amount: Int { get }
+    var isOverLimit: Bool { get }
 }
 
 class Breakfast: ExpenseProtocol {
@@ -28,6 +29,7 @@ class Breakfast: ExpenseProtocol {
     var name: String { "Breakfast" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
+    var isOverLimit: Bool { amount > 1000 }
 }
 
 class Dinner: ExpenseProtocol {
@@ -39,6 +41,7 @@ class Dinner: ExpenseProtocol {
     var name: String { "Dinner" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
+    var isOverLimit: Bool { amount > 5000 }
 }
 
 class Lunch: ExpenseProtocol {
@@ -50,6 +53,7 @@ class Lunch: ExpenseProtocol {
     var name: String { "Lunch" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
+    var isOverLimit: Bool { amount > 2000 }
 }
 
 class CarRental: ExpenseProtocol {
@@ -61,6 +65,7 @@ class CarRental: ExpenseProtocol {
     var name: String { "Car Rental" }
     var isMeal: Bool { false }
     var amount: Int { _amount }
+    var isOverLimit: Bool { false }
 }
 
 class ExpenseFactory {
