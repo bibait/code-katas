@@ -12,10 +12,18 @@ struct Expense {
 }
 
 class ExpenseReport {
+    private let getDate: () -> Date
+    
+    init(
+        getDate: @escaping () -> Date = { Date() }
+    ) {
+        self.getDate = getDate
+    }
+
     func printReport(expenses: [Expense]) {
         var mealExpenses = 0
         var total = 0
-        printMessage("Expense Report \(Date())")
+        printMessage("Expense Report \(getDate())")
         for expense in expenses {
             if (expense.type == .dinner || expense.type == .breakfast) {
                 mealExpenses += expense.amount
