@@ -28,22 +28,23 @@ class ExpenseReport {
         
         for expense in expenses {
             var expenseName = ""
+            var mealOverExpensesMarker = " "
 
             switch expense.type {
             case .breakfast:
                 mealExpenses += expense.amount
                 expenseName = "Breakfast"
+                mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
                 break
             case .dinner:
                 mealExpenses += expense.amount
                 expenseName = "Dinner"
+                mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
                 break
             case .carRental:
                 expenseName = "Car Rental"
                 break
             }
-
-            let mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
             
             printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
 
