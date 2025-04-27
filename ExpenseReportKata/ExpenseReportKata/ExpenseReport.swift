@@ -110,8 +110,10 @@ class ExpenseReport {
                 total += dinner.getAmount()
                 continue
             case .carRental:
-                expenseName = "Car Rental"
-                break
+                let carRental = ExpenseFactory.createExpense(type: .carRental, amount: expense.amount)
+                printMessage("\(carRental.name)\t\(carRental.getAmount())\t\(carRental.marker)")
+                total += expense.amount
+                continue
             }
             
             printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
