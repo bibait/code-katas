@@ -118,20 +118,14 @@ class ExpenseReport {
 
     func printReport(expenses: [Expense]) {
         let expenses = Expenses(expenseList: expenses.map { ExpenseFactory.createExpense(type: $0.type, amount: $0.amount) })
-
-        var mealExpenses = 0
-        var total = 0
         
         printer.printMessage("Expense Report \(getDate())")
         
         for expense in expenses.expenseList {
             printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
         }
-        
-        mealExpenses = expenses.getMealExpenses()
-        total = expenses.getTotal()
-        
-        printer.printMessage("Meal Expenses: \(mealExpenses)")
-        printer.printMessage("Total Expenses: \(total)")
+
+        printer.printMessage("Meal Expenses: \(expenses.getMealExpenses())")
+        printer.printMessage("Total Expenses: \(expenses.getTotal())")
     }
 }
