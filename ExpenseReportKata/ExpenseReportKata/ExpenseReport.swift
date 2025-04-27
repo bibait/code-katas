@@ -27,9 +27,12 @@ class ExpenseReport {
         printMessage("Expense Report \(getDate())")
         
         for expense in expenses {
+            var expenseName = ""
+
             switch expense.type {
             case .breakfast:
                 mealExpenses += expense.amount
+                expenseName = "Breakfast"
                 break
             case .dinner:
                 break
@@ -41,9 +44,8 @@ class ExpenseReport {
                 mealExpenses += expense.amount
             }
 
-            var expenseName = ""
             switch expense.type {
-            case .breakfast: expenseName = "Breakfast"
+            case .breakfast: break
             case .dinner: expenseName = "Dinner"
             case .carRental: expenseName = "Car Rental"
             }
