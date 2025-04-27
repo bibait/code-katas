@@ -46,7 +46,7 @@ class Lunch: ExpenseProtocol {
     
     init(amount: Int) { _amount = amount }
 
-    var marker: String { "X" }
+    var marker: String { amount > 2000 ? "X" : " " }
     var name: String { "Lunch" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
