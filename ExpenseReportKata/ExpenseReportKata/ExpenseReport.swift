@@ -82,15 +82,9 @@ struct Expenses {
     let expenseList: [ExpenseProtocol]
     
     func getMealExpenses() -> Int {
-        var result = 0
-
-        for expense in expenseList {
-            guard expense.isMeal else { continue }
-            
-            result += expense.amount
-        }
-        
-        return result
+        expenseList
+            .filter { $0.isMeal }
+            .reduce(0) { $0 + $1.amount }
     }
     
     func getTotal() -> Int {
