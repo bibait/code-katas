@@ -1,22 +1,31 @@
 import Testing
 import Foundation
+import ApprovalTests_Swift
 @testable import ExpenseReportKata
 
 struct ExpenseReportKataTests {
 
     @Test
-    func testPrintReport() {
+    func testPrintReport() throws {
+        let amounts: [Int] = [
+            0, 4999, 5000, 5001, 999, 1000, 1001
+        ]
+        
+        let types: [ExpenseType] = [
+            .breakfast,
+            .carRental,
+            .dinner,
+        ]
+
         let sut = TestableSut {
             date()
         }
         
-        sut.printReport(expenses: [])
-        
-        #expect(sut.messages == [
-            "Expense Report 2025-06-15 10:00:00 +0000",
-            "Meal Expenses: 0",
-            "Total Expenses: 0",
-        ])
+        try CombinationApprovals.verifyAllCombinations({ amounts, types in
+            let expense = Expense(type: types, amount: amounts)
+            sut.printReport(expenses: [expense])
+            return sut.messages
+        }, amounts, types)
     }
     
     // MARK: - Helpers
