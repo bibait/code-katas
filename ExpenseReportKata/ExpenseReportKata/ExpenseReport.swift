@@ -92,6 +92,16 @@ struct Expenses {
         
         return result
     }
+    
+    func getTotal() -> Int {
+        var result = 0
+
+        for expense in expenseList {            
+            result += expense.amount
+        }
+        
+        return result
+    }
 }
 
 class ExpenseReport {
