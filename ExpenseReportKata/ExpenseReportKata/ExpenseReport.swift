@@ -79,7 +79,19 @@ protocol MessagePrinter {
 }
 
 struct Expenses {
-    let expenseList: [Expense]
+    let expenseList: [ExpenseProtocol]
+    
+    func getMealExpenses() -> Int {
+        var result = 0
+
+        for expense in expenseList {
+            guard expense.isMeal else { continue }
+            
+            result += expense.amount
+        }
+        
+        return result
+    }
 }
 
 class ExpenseReport {
