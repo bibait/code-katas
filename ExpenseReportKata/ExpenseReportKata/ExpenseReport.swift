@@ -29,6 +29,7 @@ class ExpenseReport {
         for expense in expenses {
             switch expense.type {
             case .breakfast:
+                mealExpenses += expense.amount
                 break
             case .dinner:
                 break
@@ -36,7 +37,7 @@ class ExpenseReport {
                 break
             }
 
-            if (expense.type == .dinner || expense.type == .breakfast) {
+            if (expense.type == .dinner) {
                 mealExpenses += expense.amount
             }
 
