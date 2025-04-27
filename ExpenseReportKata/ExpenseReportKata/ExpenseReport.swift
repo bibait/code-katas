@@ -117,6 +117,8 @@ class ExpenseReport {
     }
 
     func printReport(expenses: [Expense]) {
+        var expensesList = Expenses(expenseList: expenses.map { ExpenseFactory.createExpense(type: $0.type, amount: $0.amount) })
+
         var mealExpenses = 0
         var total = 0
         
