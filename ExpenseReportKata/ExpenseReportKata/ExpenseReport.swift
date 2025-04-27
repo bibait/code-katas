@@ -78,6 +78,10 @@ protocol MessagePrinter {
     func printMessage(_ message: String)
 }
 
+struct Expenses {
+    let expenseList: [Expense]
+}
+
 class ExpenseReport {
     private let getDate: () -> Date
     private let printer: MessagePrinter
