@@ -28,40 +28,6 @@ struct ExpenseReportKataTests {
         }, amounts, types)
     }
     
-    @Test
-    func testPrintReport_lunch() throws {
-        let expense = Expense(type: .lunch, amount: 2001)
-
-        let printer = SpyMessagePrinter()
-        let sut = ExpenseReport(getDate: { date() }, messagePrinter: printer)
-        
-        sut.printReport(expenses: [expense])
-        
-        #expect(printer.messages == [
-            "Expense Report \(date())",
-            "Lunch\t2001\tX",
-            "Meal Expenses: 2001",
-            "Total Expenses: 2001"
-        ])
-    }
-    
-    @Test
-    func testPrintReport_lunchBelowLimit() throws {
-        let expense = Expense(type: .lunch, amount: 2000)
-
-        let printer = SpyMessagePrinter()
-        let sut = ExpenseReport(getDate: { date() }, messagePrinter: printer)
-        
-        sut.printReport(expenses: [expense])
-        
-        #expect(printer.messages == [
-            "Expense Report \(date())",
-            "Lunch\t2000\t ",
-            "Meal Expenses: 2000",
-            "Total Expenses: 2000"
-        ])
-    }
-    
     // MARK: - Helpers
     
     private class SpyMessagePrinter: MessagePrinter {
