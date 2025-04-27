@@ -12,9 +12,24 @@ struct Expense {
 }
 
 protocol ExpenseProtocol {
-    var amount: Int { get }
     var marker: String { get }
     var name: String { get }
+    
+    func getAmount() -> Int
+}
+
+class Breakfast: ExpenseProtocol {
+    private let amount: Int
+    
+    init(amount: Int) {
+        self.amount = amount
+    }
+    
+    var marker: String { amount > 1000 ? "X" : " " }
+    
+    var name: String { "Breakfast" }
+    
+    func getAmount() -> Int { amount }
 }
 
 class ExpenseReport {
