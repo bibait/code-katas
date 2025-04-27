@@ -11,6 +11,12 @@ struct Expense {
     var amount: Int
 }
 
+protocol ExpenseProtocol {
+    var amount: Int { get }
+    var marker: String { get }
+    var name: String { get }
+}
+
 class ExpenseReport {
     private let getDate: () -> Date
     
