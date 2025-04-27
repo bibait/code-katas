@@ -68,10 +68,12 @@ class ExpenseReport {
 
             switch expense.type {
             case .breakfast:
-                mealExpenses += expense.amount
-                expenseName = "Breakfast"
-                mealOverExpensesMarker = expense.amount > 1000 ? "X" : " "
-                break
+                let breakfast = ExpenseFactory.createExpense(type: .breakfast, amount: expense.amount)
+                
+                printMessage("\(breakfast.name)\t\(breakfast.getAmount())\t\(breakfast.marker)")
+                mealExpenses += breakfast.getAmount()
+                total += breakfast.getAmount()
+                continue
             case .dinner:
                 mealExpenses += expense.amount
                 expenseName = "Dinner"
@@ -83,7 +85,6 @@ class ExpenseReport {
             }
             
             printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
-
             total += expense.amount
         }
         
