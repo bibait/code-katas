@@ -61,6 +61,10 @@ class ExpenseFactory {
     }
 }
 
+protocol MessagePrinter {
+    func printMessage(_ message: String)
+}
+
 class ExpenseReport {
     private let getDate: () -> Date
     
