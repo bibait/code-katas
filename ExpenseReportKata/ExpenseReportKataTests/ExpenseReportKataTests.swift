@@ -7,5 +7,15 @@ struct ExpenseReportKataTests {
     func testPrintReport() throws {
         
     }
+    
+    // MARK: - Helpers
+    
+    private class TestableSut: ExpenseReport {
+        var messages: [String] = []
+
+        override func printMessage(_ message: String) {
+            messages.append(message)
+        }
+    }
 
 }

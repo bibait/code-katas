@@ -15,7 +15,7 @@ class ExpenseReport {
     func printReport(expenses: [Expense]) {
         var mealExpenses = 0
         var total = 0
-        print("Expense Report \(Date())")
+        printMessage("Expense Report \(Date())")
         for expense in expenses {
             if (expense.type == .dinner || expense.type == .breakfast) {
                 mealExpenses += expense.amount
@@ -29,12 +29,15 @@ class ExpenseReport {
             }
 
             let mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
-            print("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
+            printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
 
             total += expense.amount
         }
-        print("Meal Expenses: \(mealExpenses)")
-        print("Total Expenses: \(total)")
+        printMessage("Meal Expenses: \(mealExpenses)")
+        printMessage("Total Expenses: \(total)")
+    }
+    
+    func printMessage(_ message: String) {
+        print(message)
     }
 }
-
