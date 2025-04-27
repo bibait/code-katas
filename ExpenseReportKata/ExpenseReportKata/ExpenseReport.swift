@@ -15,41 +15,40 @@ protocol ExpenseProtocol {
     var marker: String { get }
     var name: String { get }
     var isMeal: Bool { get }
-
-    func getAmount() -> Int
+    var amount: Int { get }
 }
 
 class Breakfast: ExpenseProtocol {
-    private let amount: Int
+    private let _amount: Int
     
-    init(amount: Int) { self.amount = amount }
+    init(amount: Int) { _amount = amount }
     
     var marker: String { amount > 1000 ? "X" : " " }
     var name: String { "Breakfast" }
     var isMeal: Bool { true }
-    func getAmount() -> Int { amount }
+    var amount: Int { _amount }
 }
 
 class Dinner: ExpenseProtocol {
-    private let amount: Int
+    private let _amount: Int
     
-    init(amount: Int) { self.amount = amount }
+    init(amount: Int) { _amount = amount }
 
     var marker: String { amount > 5000 ? "X" : " " }
     var name: String { "Dinner" }
     var isMeal: Bool { true }
-    func getAmount() -> Int { amount }
+    var amount: Int { _amount }
 }
 
 class CarRental: ExpenseProtocol {
-    private let amount: Int
+    private let _amount: Int
     
-    init(amount: Int) { self.amount = amount }
+    init(amount: Int) { _amount = amount }
 
     var marker: String { " " }
     var name: String { "Car Rental" }
     var isMeal: Bool { false }
-    func getAmount() -> Int { amount }
+    var amount: Int { _amount }
 }
 
 class ExpenseFactory {
@@ -80,9 +79,9 @@ class ExpenseReport {
         for expense in expenses {
             let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
             
-            printMessage("\(expense.name)\t\(expense.getAmount())\t\(expense.marker)")
-            mealExpenses += expense.isMeal ? expense.getAmount() : 0
-            total += expense.getAmount()
+            printMessage("\(expense.name)\t\(expense.amount)\t\(expense.marker)")
+            mealExpenses += expense.isMeal ? expense.amount : 0
+            total += expense.amount
         }
         
         printMessage("Meal Expenses: \(mealExpenses)")
