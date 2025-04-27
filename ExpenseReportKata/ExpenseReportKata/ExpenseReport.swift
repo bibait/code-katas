@@ -98,19 +98,16 @@ class ExpenseReport {
                 printMessage("\(breakfast.name)\t\(breakfast.getAmount())\t\(breakfast.marker)")
                 mealExpenses += breakfast.getAmount()
                 total += breakfast.getAmount()
-                continue
             case .dinner:
                 let dinner = ExpenseFactory.createExpense(type: .dinner, amount: expense.amount)
 
                 printMessage("\(dinner.name)\t\(dinner.getAmount())\t\(dinner.marker)")
                 mealExpenses += dinner.getAmount()
                 total += dinner.getAmount()
-                continue
             case .carRental:
                 let carRental = ExpenseFactory.createExpense(type: .carRental, amount: expense.amount)
                 printMessage("\(carRental.name)\t\(carRental.getAmount())\t\(carRental.marker)")
                 total += expense.amount
-                continue
             }
         }
         
