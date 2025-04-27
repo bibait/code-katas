@@ -46,6 +46,20 @@ class Dinner: ExpenseProtocol {
     func getAmount() -> Int { amount }
 }
 
+class CarRental: ExpenseProtocol {
+    private let amount: Int
+    
+    init(amount: Int) {
+        self.amount = amount
+    }
+
+    var marker: String { " " }
+    
+    var name: String { "Car Rental" }
+    
+    func getAmount() -> Int { amount }
+}
+
 class ExpenseFactory {
     static func createExpense(type: ExpenseType, amount: Int) -> ExpenseProtocol {
         switch type {
@@ -56,7 +70,7 @@ class ExpenseFactory {
             Dinner(amount: amount)
         
         case .carRental:
-            fatalError("Not implemented")
+            CarRental(amount: amount)
         }
     }
 }
