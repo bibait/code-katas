@@ -91,9 +91,6 @@ class ExpenseReport {
         printMessage("Expense Report \(getDate())")
         
         for expense in expenses {
-            var expenseName = ""
-            var mealOverExpensesMarker = " "
-
             switch expense.type {
             case .breakfast:
                 let breakfast = ExpenseFactory.createExpense(type: .breakfast, amount: expense.amount)
@@ -115,9 +112,6 @@ class ExpenseReport {
                 total += expense.amount
                 continue
             }
-            
-            printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
-            total += expense.amount
         }
         
         printMessage("Meal Expenses: \(mealExpenses)")
