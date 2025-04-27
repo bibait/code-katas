@@ -39,7 +39,7 @@ class ExpenseReport {
             case .dinner:
                 mealExpenses += expense.amount
                 expenseName = "Dinner"
-                mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
+                mealOverExpensesMarker = expense.amount > 5000 ? "X" : " "
                 break
             case .carRental:
                 expenseName = "Car Rental"
