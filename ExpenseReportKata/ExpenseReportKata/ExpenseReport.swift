@@ -32,6 +32,21 @@ class Breakfast: ExpenseProtocol {
     func getAmount() -> Int { amount }
 }
 
+class ExpenseFactory {
+    static func createExpense(type: ExpenseType, amount: Int) -> ExpenseProtocol {
+        switch type {
+        case .breakfast:
+            Breakfast(amount: amount)
+        
+        case .dinner:
+            fatalError("Not implemented")
+        
+        case .carRental:
+            fatalError("Not implemented")
+        }
+    }
+}
+
 class ExpenseReport {
     private let getDate: () -> Date
     
