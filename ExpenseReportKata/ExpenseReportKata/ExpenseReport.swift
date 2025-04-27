@@ -88,13 +88,8 @@ struct Expenses {
     }
     
     func getTotal() -> Int {
-        var result = 0
-
-        for expense in expenseList {
-            result += expense.amount
-        }
-        
-        return result
+        expenseList
+            .reduce(0) { $0 + $1.amount }
     }
 }
 
