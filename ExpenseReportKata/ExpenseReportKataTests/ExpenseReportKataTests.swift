@@ -30,6 +30,14 @@ struct ExpenseReportKataTests {
     
     // MARK: - Helpers
     
+    private class SpyMessagePrinter: MessagePrinter {
+        var messages: [String] = []
+        
+        func printMessage(_ message: String) {
+            messages.append(message)
+        }
+    }
+    
     private class TestableSut: ExpenseReport {
         var messages: [String] = []
 
