@@ -4,6 +4,7 @@ enum ExpenseType {
     case breakfast
     case dinner
     case carRental
+    case lunch
 }
 
 struct Expense {
@@ -40,6 +41,17 @@ class Dinner: ExpenseProtocol {
     var amount: Int { _amount }
 }
 
+class Lunch: ExpenseProtocol {
+    private let _amount: Int
+    
+    init(amount: Int) { _amount = amount }
+
+    var marker: String { "X" }
+    var name: String { "Lunch" }
+    var isMeal: Bool { true }
+    var amount: Int { _amount }
+}
+
 class CarRental: ExpenseProtocol {
     private let _amount: Int
     
@@ -57,6 +69,7 @@ class ExpenseFactory {
         case .breakfast: Breakfast(amount: amount)
         case .dinner: Dinner(amount: amount)
         case .carRental: CarRental(amount: amount)
+        case .lunch: Lunch(amount: amount)
         }
     }
 }
