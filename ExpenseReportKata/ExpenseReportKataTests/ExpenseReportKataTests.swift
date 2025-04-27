@@ -7,25 +7,34 @@ struct ExpenseReportKataTests {
 
     @Test
     func testPrintReport() throws {
-        let amounts: [Int] = [
-            0, 4999, 5000, 5001, 999, 1000, 1001, 2000, 2001
-        ]
-        
-        let types: [ExpenseType] = [
-            .breakfast,
-            .carRental,
-            .dinner,
-            .lunch
+        let expenses: [Expenses] = [
+            Expenses(expenseList: [
+                Breakfast(amount: 0),
+                Dinner(amount: 0),
+                Lunch(amount: 0),
+                CarRental(amount: 0)
+            ]),
+            Expenses(expenseList: [
+                Breakfast(amount: 1000),
+                Dinner(amount: 5000),
+                Lunch(amount: 2000),
+                CarRental(amount: 999)
+            ]),
+            Expenses(expenseList: [
+                Breakfast(amount: 1001),
+                Dinner(amount: 5001),
+                Lunch(amount: 2001),
+                CarRental(amount: 2001)
+            ])
         ]
 
         let printer = SpyMessagePrinter()
         let sut = ExpenseReport(getDate: { date() }, messagePrinter: printer)
         
-        try CombinationApprovals.verifyAllCombinations({ amounts, types in
-            let expense = Expense(type: types, amount: amounts)
-            sut.printReport(expenses: [expense])
+        try CombinationApprovals.verifyAllCombinations({ expenses in
+            sut.printReport(expenses: expenses)
             return printer.messages
-        }, amounts, types)
+        }, expenses)
     }
     
     // MARK: - Helpers

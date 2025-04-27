@@ -1,25 +1,13 @@
 import Foundation
 
-enum ExpenseType {
-    case breakfast
-    case dinner
-    case carRental
-    case lunch
-}
-
-struct Expense {
-    var type: ExpenseType
-    var amount: Int
-}
-
-protocol ExpenseProtocol {
+protocol Expense {
     var name: String { get }
     var isMeal: Bool { get }
     var amount: Int { get }
     var isOverLimit: Bool { get }
 }
 
-class Breakfast: ExpenseProtocol {
+class Breakfast: Expense {
     private let _amount: Int
     
     init(amount: Int) { _amount = amount }
@@ -30,7 +18,7 @@ class Breakfast: ExpenseProtocol {
     var isOverLimit: Bool { amount > 1000 }
 }
 
-class Dinner: ExpenseProtocol {
+class Dinner: Expense {
     private let _amount: Int
     
     init(amount: Int) { _amount = amount }
@@ -41,7 +29,7 @@ class Dinner: ExpenseProtocol {
     var isOverLimit: Bool { amount > 5000 }
 }
 
-class Lunch: ExpenseProtocol {
+class Lunch: Expense {
     private let _amount: Int
     
     init(amount: Int) { _amount = amount }
@@ -52,7 +40,7 @@ class Lunch: ExpenseProtocol {
     var isOverLimit: Bool { amount > 2000 }
 }
 
-class CarRental: ExpenseProtocol {
+class CarRental: Expense {
     private let _amount: Int
     
     init(amount: Int) { _amount = amount }
@@ -63,23 +51,12 @@ class CarRental: ExpenseProtocol {
     var isOverLimit: Bool { false }
 }
 
-class ExpenseFactory {
-    static func createExpense(type: ExpenseType, amount: Int) -> ExpenseProtocol {
-        switch type {
-        case .breakfast: Breakfast(amount: amount)
-        case .dinner: Dinner(amount: amount)
-        case .carRental: CarRental(amount: amount)
-        case .lunch: Lunch(amount: amount)
-        }
-    }
-}
-
 protocol MessagePrinter {
     func printMessage(_ message: String)
 }
 
 struct Expenses {
-    let expenseList: [ExpenseProtocol]
+    let expenseList: [Expense]
     
     func getMealExpenses() -> Int {
         expenseList
@@ -105,9 +82,7 @@ class ExpenseReport {
         self.printer = messagePrinter
     }
 
-    func printReport(expenses: [Expense]) {
-        let expenses = Expenses(expenseList: expenses.map { ExpenseFactory.createExpense(type: $0.type, amount: $0.amount) })
-        
+    func printReport(expenses: Expenses) {
         printer.printMessage("Expense Report \(getDate())")
         
         for expense in expenses.expenseList {
@@ -118,7 +93,7 @@ class ExpenseReport {
         printer.printMessage("Total Expenses: \(expenses.getTotal())")
     }
     
-    private func printSingleExpense(_ expense: ExpenseProtocol) {
+    private func printSingleExpense(_ expense: Expense) {
         printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
     }
 }
