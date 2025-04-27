@@ -39,13 +39,14 @@ class ExpenseReport {
                 expenseName = "Dinner"
                 break
             case .carRental:
+                expenseName = "Car Rental"
                 break
             }
 
             switch expense.type {
             case .breakfast: break
             case .dinner: break
-            case .carRental: expenseName = "Car Rental"
+            case .carRental: break
             }
 
             let mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
