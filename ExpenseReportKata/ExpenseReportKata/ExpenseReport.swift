@@ -122,10 +122,14 @@ class ExpenseReport {
         printer.printMessage("Expense Report \(getDate())")
         
         for expense in expenses.expenseList {
-            printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
+            printSingleExpense(expense)
         }
 
         printer.printMessage("Meal Expenses: \(expenses.getMealExpenses())")
         printer.printMessage("Total Expenses: \(expenses.getTotal())")
+    }
+    
+    private func printSingleExpense(_ expense: ExpenseProtocol) {
+        printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.isOverLimit ? "X" : " ")")
     }
 }
