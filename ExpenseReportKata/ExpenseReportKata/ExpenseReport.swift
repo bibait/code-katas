@@ -67,29 +67,32 @@ protocol MessagePrinter {
 
 class ExpenseReport {
     private let getDate: () -> Date
-    
+    private let printer: MessagePrinter
+
     init(
-        getDate: @escaping () -> Date = { Date() }
+        getDate: @escaping () -> Date = { Date() },
+        messagePrinter: MessagePrinter
     ) {
         self.getDate = getDate
+        self.printer = messagePrinter
     }
 
     func printReport(expenses: [Expense]) {
         var mealExpenses = 0
         var total = 0
         
-        printMessage("Expense Report \(getDate())")
+        printer.printMessage("Expense Report \(getDate())")
         
         for expense in expenses {
             let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
             
-            printMessage("\(expense.name)\t\(expense.amount)\t\(expense.marker)")
+            printer.printMessage("\(expense.name)\t\(expense.amount)\t\(expense.marker)")
             mealExpenses += expense.isMeal ? expense.amount : 0
             total += expense.amount
         }
         
-        printMessage("Meal Expenses: \(mealExpenses)")
-        printMessage("Total Expenses: \(total)")
+        printer.printMessage("Meal Expenses: \(mealExpenses)")
+        printer.printMessage("Total Expenses: \(total)")
     }
     
     func printMessage(_ message: String) {

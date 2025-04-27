@@ -17,14 +17,13 @@ struct ExpenseReportKataTests {
             .dinner,
         ]
 
-        let sut = TestableSut {
-            date()
-        }
+        let printer = SpyMessagePrinter()
+        let sut = ExpenseReport(getDate: { date() }, messagePrinter: printer)
         
         try CombinationApprovals.verifyAllCombinations({ amounts, types in
             let expense = Expense(type: types, amount: amounts)
             sut.printReport(expenses: [expense])
-            return sut.messages
+            return printer.messages
         }, amounts, types)
     }
     
