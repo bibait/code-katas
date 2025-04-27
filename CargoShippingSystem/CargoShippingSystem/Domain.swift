@@ -1,3 +1,5 @@
+import Foundation
+
 struct Customer {
     let customerId: String
     let name: String

@@ -6,47 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		0E056E352DBE864C00B53028 /* CargoShippingSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E056E2C2DBE864C00B53028 /* CargoShippingSystem.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0E056E362DBE864C00B53028 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0E056E232DBE864C00B53028 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0E056E2B2DBE864C00B53028;
-			remoteInfo = CargoShippingSystem;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0E056E2C2DBE864C00B53028 /* CargoShippingSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CargoShippingSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E056E342DBE864C00B53028 /* CargoShippingSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CargoShippingSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E056E3C2DBE864C00B53028 /* Exceptions for "CargoShippingSystem" folder in "CargoShippingSystem" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				CargoShippingSystem.h,
-			);
-			target = 0E056E2B2DBE864C00B53028 /* CargoShippingSystem */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0E056E2E2DBE864C00B53028 /* CargoShippingSystem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0E056E3C2DBE864C00B53028 /* Exceptions for "CargoShippingSystem" folder in "CargoShippingSystem" target */,
-			);
 			path = CargoShippingSystem;
-			sourceTree = "<group>";
-		};
-		0E056E382DBE864C00B53028 /* CargoShippingSystemTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CargoShippingSystemTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -59,14 +26,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0E056E312DBE864C00B53028 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0E056E352DBE864C00B53028 /* CargoShippingSystem.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -74,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				0E056E2E2DBE864C00B53028 /* CargoShippingSystem */,
-				0E056E382DBE864C00B53028 /* CargoShippingSystemTests */,
 				0E056E2D2DBE864C00B53028 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				0E056E2C2DBE864C00B53028 /* CargoShippingSystem.framework */,
-				0E056E342DBE864C00B53028 /* CargoShippingSystemTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,29 +81,6 @@
 			productReference = 0E056E2C2DBE864C00B53028 /* CargoShippingSystem.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0E056E332DBE864C00B53028 /* CargoShippingSystemTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0E056E422DBE864C00B53028 /* Build configuration list for PBXNativeTarget "CargoShippingSystemTests" */;
-			buildPhases = (
-				0E056E302DBE864C00B53028 /* Sources */,
-				0E056E312DBE864C00B53028 /* Frameworks */,
-				0E056E322DBE864C00B53028 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0E056E372DBE864C00B53028 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0E056E382DBE864C00B53028 /* CargoShippingSystemTests */,
-			);
-			name = CargoShippingSystemTests;
-			packageProductDependencies = (
-			);
-			productName = CargoShippingSystemTests;
-			productReference = 0E056E342DBE864C00B53028 /* CargoShippingSystemTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -160,9 +94,6 @@
 					0E056E2B2DBE864C00B53028 = {
 						CreatedOnToolsVersion = 16.1;
 						LastSwiftMigration = 1610;
-					};
-					0E056E332DBE864C00B53028 = {
-						CreatedOnToolsVersion = 16.1;
 					};
 				};
 			};
@@ -181,20 +112,12 @@
 			projectRoot = "";
 			targets = (
 				0E056E2B2DBE864C00B53028 /* CargoShippingSystem */,
-				0E056E332DBE864C00B53028 /* CargoShippingSystemTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0E056E2A2DBE864C00B53028 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0E056E322DBE864C00B53028 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,22 +134,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0E056E302DBE864C00B53028 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0E056E372DBE864C00B53028 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0E056E2B2DBE864C00B53028 /* CargoShippingSystem */;
-			targetProxy = 0E056E362DBE864C00B53028 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0E056E3E2DBE864C00B53028 /* Debug */ = {
@@ -237,7 +145,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -272,7 +180,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4BZ7SLAR29;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -422,36 +330,6 @@
 			};
 			name = Release;
 		};
-		0E056E432DBE864C00B53028 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4BZ7SLAR29;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.bilalbas.CargoShippingSystemTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		0E056E442DBE864C00B53028 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4BZ7SLAR29;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.bilalbas.CargoShippingSystemTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -469,15 +347,6 @@
 			buildConfigurations = (
 				0E056E3E2DBE864C00B53028 /* Debug */,
 				0E056E3F2DBE864C00B53028 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0E056E422DBE864C00B53028 /* Build configuration list for PBXNativeTarget "CargoShippingSystemTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0E056E432DBE864C00B53028 /* Debug */,
-				0E056E442DBE864C00B53028 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
