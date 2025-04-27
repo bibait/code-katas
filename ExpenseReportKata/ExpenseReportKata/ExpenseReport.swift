@@ -14,7 +14,8 @@ struct Expense {
 protocol ExpenseProtocol {
     var marker: String { get }
     var name: String { get }
-    
+    var isMeal: Bool { get }
+
     func getAmount() -> Int
 }
 
@@ -28,6 +29,8 @@ class Breakfast: ExpenseProtocol {
     var marker: String { amount > 1000 ? "X" : " " }
     
     var name: String { "Breakfast" }
+    
+    var isMeal: Bool { true }
     
     func getAmount() -> Int { amount }
 }
@@ -43,6 +46,8 @@ class Dinner: ExpenseProtocol {
     
     var name: String { "Dinner" }
     
+    var isMeal: Bool { true }
+    
     func getAmount() -> Int { amount }
 }
 
@@ -56,6 +61,8 @@ class CarRental: ExpenseProtocol {
     var marker: String { " " }
     
     var name: String { "Car Rental" }
+    
+    var isMeal: Bool { false }
     
     func getAmount() -> Int { amount }
 }
@@ -91,24 +98,11 @@ class ExpenseReport {
         printMessage("Expense Report \(getDate())")
         
         for expense in expenses {
-            switch expense.type {
-            case .breakfast:
-                let breakfast = ExpenseFactory.createExpense(type: .breakfast, amount: expense.amount)
-                
-                printMessage("\(breakfast.name)\t\(breakfast.getAmount())\t\(breakfast.marker)")
-                mealExpenses += breakfast.getAmount()
-                total += breakfast.getAmount()
-            case .dinner:
-                let dinner = ExpenseFactory.createExpense(type: .dinner, amount: expense.amount)
-
-                printMessage("\(dinner.name)\t\(dinner.getAmount())\t\(dinner.marker)")
-                mealExpenses += dinner.getAmount()
-                total += dinner.getAmount()
-            case .carRental:
-                let carRental = ExpenseFactory.createExpense(type: .carRental, amount: expense.amount)
-                printMessage("\(carRental.name)\t\(carRental.getAmount())\t\(carRental.marker)")
-                total += expense.amount
-            }
+            let expense = ExpenseFactory.createExpense(type: expense.type, amount: expense.amount)
+            
+            printMessage("\(expense.name)\t\(expense.getAmount())\t\(expense.marker)")
+            mealExpenses += expense.isMeal ? expense.getAmount() : 0
+            total += expense.getAmount()
         }
         
         printMessage("Meal Expenses: \(mealExpenses)")
