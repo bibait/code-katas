@@ -13,7 +13,6 @@ struct Expense {
 }
 
 protocol ExpenseProtocol {
-    var marker: String { get }
     var name: String { get }
     var isMeal: Bool { get }
     var amount: Int { get }
@@ -25,7 +24,6 @@ class Breakfast: ExpenseProtocol {
     
     init(amount: Int) { _amount = amount }
     
-    var marker: String { amount > 1000 ? "X" : " " }
     var name: String { "Breakfast" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
@@ -37,7 +35,6 @@ class Dinner: ExpenseProtocol {
     
     init(amount: Int) { _amount = amount }
 
-    var marker: String { amount > 5000 ? "X" : " " }
     var name: String { "Dinner" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
@@ -49,7 +46,6 @@ class Lunch: ExpenseProtocol {
     
     init(amount: Int) { _amount = amount }
 
-    var marker: String { amount > 2000 ? "X" : " " }
     var name: String { "Lunch" }
     var isMeal: Bool { true }
     var amount: Int { _amount }
@@ -61,7 +57,6 @@ class CarRental: ExpenseProtocol {
     
     init(amount: Int) { _amount = amount }
 
-    var marker: String { " " }
     var name: String { "Car Rental" }
     var isMeal: Bool { false }
     var amount: Int { _amount }
