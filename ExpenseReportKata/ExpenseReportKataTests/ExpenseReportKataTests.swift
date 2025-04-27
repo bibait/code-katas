@@ -8,13 +8,14 @@ struct ExpenseReportKataTests {
     @Test
     func testPrintReport() throws {
         let amounts: [Int] = [
-            0, 4999, 5000, 5001, 999, 1000, 1001
+            0, 4999, 5000, 5001, 999, 1000, 1001, 2000, 2001
         ]
         
         let types: [ExpenseType] = [
             .breakfast,
             .carRental,
             .dinner,
+            .lunch
         ]
 
         let printer = SpyMessagePrinter()
