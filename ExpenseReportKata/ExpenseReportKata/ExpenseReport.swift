@@ -22,48 +22,33 @@ protocol ExpenseProtocol {
 class Breakfast: ExpenseProtocol {
     private let amount: Int
     
-    init(amount: Int) {
-        self.amount = amount
-    }
+    init(amount: Int) { self.amount = amount }
     
     var marker: String { amount > 1000 ? "X" : " " }
-    
     var name: String { "Breakfast" }
-    
     var isMeal: Bool { true }
-    
     func getAmount() -> Int { amount }
 }
 
 class Dinner: ExpenseProtocol {
     private let amount: Int
     
-    init(amount: Int) {
-        self.amount = amount
-    }
+    init(amount: Int) { self.amount = amount }
 
     var marker: String { amount > 5000 ? "X" : " " }
-    
     var name: String { "Dinner" }
-    
     var isMeal: Bool { true }
-    
     func getAmount() -> Int { amount }
 }
 
 class CarRental: ExpenseProtocol {
     private let amount: Int
     
-    init(amount: Int) {
-        self.amount = amount
-    }
+    init(amount: Int) { self.amount = amount }
 
     var marker: String { " " }
-    
     var name: String { "Car Rental" }
-    
     var isMeal: Bool { false }
-    
     func getAmount() -> Int { amount }
 }
 
