@@ -70,14 +70,9 @@ class CarRental: ExpenseProtocol {
 class ExpenseFactory {
     static func createExpense(type: ExpenseType, amount: Int) -> ExpenseProtocol {
         switch type {
-        case .breakfast:
-            Breakfast(amount: amount)
-        
-        case .dinner:
-            Dinner(amount: amount)
-        
-        case .carRental:
-            CarRental(amount: amount)
+        case .breakfast: Breakfast(amount: amount)
+        case .dinner: Dinner(amount: amount)
+        case .carRental: CarRental(amount: amount)
         }
     }
 }
