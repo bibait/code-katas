@@ -43,12 +43,6 @@ class ExpenseReport {
                 break
             }
 
-            switch expense.type {
-            case .breakfast: break
-            case .dinner: break
-            case .carRental: break
-            }
-
             let mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
             
             printMessage("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
