@@ -4,39 +4,32 @@ import GrokkingAlgorithms
 struct FactorialTests {
     
     func factorial_0() {
-        let result = factorial(0)
-        
-        #expect(result == 0)
+        #expect(compute(0) == 0)
     }
     
     func factorial_1() {
-        let result = factorial(1)
-        
-        #expect(result == 1)
+        #expect(compute(1) == 1)
     }
     
     func factorial_2() {
-        let result = factorial(2)
-        
-        #expect(result == 2)
+        #expect(compute(2) == 2)
     }
     
     func factorial_3() {
-        let result = factorial(3)
-        
-        #expect(result == 6)
+        #expect(compute(3) == 6)
     }
     
-    func factorial_4() {
-        let result = factorial(4)
-        
-        #expect(result == 24)
+    func factorial_4() {        
+        #expect(compute(4) == 24)
     }
     
     func factorial_5() {
-        let result = factorial(4)
-        
-        #expect(result == 120)
+        #expect(compute(5) == 120)
     }
     
+    // MARK: - Helpers
+    
+    private func compute(_ number: Int) -> Int {
+        factorial(number)
+    }
 }
