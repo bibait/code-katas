@@ -2,20 +2,49 @@ import Testing
 import GrokkingAlgorithms
 
 func factorial(_ n: Int) -> Int {
-    n
+    if n == 1 {
+        return 1
+    }
+    
+    return n * factorial(n - 1)
 }
 
 struct RecursionTests {
     
-    @Test(arguments: [
-        (0, 0),
-        (1, 1),
-        (2, 2),
-    ])
-    func factorial_n(n: Int, expected: Int) {
-        let result = factorial(n)
+    func factorial_0() {
+        let result = factorial(0)
         
-        #expect(result == expected)
+        #expect(result == 0)
+    }
+    
+    func factorial_1() {
+        let result = factorial(1)
+        
+        #expect(result == 1)
+    }
+    
+    func factorial_2() {
+        let result = factorial(2)
+        
+        #expect(result == 2)
+    }
+    
+    func factorial_3() {
+        let result = factorial(3)
+        
+        #expect(result == 6)
+    }
+    
+    func factorial_4() {
+        let result = factorial(4)
+        
+        #expect(result == 24)
+    }
+    
+    func factorial_5() {
+        let result = factorial(4)
+        
+        #expect(result == 120)
     }
     
 }
