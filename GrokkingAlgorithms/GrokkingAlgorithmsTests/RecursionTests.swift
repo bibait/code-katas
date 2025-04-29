@@ -21,4 +21,11 @@ struct RecursionTests {
         #expect(result == 1)
     }
     
+    @Test
+    func factorial_two_shouldReturnTwo() {
+        let result = factorial(2)
+        
+        #expect(result == 2)
+    }
+    
 }
