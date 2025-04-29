@@ -2,7 +2,7 @@ import Testing
 import GrokkingAlgorithms
 
 func factorial(_ n: Int) -> Int {
-    0
+    n
 }
 
 struct RecursionTests {
@@ -12,6 +12,13 @@ struct RecursionTests {
         let result = factorial(0)
         
         #expect(result == 0)
+    }
+    
+    @Test
+    func factorial_one_shouldReturnOne() {
+        let result = factorial(1)
+        
+        #expect(result == 1)
     }
     
 }
