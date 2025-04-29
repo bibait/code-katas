@@ -1,7 +1,7 @@
 import Testing
 import GrokkingAlgorithms
 
-struct RecursionTests {
+struct FactorialTests {
     
     func factorial_0() {
         let result = factorial(0)
