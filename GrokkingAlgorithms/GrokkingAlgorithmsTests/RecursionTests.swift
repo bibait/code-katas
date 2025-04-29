@@ -7,6 +7,17 @@ func factorial(_ n: Int) -> Int {
 
 struct RecursionTests {
     
+    @Test(arguments: [
+        (0, 0),
+        (1, 1),
+        (2, 2),
+    ])
+    func factorial_n(n: Int, expected: Int) {
+        let result = factorial(n)
+        
+        #expect(result == expected)
+    }
+
     @Test
     func factorial_zero_shouldReturnZero() {
         let result = factorial(0)
