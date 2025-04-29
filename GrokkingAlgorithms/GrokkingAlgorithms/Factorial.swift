@@ -3,7 +3,3 @@ public class Factorial {
         number == 1 ? 1 : number * compute(number - 1)
     }
 }
-
-public func factorial(_ n: Int) -> Int {
-    n == 1 ? 1 : n * factorial(n - 1)
-}
