@@ -31,6 +31,6 @@ struct FactorialTests {
     // MARK: - Helpers
     
     private func compute(_ number: Int) -> Int {
-        Factorial().compute(number)
+        Factorial.compute(number)
     }
 }
