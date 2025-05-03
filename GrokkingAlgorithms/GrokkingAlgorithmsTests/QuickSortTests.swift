@@ -23,4 +23,11 @@ struct QuickSortTests {
         #expect(result == [1])
     }
     
+    @Test
+    func sort_withTwoSortedElements_shouldReturnUnsorted() {
+        let result = QuickSort.sort([1, 2])
+        
+        #expect(result == [1, 2])
+    }
+    
 }
