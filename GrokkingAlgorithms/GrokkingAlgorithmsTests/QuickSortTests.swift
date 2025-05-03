@@ -11,23 +11,23 @@ struct QuickSortTests {
     
     @Test
     func sort_withNoElements_shouldReturnEmptyArray() {
-        let result = QuickSort.sort([])
-        
-        #expect(result.isEmpty)
+        #expect(sort([]).isEmpty)
     }
     
     @Test
     func sort_withOneElement_shouldReturnUnsorted() {
-        let result = QuickSort.sort([1])
-        
-        #expect(result == [1])
+        #expect(sort([1]) == [1])
     }
     
     @Test
     func sort_withTwoSortedElements_shouldReturnUnsorted() {
-        let result = QuickSort.sort([1, 2])
-        
-        #expect(result == [1, 2])
+        #expect(sort([1, 2]) == [1, 2])
+    }
+    
+    // MARK: - Helpers
+    
+    private func sort(_ values: [Int]) -> [Int] {
+        QuickSort.sort(values)
     }
     
 }
