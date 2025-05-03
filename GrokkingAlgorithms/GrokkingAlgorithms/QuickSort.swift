@@ -12,7 +12,7 @@ public class QuickSort {
         var greater = [T]()
         
         for (index, value) in values.enumerated() {
-            if index == pivotIndex { continue }
+            guard index != pivotIndex else { continue }
 
             if value < pivot {
                 smaller.append(value)
