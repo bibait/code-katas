@@ -7,11 +7,25 @@ public class QuickSort {
             return values
         }
         
-        if values.first! < values.last! {
-            return values
+        let pivotElement = values.first!
+        
+        var sorted = [pivotElement]
+        var smaller = [Int]()
+        var bigger = [Int]()
+        
+        for (index, value) in values.enumerated() {
+            if index == 0 { continue }
+
+            if value < pivotElement {
+                smaller.append(value)
+            } else if value == pivotElement {
+                sorted.append(value)
+            } else {
+                bigger.append(value)
+            }
         }
 
-        return [values[1], values[0]]
+        return sort(smaller) + sorted + sort(bigger)
     }
 }
 
@@ -35,6 +49,11 @@ struct QuickSortTests {
     @Test
     func sort_withTwoUnsortedElements_shouldReturnSorted() {
         #expect(sort([2, 1]) == [1, 2])
+    }
+    
+    @Test
+    func sort_withThreeUnsortedElements_shouldReturnSorted() {
+        #expect(sort([2, 3, 1]) == [1, 2, 3])
     }
     
     // MARK: - Helpers
