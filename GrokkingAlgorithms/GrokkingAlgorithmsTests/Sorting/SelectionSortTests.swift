@@ -33,12 +33,12 @@ struct SelectionSortTests {
     
     // MARK: - Helpers
     
-    private func sortDescending(_ values: [Int]) -> [Int] {
-        SelectionSort.sort(values: values, .descending)
-    }
-    
     private func sortAscending(_ values: [Int]) -> [Int] {
         SelectionSort.sort(values: values, .ascending)
     }
+
+    private func sortDescending(_ values: [Int]) -> [Int] {
+        SelectionSort.sort(values: values, .descending)
+    }    
     
 }
