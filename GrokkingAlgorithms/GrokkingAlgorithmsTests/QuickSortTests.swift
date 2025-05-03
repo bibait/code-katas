@@ -7,22 +7,22 @@ public class QuickSort {
             return values
         }
         
-        let pivotElement = values.first!
+        let pivot = values.first!
         
         var smaller = [Int]()
-        var bigger = [Int]()
+        var greater = [Int]()
         
         for (index, value) in values.enumerated() {
             guard index > 0 else { continue }
 
-            if value <= pivotElement {
+            if value <= pivot {
                 smaller.append(value)
             } else {
-                bigger.append(value)
+                greater.append(value)
             }
         }
 
-        return sort(smaller) + [pivotElement] + sort(bigger)
+        return sort(smaller) + [pivot] + sort(greater)
     }
 }
 
