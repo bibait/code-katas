@@ -9,23 +9,20 @@ public class QuickSort {
         
         let pivotElement = values.first!
         
-        var sorted = [pivotElement]
         var smaller = [Int]()
         var bigger = [Int]()
         
         for (index, value) in values.enumerated() {
             if index == 0 { continue }
 
-            if value < pivotElement {
+            if value <= pivotElement {
                 smaller.append(value)
-            } else if value == pivotElement {
-                sorted.append(value)
             } else {
                 bigger.append(value)
             }
         }
 
-        return sort(smaller) + sorted + sort(bigger)
+        return sort(smaller) + [pivotElement] + sort(bigger)
     }
 }
 
