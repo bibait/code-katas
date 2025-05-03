@@ -56,6 +56,11 @@ struct QuickSortTests {
         #expect(sort([2, 3, 1]) == [1, 2, 3])
     }
     
+    @Test
+    func sort_withMoreUnsortedElements_shouldReturnSorted() {
+        #expect(sort([2, 3, 1, 1, 2, 10, 12, 120]) == [1, 1, 2, 2, 3, 10, 12, 120])
+    }
+    
     // MARK: - Helpers
     
     private func sort(_ values: [Int]) -> [Int] {
