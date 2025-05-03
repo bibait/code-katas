@@ -4,7 +4,7 @@ public class QuickSort {
     }
 
     public static func sort(_ values: [Int], _ criteria: SortCriteria) -> [Int] {
-        if values.count < 2 {
+        guard values.count >= 2 else {
             return values
         }
         
