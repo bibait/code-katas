@@ -3,7 +3,15 @@ import GrokkingAlgorithms
 
 public class QuickSort {
     public static func sort(_ values: [Int]) -> [Int] {
-        values
+        if values.count < 2 {
+            return values
+        }
+        
+        if values.first! < values.last! {
+            return values
+        }
+
+        return [values[1], values[0]]
     }
 }
 
@@ -22,6 +30,11 @@ struct QuickSortTests {
     @Test
     func sort_withTwoSortedElements_shouldReturnUnsorted() {
         #expect(sort([1, 2]) == [1, 2])
+    }
+    
+    @Test
+    func sort_withTwoUnsortedElements_shouldReturnSorted() {
+        #expect(sort([2, 1]) == [1, 2])
     }
     
     // MARK: - Helpers
