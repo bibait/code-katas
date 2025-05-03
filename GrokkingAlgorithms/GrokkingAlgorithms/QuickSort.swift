@@ -1,8 +1,4 @@
 public class QuickSort {
-    public enum SortCriteria {
-        case ascending, descending
-    }
-
     public static func sort(_ values: [Int], _ criteria: SortCriteria) -> [Int] {
         guard values.count >= 2 else {
             return values

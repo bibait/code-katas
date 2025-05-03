@@ -1,8 +1,4 @@
 public class SelectionSort {
-    public enum SortCriteria {
-        case ascending, descending
-    }
-
     public static func sort<T: Comparable>(
         values: [T],
         _ criteria: SortCriteria
