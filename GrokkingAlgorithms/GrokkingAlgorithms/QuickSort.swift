@@ -1,5 +1,9 @@
 public class QuickSort {
-    public static func sort(_ values: [Int]) -> [Int] {
+    public enum SortCriteria {
+        case ascending, descending
+    }
+
+    public static func sort(_ values: [Int], _ criteria: SortCriteria) -> [Int] {
         if values.count < 2 {
             return values
         }
@@ -18,7 +22,12 @@ public class QuickSort {
                 greater.append(value)
             }
         }
-
-        return sort(smaller) + [pivot] + sort(greater)
+        
+        switch criteria {
+        case .ascending:
+            return sort(smaller, criteria) + [pivot] + sort(greater, criteria)
+        case .descending:
+            return sort(greater, criteria) + [pivot] + sort(smaller, criteria)
+        }
     }
 }
