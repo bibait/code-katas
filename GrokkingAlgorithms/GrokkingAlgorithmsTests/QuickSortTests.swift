@@ -3,7 +3,7 @@ import GrokkingAlgorithms
 
 public class QuickSort {
     public static func sort(_ values: [Int]) -> [Int] {
-        []
+        values
     }
 }
 
@@ -14,6 +14,13 @@ struct QuickSortTests {
         let result = QuickSort.sort([])
         
         #expect(result.isEmpty)
+    }
+    
+    @Test
+    func sort_withOneElement_shouldReturnUnsorted() {
+        let result = QuickSort.sort([1])
+        
+        #expect(result == [1])
     }
     
 }
