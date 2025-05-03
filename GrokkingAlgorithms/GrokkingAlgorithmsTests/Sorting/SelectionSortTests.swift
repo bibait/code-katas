@@ -3,39 +3,41 @@ import GrokkingAlgorithms
 
 struct SelectionSortTests {
     
-    @Test(arguments: [
-        ([], []),
-        ([1], [1]),
-        ([2, 1], [1, 2]),
-        ([1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]),
-        ([2, 1, 3, 10, 20], [1, 2, 3, 10, 20]),
-        ([2, 1, -1, -10, 123], [-10, -1, 1, 2, 123]),
-        ([2, 1, 1, 10, 1, 2, 10, 30], [1, 1, 1, 2, 2, 10, 10, 30]),
-    ])
-    func sortAscending(values: [Int], expected: [Int]) {
-        #expect(sortAscending(values: values) == expected)
+    @Test
+    func sort_withNoElements_shouldReturnEmptyArray() {
+        #expect(sortAscending([]).isEmpty)
     }
     
-    @Test(arguments: [
-        ([], []),
-        ([1], [1]),
-        ([2, 1], [2, 1]),
-        ([1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]),
-        ([2, 1, 3, 10, 20], [20, 10, 3, 2, 1]),
-        ([2, 1, -1, -10, 123], [123, 2, 1, -1, -10]),
-        ([2, 1, 1, 10, 1, 2, 10, 30], [30, 10, 10, 2, 2, 1, 1, 1]),
-    ])
-    func sortDescending(values: [Int], expected: [Int]) {
-        #expect(sortDescending(values: values) == expected)
+    @Test
+    func sort_withOneElement_shouldReturnUnsorted() {
+        #expect(sortAscending([1]) == [1])
+    }
+    
+    @Test
+    func sortAscending() {
+        #expect(sortAscending([1, 2]) == [1, 2])
+        #expect(sortAscending([2, 1]) == [1, 2])
+        #expect(sortAscending([2, 3, 1]) == [1, 2, 3])
+        #expect(sortAscending([2, 3, 1, 1, 2, 10, 12, 120]) == [1, 1, 2, 2, 3, 10, 12, 120])
+        #expect(sortAscending([1, 1, 2, 2, 3, 10, 12, 120]) == [1, 1, 2, 2, 3, 10, 12, 120])
+    }
+    
+    @Test
+    func sortDescending() {
+        #expect(sortDescending([1, 2]) == [2, 1])
+        #expect(sortDescending([2, 1]) == [2, 1])
+        #expect(sortDescending([2, 3, 1]) == [3, 2, 1])
+        #expect(sortDescending([2, 3, 1, 1, 2, 10, 12, 120]) == [120, 12, 10, 3, 2, 2, 1, 1])
+        #expect(sortDescending([120, 12, 10, 3, 2, 2, 1, 1]) == [120, 12, 10, 3, 2, 2, 1, 1])
     }
     
     // MARK: - Helpers
     
-    private func sortDescending(values: [Int]) -> [Int] {
+    private func sortDescending(_ values: [Int]) -> [Int] {
         SelectionSort.sort(values: values, .descending)
     }
     
-    private func sortAscending(values: [Int]) -> [Int] {
+    private func sortAscending(_ values: [Int]) -> [Int] {
         SelectionSort.sort(values: values, .ascending)
     }
     
