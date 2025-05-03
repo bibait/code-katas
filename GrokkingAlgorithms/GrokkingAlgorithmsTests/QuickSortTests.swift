@@ -6,7 +6,15 @@ struct QuickSortTests {
     @Test
     func sort_withNoElements_shouldReturnEmptyArray() {
         #expect(sort([]).isEmpty)
+    }
+    
+    @Test
+    func sort_withOneElement_shouldReturnUnsorted() {
         #expect(sort([1]) == [1])
+    }
+    
+    @Test
+    func sortAscending() {
         #expect(sort([1, 2]) == [1, 2])
         #expect(sort([2, 1]) == [1, 2])
         #expect(sort([2, 3, 1]) == [1, 2, 3])
