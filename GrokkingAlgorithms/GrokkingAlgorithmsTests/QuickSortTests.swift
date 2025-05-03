@@ -13,7 +13,7 @@ public class QuickSort {
         var bigger = [Int]()
         
         for (index, value) in values.enumerated() {
-            if index == 0 { continue }
+            guard index > 0 else { continue }
 
             if value <= pivotElement {
                 smaller.append(value)
