@@ -4,26 +4,30 @@ public class QuickSort {
             return values
         }
         
-        let pivot = values.first!
+        let pivotIndex = Int(values.count / 2)
+        let pivot = values[pivotIndex]
         
         var smaller = [T]()
+        var equal = [pivot]
         var greater = [T]()
         
         for (index, value) in values.enumerated() {
-            guard index > 0 else { continue }
+            if index == pivotIndex { continue }
 
-            if value <= pivot {
+            if value < pivot {
                 smaller.append(value)
-            } else {
+            } else if value > pivot {
                 greater.append(value)
+            } else {
+                equal.append(value)
             }
         }
         
         switch criteria {
         case .ascending:
-            return sort(smaller, criteria) + [pivot] + sort(greater, criteria)
+            return sort(smaller, criteria) + equal + sort(greater, criteria)
         case .descending:
-            return sort(greater, criteria) + [pivot] + sort(smaller, criteria)
+            return sort(greater, criteria) + equal + sort(smaller, criteria)
         }
     }
 }
