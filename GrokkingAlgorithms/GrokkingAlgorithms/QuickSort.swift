@@ -1,13 +1,13 @@
 public class QuickSort {
-    public static func sort(_ values: [Int], _ criteria: SortCriteria) -> [Int] {
+    public static func sort<T: Comparable>(_ values: [T], _ criteria: SortCriteria) -> [T] {
         guard values.count >= 2 else {
             return values
         }
         
         let pivot = values.first!
         
-        var smaller = [Int]()
-        var greater = [Int]()
+        var smaller = [T]()
+        var greater = [T]()
         
         for (index, value) in values.enumerated() {
             guard index > 0 else { continue }
