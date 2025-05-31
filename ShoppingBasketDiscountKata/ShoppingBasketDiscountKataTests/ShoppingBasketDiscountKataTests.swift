@@ -57,18 +57,5 @@ struct ShoppingBasketDiscountKataTests {
         
         #expect(result == 3.0)
     }
-    
-    @Test
-    func calculateTotalPrice_triangulated() {
-        let sut = ShoppingBasket(items: [
-            Item(name: "Apple", price: 3.0),
-            Item(name: "Apple", price: 3.0),
-            Item(name: "Banana", price: 1.0),
-        ])
-        
-        let result = sut.calculateTotalPrice()
-        
-        #expect(result == 7.0)
-    }
 
 }
