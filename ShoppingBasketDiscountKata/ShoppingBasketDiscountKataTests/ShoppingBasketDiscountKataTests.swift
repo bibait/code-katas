@@ -1,8 +1,8 @@
 import Testing
 
 public struct Item {
-    private let name: String
-    private let price: Float
+    let name: String
+    let price: Float
     
     public init(name: String, price: Float) {
         self.name = name
@@ -18,7 +18,8 @@ public class ShoppingBasket {
     }
     
     public func getItemQuantity(name: String) -> Int {
-        return 2
+        items
+            .count { $0.name == name }
     }
 }
 
@@ -32,9 +33,11 @@ struct ShoppingBasketDiscountKataTests {
             Item(name: "Banana", price: 1.0),
         ])
         
-        let result = sut.getItemQuantity(name: "Apple")
-        
+        var result = sut.getItemQuantity(name: "Apple")
         #expect(result == 2)
+        
+        result = sut.getItemQuantity(name: "Banana")
+        #expect(result == 1)
     }
 
 }
