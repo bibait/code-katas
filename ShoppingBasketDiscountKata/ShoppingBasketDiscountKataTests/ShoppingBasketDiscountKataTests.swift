@@ -48,14 +48,24 @@ struct ShoppingBasketDiscountKataTests {
     @Test
     func calculateTotalPrice() {
         let sut = ShoppingBasket(items: [
-            Item(name: "Apple", price: 1.0),
-            Item(name: "Apple", price: 1.0),
-            Item(name: "Banana", price: 1.0),
+            getApple(),
+            getApple(),
+            getBanana(),
         ])
         
         let result = sut.calculateTotalPrice()
         
         #expect(result == 3.0)
+    }
+    
+    // MARK: - Helpers
+    
+    private func getApple(price: Float = 1.0) -> Item {
+        Item(name: "Apple", price: price)
+    }
+    
+    private func getBanana(price: Float = 1.0) -> Item {
+        Item(name: "Banana", price: price)
     }
 
 }
