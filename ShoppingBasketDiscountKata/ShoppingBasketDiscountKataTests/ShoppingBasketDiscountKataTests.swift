@@ -26,7 +26,9 @@ public class ShoppingBasket {
         let total = items
             .reduce(0) { $0 + $1.price }
         
-        if total > 100 {
+        if total > 200 {
+            return total - (total * 0.1)
+        } else if total > 100 {
             return total - (total * 0.05)
         }
         
@@ -71,6 +73,18 @@ struct ShoppingBasketDiscountKataTests {
         let result = sut.calculateTotalPrice()
         
         #expect(result == 142.5)
+    }
+    
+    @Test
+    func appliesTenPercentDiscount_forBasketValue_greaterThan200() {
+        let sut = makeSUT(items: [
+            makeApple(price: 200),
+            makeBanana(price: 50),
+        ])
+        
+        let result = sut.calculateTotalPrice()
+        
+        #expect(result == 225)
     }
     
     // MARK: - Helpers
