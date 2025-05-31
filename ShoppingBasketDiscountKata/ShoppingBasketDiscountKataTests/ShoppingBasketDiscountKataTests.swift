@@ -33,9 +33,9 @@ struct ShoppingBasketDiscountKataTests {
     @Test
     func getItemQuantity_shouldReturnCount() {
         let sut = makeSUT(items: [
-            getApple(),
-            getApple(),
-            getBanana(),
+            makeApple(),
+            makeApple(),
+            makeBanana(),
         ])
         
         var result = sut.getItemQuantity(name: "Apple")
@@ -48,9 +48,9 @@ struct ShoppingBasketDiscountKataTests {
     @Test
     func calculateTotalPrice() {
         let sut = makeSUT(items: [
-            getApple(),
-            getApple(),
-            getBanana(),
+            makeApple(),
+            makeApple(),
+            makeBanana(),
         ])
         
         let result = sut.calculateTotalPrice()
@@ -61,14 +61,14 @@ struct ShoppingBasketDiscountKataTests {
     // MARK: - Helpers
     
     private func makeSUT(items: [Item] = []) -> ShoppingBasket {
-         ShoppingBasket(items: items)        
+         ShoppingBasket(items: items)
     }
     
-    private func getApple(price: Float = 1.0) -> Item {
+    private func makeApple(price: Float = 1.0) -> Item {
         Item(name: "Apple", price: price)
     }
     
-    private func getBanana(price: Float = 1.0) -> Item {
+    private func makeBanana(price: Float = 1.0) -> Item {
         Item(name: "Banana", price: price)
     }
 
