@@ -21,6 +21,10 @@ public class ShoppingBasket {
         items
             .count { $0.name == name }
     }
+    
+    public func calculateTotalPrice() -> Float {
+        3.0
+    }
 }
 
 struct ShoppingBasketDiscountKataTests {
@@ -38,6 +42,19 @@ struct ShoppingBasketDiscountKataTests {
         
         result = sut.getItemQuantity(name: "Banana")
         #expect(result == 1)
+    }
+    
+    @Test
+    func calculateTotalPrice() {
+        let sut = ShoppingBasket(items: [
+            Item(name: "Apple", price: 1.0),
+            Item(name: "Apple", price: 1.0),
+            Item(name: "Banana", price: 1.0),
+        ])
+        
+        let result = sut.calculateTotalPrice()
+        
+        #expect(result == 3.0)
     }
 
 }
