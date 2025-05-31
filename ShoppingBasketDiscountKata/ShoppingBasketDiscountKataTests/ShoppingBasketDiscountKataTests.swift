@@ -33,9 +33,9 @@ struct ShoppingBasketDiscountKataTests {
     @Test
     func getItemQuantity_shouldReturnCount() {
         let sut = ShoppingBasket(items: [
-            Item(name: "Apple", price: 1.0),
-            Item(name: "Apple", price: 1.0),
-            Item(name: "Banana", price: 1.0),
+            getApple(),
+            getApple(),
+            getBanana(),
         ])
         
         var result = sut.getItemQuantity(name: "Apple")
