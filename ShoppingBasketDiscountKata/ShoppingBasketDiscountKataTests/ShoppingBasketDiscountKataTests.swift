@@ -44,11 +44,8 @@ struct ShoppingBasketDiscountKataTests {
             makeBanana(),
         ])
         
-        var result = sut.getItemQuantity(name: "Apple")
-        #expect(result == 2)
-        
-        result = sut.getItemQuantity(name: "Banana")
-        #expect(result == 1)
+        #expect(sut.getItemQuantity(name: "Apple") == 2)
+        #expect(sut.getItemQuantity(name: "Banana") == 1)
     }
     
     @Test
