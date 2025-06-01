@@ -17,7 +17,11 @@ public class Character {
     public func heal(amount: Int) {
         guard getState() == .alive else { return }
 
-        health = min(1000, health + amount)
+        if level < 6 {
+            health = min(1000, health + amount)
+        } else {
+            health = min(1500, health + amount)
+        }
     }
     
     public func dealDamage(to other: Character, amount: Int) {

@@ -63,11 +63,20 @@ struct RPGCombatKataTests {
     
     @Test
     func maxHealthBelowLevelSix_is1000() {
-        let sut = makeCharacter(level: 5)
+        let sut = makeCharacter(health: 1000, level: 5)
         
         sut.heal(amount: 500)
         
         #expect(sut.getHealth() == 1000)
+    }
+    
+    @Test
+    func maxHealthAboveLevelSix_is1500() {
+        let sut = makeCharacter(health: 1000, level: 6)
+        
+        sut.heal(amount: 600)
+        
+        #expect(sut.getHealth() == 1500)
     }
     
     // MARK: - Helpers
