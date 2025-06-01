@@ -12,6 +12,8 @@ class Character {
     }
     
     func heal(amount: Int) {
+        guard getState() == .alive else { return }
+
         health += amount
     }
     
@@ -74,6 +76,15 @@ struct RPGCombatKataTests {
         sut.heal(amount: 500)
         
         #expect(sut.health == 1500)
+    }
+    
+    @Test
+    func deadCharacter_cannotHeal() {
+        let sut = Character(health: 0)
+        
+        sut.heal(amount: 500)
+        
+        #expect(sut.health == 0)
     }
 
 }
