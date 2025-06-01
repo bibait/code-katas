@@ -108,6 +108,7 @@ struct RPGCombatKataTests {
         
         sut.joinFaction(faction)
         sut.joinFaction(otherFaction)
+        sut.joinFaction(faction)
         
         #expect(sut.getFactions() == [faction, otherFaction])
     }

@@ -75,6 +75,8 @@ public class Character {
     }
     
     public func joinFaction(_ faction: Faction) {
+        guard !factions.contains(faction) else { return }
+
         factions.append(faction)
     }
 }
