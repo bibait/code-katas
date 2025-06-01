@@ -59,6 +59,16 @@ struct RPGCombatKataTests {
     
     @Test
     func cannotDealDamageToItself() {
+        let sut = makeCharacter()
+        
+        sut.dealDamage(damage: 500, to: sut)
+        
+        #expect(sut.getHealth() == 1000)
+        #expect(sut.getState() == .alive)
+    }
+    
+    @Test
+    func cannotDealDamageToAlly() {
         let ally = makeCharacter()
         let attacker = makeCharacter()
         
@@ -68,11 +78,6 @@ struct RPGCombatKataTests {
         attacker.dealDamage(damage: 500, to: ally)
         
         #expect(ally.getHealth() == 1000)
-    }
-    
-    @Test
-    func cannotDealDamageToAlly() {
-        
     }
     
     @Test
