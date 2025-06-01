@@ -12,17 +12,28 @@ public class Character {
     private var factions: [Faction]
     
     public init(
-        health: Int = 1000,
-        level: Int = 1,
-        factions: [Faction] = []
+        health: Int = Character.INITIAL_HEALTH,
+        level: Int = Character.INITIAL_LEVEL,
+        factions: [Faction] = Character.INITIAL_FACTIONS
     ) {
         self.health = health
         self.level = level
         self.factions = factions
     }
     
+    public static let INITIAL_HEALTH = 1000
+    public static let INITIAL_LEVEL = 1
+    public static let INITIAL_FACTIONS: [Faction] = []
+    
+    public static let HEALTH_LEVEL_THRESHOLD = 6
+    public static let MAX_HEALTH = 1500
+    
+    public static let DAMAGE_PERCENTAGE = 50
+    public static let DECREASE_DAMAGE_LEVEL_DIFFERENCE = 5
+    public static let INCREASE_DAMAGE_LEVEL_DIFFERENCE = -5
+
     private var maxHealth: Int {
-        level < 6 ? 1000 : 1500
+        level < Character.HEALTH_LEVEL_THRESHOLD ? Character.INITIAL_HEALTH : Character.MAX_HEALTH
     }
     
     public func getState() -> State {
@@ -87,10 +98,10 @@ public class Character {
     ) -> Int {
         let levelDifference = other.getLevel() - level
         
-        if levelDifference >= 5 {
-            return amount.decreased(byPercentage: 50)
-        } else if levelDifference <= -5 {
-            return amount.increased(byPercentage: 50)
+        if levelDifference >= Character.DECREASE_DAMAGE_LEVEL_DIFFERENCE {
+            return amount.decreased(byPercentage: Character.DAMAGE_PERCENTAGE)
+        } else if levelDifference <= Character.INCREASE_DAMAGE_LEVEL_DIFFERENCE {
+            return amount.increased(byPercentage: Character.DAMAGE_PERCENTAGE)
         }
         
         return amount
