@@ -80,11 +80,17 @@ struct RPGCombatKataTests {
     
     @Test
     func deadCharacter_cannotHeal() {
-        let sut = Character(health: 0)
+        let sut = makeDeadCharacter()
         
         sut.heal(amount: 500)
         
         #expect(sut.health == 0)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeDeadCharacter() -> Character {
+        Character(health: 0)
     }
 
 }
