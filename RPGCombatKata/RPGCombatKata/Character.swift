@@ -26,8 +26,12 @@ public class Character {
     
     public func dealDamage(to other: Character, amount: Int) {
         guard other !== self else { return }
-
-        other.health = max(0, other.health - amount)
+        
+        if abs(other.getLevel() - level) >= 5 {
+            other.health = max(0, other.health - amount / 2)
+        } else {
+            other.health = max(0, other.health - amount)
+        }
     }
     
     public func getState() -> State {
