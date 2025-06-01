@@ -28,4 +28,8 @@ public class Character {
     public func getHealth() -> Int {
         health
     }
+    
+    public func getLevel() -> Int {
+        1
+    }
 }
