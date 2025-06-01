@@ -17,7 +17,7 @@ public class Character {
     public func heal(amount: Int) {
         guard getState() == .alive else { return }
 
-        health += amount
+        health = min(1000, health + amount)
     }
     
     public func dealDamage(to other: Character, amount: Int) {
