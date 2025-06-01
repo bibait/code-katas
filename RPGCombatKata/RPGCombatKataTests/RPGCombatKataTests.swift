@@ -14,43 +14,43 @@ struct RPGCombatKataTests {
     
     @Test
     func dealDamageToOtherCharacter() {
-        let otherCharacter = makeCharacter()
-        let sut = makeCharacter()
+        let defender = makeCharacter()
+        let attacker = makeCharacter()
         
-        sut.dealDamage(damage: 100, to: otherCharacter)
+        attacker.dealDamage(damage: 100, to: defender)
         
-        #expect(otherCharacter.getHealth() == 900)
+        #expect(defender.getHealth() == 900)
     }
     
     @Test
     func dealDamageToOtherCharacter_killsOtherCharacter() {
-        let otherCharacter = makeCharacter(health: 100)
-        let sut = makeCharacter()
+        let defender = makeCharacter(health: 100)
+        let attacker = makeCharacter()
         
-        sut.dealDamage(damage: 110, to: otherCharacter)
+        attacker.dealDamage(damage: 110, to: defender)
         
-        #expect(otherCharacter.getHealth() == 0)
-        #expect(otherCharacter.getState() == .dead)
+        #expect(defender.getHealth() == 0)
+        #expect(defender.getState() == .dead)
     }
     
     @Test
     func dealDamage_withTarget5OrMoveLevelsBelow_increasesDamageBy50Percent() {
-        let otherCharacter = makeCharacter(level: 5)
-        let sut = makeCharacter(level: 10)
+        let defender = makeCharacter(level: 5)
+        let attacker = makeCharacter(level: 10)
         
-        sut.dealDamage(damage: 100, to: otherCharacter)
+        attacker.dealDamage(damage: 100, to: defender)
         
-        #expect(otherCharacter.getHealth() == 850)
+        #expect(defender.getHealth() == 850)
     }
     
     @Test
     func dealDamage_withTarget5OrMoveLevelsAbove_reducesDamageBy50Percent() {
-        let otherCharacter = makeCharacter(level: 10)
-        let sut = makeCharacter(level: 5)
+        let defender = makeCharacter(level: 10)
+        let attacker = makeCharacter(level: 5)
         
-        sut.dealDamage(damage: 100, to: otherCharacter)
+        attacker.dealDamage(damage: 100, to: defender)
         
-        #expect(otherCharacter.getHealth() == 950)
+        #expect(defender.getHealth() == 950)
     }
     
     @Test
