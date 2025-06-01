@@ -60,7 +60,7 @@ public class Character {
     public func dealDamage(damage: Int, to other: Character) {
         guard canDealDamage(to: other) else { return }
         
-        let damageAmount = calculateDamageAmount(other, amount: damage)
+        let damageAmount = calculateDamageAmount(amount: damage, to: other)
 
         other.health = max(0, other.health - damageAmount)
     }
@@ -82,8 +82,8 @@ public class Character {
     }
     
     private func calculateDamageAmount(
-        _ other: Character,
-        amount: Int
+        amount: Int,
+        to other: Character
     ) -> Int {
         let levelDifference = other.getLevel() - level
         
