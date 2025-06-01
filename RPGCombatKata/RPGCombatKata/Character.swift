@@ -14,19 +14,16 @@ public class Character {
         level < 6 ? 1000 : 1500
     }
     
-    private func calculateDamageAmount(
-        _ other: Character,
-        amount: Int
-    ) -> Int {
-        let levelDifference = other.getLevel() - level
-        
-        if levelDifference >= 5 {
-            return amount.decreased(byPercentage: 50)
-        } else if levelDifference <= -5 {
-            return amount.increased(byPercentage: 50)
-        }
-        
-        return amount
+    public func getState() -> State {
+        health <= 0 ? .dead : .alive
+    }
+    
+    public func getHealth() -> Int {
+        health
+    }
+    
+    public func getLevel() -> Int {
+        level
     }
     
     public enum State {
@@ -47,15 +44,18 @@ public class Character {
         other.health = max(0, other.health - damage)
     }
     
-    public func getState() -> State {
-        health <= 0 ? .dead : .alive
-    }
-    
-    public func getHealth() -> Int {
-        health
-    }
-    
-    public func getLevel() -> Int {
-        level
+    private func calculateDamageAmount(
+        _ other: Character,
+        amount: Int
+    ) -> Int {
+        let levelDifference = other.getLevel() - level
+        
+        if levelDifference >= 5 {
+            return amount.decreased(byPercentage: 50)
+        } else if levelDifference <= -5 {
+            return amount.increased(byPercentage: 50)
+        }
+        
+        return amount
     }
 }
