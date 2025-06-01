@@ -12,6 +12,6 @@ struct Discount {
     }
     
     func apply(to total: Float) -> Float {
-        return total - (total * discountRate)
+        total - (total * discountRate)
     }
 }
