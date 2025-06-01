@@ -21,9 +21,9 @@ public class Character {
         let levelDifference = other.getLevel() - level
         
         if levelDifference >= 5 {
-            return amount.decreaseBy(percentage: 50)
+            return amount.decreased(byPercentage: 50)
         } else if levelDifference <= -5 {
-            return amount.increaseBy(percentage: 50)
+            return amount.increased(byPercentage: 50)
         }
         
         return amount

@@ -1,9 +1,9 @@
 extension Int {
-    func increaseBy(percentage: Int) -> Int {
-        self + (self * percentage / 100)
+    func increased(byPercentage: Int) -> Int {
+        self + (self * byPercentage / 100)
     }
     
-    func decreaseBy(percentage: Int) -> Int {
-        self - (self * percentage / 100)
+    func decreased(byPercentage: Int) -> Int {
+        self - (self * byPercentage / 100)
     }
 }
