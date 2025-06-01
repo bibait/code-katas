@@ -60,9 +60,9 @@ public class Character {
     public func dealDamage(damage: Int, to other: Character) {
         guard canDealDamage(to: other) else { return }
         
-        let damage = calculateDamageAmount(other, amount: damage)
+        let damageAmount = calculateDamageAmount(other, amount: damage)
 
-        other.health = max(0, other.health - damage)
+        other.health = max(0, other.health - damageAmount)
     }
     
     private func canDealDamage(to other: Character) -> Bool {
