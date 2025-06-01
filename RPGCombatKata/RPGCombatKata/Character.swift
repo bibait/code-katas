@@ -10,8 +10,17 @@ public class Character {
         self.level = level
     }
     
-    private var maxHealth:  Int {
+    private var maxHealth: Int {
         level < 6 ? 1000 : 1500
+    }
+    
+    private func damageAmount(
+        _ other: Character,
+        amount: Int
+    ) -> Int {
+        let levelDifference = abs(other.getLevel() - level)
+        
+        return levelDifference >= 5 ? amount / 2 : amount
     }
     
     public enum State {
@@ -27,11 +36,9 @@ public class Character {
     public func dealDamage(to other: Character, amount: Int) {
         guard other !== self else { return }
         
-        if abs(other.getLevel() - level) >= 5 {
-            other.health = max(0, other.health - amount / 2)
-        } else {
-            other.health = max(0, other.health - amount)
-        }
+        let damage = damageAmount(other, amount: amount)
+
+        other.health = max(0, other.health - damage)
     }
     
     public func getState() -> State {
