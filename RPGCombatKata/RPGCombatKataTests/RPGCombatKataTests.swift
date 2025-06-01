@@ -103,11 +103,13 @@ struct RPGCombatKataTests {
     @Test
     func joinFaction() {
         let faction = Faction(name: "Faction")
+        let otherFaction = Faction(name: "Other Faction")
         let sut = makeCharacter()
         
         sut.joinFaction(faction)
+        sut.joinFaction(otherFaction)
         
-        #expect(sut.getFactions() == [faction])
+        #expect(sut.getFactions() == [faction, otherFaction])
     }
     
     // MARK: - Helpers
