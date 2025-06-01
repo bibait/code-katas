@@ -5,6 +5,11 @@ public class ShoppingBasket {
         self.items = items
     }
     
+    private var total: Float {
+        items
+            .reduce(0) { $0 + $1.price }
+    }
+    
     private lazy var discounts = DiscountFactory.makeDiscounts()
     
     public func addItem(_ item: Item, quantity: Int = 1) {
@@ -27,9 +32,6 @@ public class ShoppingBasket {
     }
     
     public func calculateTotalPrice() -> Float {
-        let total = items
-            .reduce(0) { $0 + $1.price }
-                
         for discount in discounts {
             if discount.doesApply(to: total) {
                 return discount.apply(to: total)
