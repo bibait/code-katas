@@ -1,7 +1,7 @@
 import Testing
 import RPGCombatKata
 
-struct RPGCombatKataTests {
+struct CharacterTests {
     
     private let faction = Faction(name: "Faction")
     private let otherFaction = Faction(name: "Other Faction")
@@ -15,6 +15,8 @@ struct RPGCombatKataTests {
         #expect(sut.getLevel() == 1)
         #expect(sut.getFactions().isEmpty)
     }
+    
+    // MARK: - Deal Damage
     
     @Test
     func dealDamageToOtherCharacter() {
@@ -79,6 +81,8 @@ struct RPGCombatKataTests {
         #expect(ally.getHealth() == 1000)
     }
     
+    // MARK: - Heal
+    
     @Test
     func character_canHealThemself() {
         let sut = makeCharacter(health: 100)
@@ -112,6 +116,8 @@ struct RPGCombatKataTests {
         #expect(sut.getHealth() == 0)
     }
     
+    // MARK: - Health
+    
     @Test
     func maxHealthBelowLevelSix_is1000() {
         let sut = makeCharacter(health: 1000, level: 5)
@@ -129,6 +135,8 @@ struct RPGCombatKataTests {
         
         #expect(sut.getHealth() == 1500)
     }
+    
+    // MARK: - Faction
     
     @Test
     func joinFaction() {
