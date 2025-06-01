@@ -89,7 +89,7 @@ struct RPGCombatKataTests {
     }
     
     @Test
-    func canHealAlly() {
+    func canHealAllyOnly() {
         let ally = makeCharacter(health: 100)
         let foe = makeCharacter(health: 200)
         let attacker = makeCharacter()
