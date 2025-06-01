@@ -14,7 +14,11 @@ class Character {
     }
     
     func dealDamage(to other: Character, amount: Int) {
-        other.health -= amount
+        other.health = max(0, other.health - amount)
+    }
+    
+    func getState() -> State {
+        health <= 0 ? .dead : .alive
     }
 }
 
@@ -25,7 +29,7 @@ struct RPGCombatKataTests {
         let sut = Character()
         
         #expect(sut.health == 1000)
-        #expect(sut.state == .alive)
+        #expect(sut.getState() == .alive)
     }
     
     @Test
@@ -36,6 +40,17 @@ struct RPGCombatKataTests {
         sut.dealDamage(to: otherCharacter, amount: 100)
         
         #expect(otherCharacter.health == 900)
+    }
+    
+    @Test
+    func dealDamageToOtherCharacter_killsOtherCharacter() {
+        let otherCharacter = Character(health: 100)
+        let sut = Character()
+        
+        sut.dealDamage(to: otherCharacter, amount: 110)
+        
+        #expect(otherCharacter.health == 0)
+        #expect(otherCharacter.getState() == .dead)
     }
 
 }
