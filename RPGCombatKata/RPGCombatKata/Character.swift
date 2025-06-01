@@ -1,11 +1,3 @@
-public struct Faction: Equatable, Hashable {
-    let name: String
-    
-    public init(name: String) {
-        self.name = name
-    }
-}
-
 public class Character {
     private var health: Int
     private var level: Int
