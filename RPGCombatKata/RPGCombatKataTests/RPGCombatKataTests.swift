@@ -1,32 +1,5 @@
 import Testing
-
-class Character {
-    private(set) var health: Int
-    
-    init(health: Int = 1000) {
-        self.health = health
-    }
-    
-    enum State {
-        case alive, dead
-    }
-    
-    func heal(amount: Int) {
-        guard getState() == .alive else { return }
-
-        health += amount
-    }
-    
-    func dealDamage(to other: Character, amount: Int) {
-        guard other !== self else { return }
-
-        other.health = max(0, other.health - amount)
-    }
-    
-    func getState() -> State {
-        health <= 0 ? .dead : .alive
-    }
-}
+import RPGCombatKata
 
 struct RPGCombatKataTests {
 
@@ -34,7 +7,7 @@ struct RPGCombatKataTests {
     func initialValues() {
         let sut = Character()
         
-        #expect(sut.health == 1000)
+        #expect(sut.getHealth() == 1000)
         #expect(sut.getState() == .alive)
     }
     
@@ -45,7 +18,7 @@ struct RPGCombatKataTests {
         
         sut.dealDamage(to: otherCharacter, amount: 100)
         
-        #expect(otherCharacter.health == 900)
+        #expect(otherCharacter.getHealth() == 900)
     }
     
     @Test
@@ -55,7 +28,7 @@ struct RPGCombatKataTests {
         
         sut.dealDamage(to: otherCharacter, amount: 110)
         
-        #expect(otherCharacter.health == 0)
+        #expect(otherCharacter.getHealth() == 0)
         #expect(otherCharacter.getState() == .dead)
     }
     
@@ -65,7 +38,7 @@ struct RPGCombatKataTests {
         
         sut.dealDamage(to: sut, amount: 500)
         
-        #expect(sut.health == 1000)
+        #expect(sut.getHealth() == 1000)
         #expect(sut.getState() == .alive)
     }
     
@@ -75,7 +48,7 @@ struct RPGCombatKataTests {
         
         sut.heal(amount: 500)
         
-        #expect(sut.health == 1500)
+        #expect(sut.getHealth() == 1500)
     }
     
     @Test
@@ -84,7 +57,7 @@ struct RPGCombatKataTests {
         
         sut.heal(amount: 500)
         
-        #expect(sut.health == 0)
+        #expect(sut.getHealth() == 0)
     }
     
     // MARK: - Helpers
