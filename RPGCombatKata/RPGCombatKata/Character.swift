@@ -10,6 +10,10 @@ public class Character {
         self.level = level
     }
     
+    private var maxHealth:  Int {
+        level < 6 ? 1000 : 1500
+    }
+    
     public enum State {
         case alive, dead
     }
@@ -17,11 +21,7 @@ public class Character {
     public func heal(amount: Int) {
         guard getState() == .alive else { return }
 
-        if level < 6 {
-            health = min(1000, health + amount)
-        } else {
-            health = min(1500, health + amount)
-        }
+        health = min(health + amount, maxHealth)
     }
     
     public func dealDamage(to other: Character, amount: Int) {
