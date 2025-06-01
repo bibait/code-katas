@@ -18,9 +18,15 @@ public class Character {
         _ other: Character,
         amount: Int
     ) -> Int {
-        let levelDifference = abs(other.getLevel() - level)
+        let levelDifference = other.getLevel() - level
         
-        return levelDifference >= 5 ? amount / 2 : amount
+        if levelDifference >= 5 {
+            return amount / 2
+        } else if levelDifference <= -5 {
+            return amount + (amount / 2)
+        }
+        
+        return amount
     }
     
     public enum State {

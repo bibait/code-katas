@@ -34,6 +34,16 @@ struct RPGCombatKataTests {
     }
     
     @Test
+    func dealDamage_withTarget5OrMoveLevelsBelow_increasesDamageBy50Percent() {
+        let otherCharacter = makeCharacter(level: 5)
+        let sut = makeCharacter(level: 10)
+        
+        sut.dealDamage(to: otherCharacter, amount: 100)
+        
+        #expect(otherCharacter.getHealth() == 850)
+    }
+    
+    @Test
     func dealDamage_withTarget5OrMoveLevelsAbove_reducesDamageBy50Percent() {
         let otherCharacter = makeCharacter(level: 10)
         let sut = makeCharacter(level: 5)
