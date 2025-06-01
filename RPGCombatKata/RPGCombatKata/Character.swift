@@ -1,3 +1,7 @@
+public struct Faction {
+    let name: String
+}
+
 public class Character {
     private var health: Int
     private var level: Int
@@ -24,6 +28,10 @@ public class Character {
     
     public func getLevel() -> Int {
         level
+    }
+    
+    public func getFaction() -> Faction? {
+        nil
     }
     
     public enum State {
