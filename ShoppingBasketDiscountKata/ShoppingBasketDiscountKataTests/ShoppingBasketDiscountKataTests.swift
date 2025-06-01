@@ -13,6 +13,19 @@ struct ShoppingBasketDiscountKataTests {
         #expect(sut.getItemQuantity(name: "Apple") == 2)
         #expect(sut.getItemQuantity(name: "Banana") == 1)
     }
+    
+    @Test
+    func removeItem() {
+        let sut = makeSUT(items: [
+            makeApple(),
+            makeApple(),
+            makeApple(),
+        ])
+        
+        sut.removeItem("Apple", quantity: 2)
+        
+        #expect(sut.getItemQuantity(name: "Apple") == 1)
+    }
 
     @Test
     func getItemQuantity_shouldReturnCount() {

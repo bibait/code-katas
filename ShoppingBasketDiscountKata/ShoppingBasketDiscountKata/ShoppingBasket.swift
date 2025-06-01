@@ -13,6 +13,14 @@ public class ShoppingBasket {
         }
     }
     
+    public func removeItem(_ name: String, quantity: Int = 1) {
+        for _ in 0..<quantity {
+            if let index = items.firstIndex(where: { $0.name == name }) {
+                items.remove(at: index)
+            }
+        }
+    }
+    
     public func getItemQuantity(name: String) -> Int {
         items
             .count { $0.name == name }
