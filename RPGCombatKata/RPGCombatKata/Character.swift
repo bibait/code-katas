@@ -51,6 +51,12 @@ public class Character {
         health = min(health + amount, maxHealth)
     }
     
+    public func healAlly(amount: Int, ally: Character) {
+        guard isInSameFaction(as: ally) else { return }
+        
+        ally.heal(amount: amount)
+    }
+    
     public func dealDamage(damage: Int, to other: Character) {
         guard canDealDamage(to: other) else { return }
         
@@ -73,6 +79,18 @@ public class Character {
         }
         
         return true
+    }
+    
+    private func isInSameFaction(as other: Character) -> Bool {
+        for faction in factions {
+            for otherFaction in other.factions {
+                if faction == otherFaction {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
     
     private func calculateDamageAmount(

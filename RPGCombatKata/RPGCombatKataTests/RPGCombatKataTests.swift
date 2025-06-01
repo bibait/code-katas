@@ -71,7 +71,6 @@ struct RPGCombatKataTests {
     func cannotDealDamageToAlly() {
         let ally = makeCharacter()
         let attacker = makeCharacter()
-        
         ally.joinFaction(faction)
         attacker.joinFaction(faction)
         
@@ -87,6 +86,21 @@ struct RPGCombatKataTests {
         sut.heal(amount: 500)
         
         #expect(sut.getHealth() == 600)
+    }
+    
+    @Test
+    func canHealAlly() {
+        let ally = makeCharacter(health: 100)
+        let foe = makeCharacter(health: 200)
+        let attacker = makeCharacter()
+        ally.joinFaction(faction)
+        attacker.joinFaction(faction)
+        
+        attacker.healAlly(amount: 500, ally: ally)
+        attacker.healAlly(amount: 500, ally: foe)
+        
+        #expect(ally.getHealth() == 600)
+        #expect(foe.getHealth() == 200)
     }
     
     @Test
