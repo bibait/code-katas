@@ -52,11 +52,27 @@ public class Character {
     }
     
     public func dealDamage(damage: Int, to other: Character) {
-        guard other !== self else { return }
+        guard canDealDamage(to: other) else { return }
         
         let damage = calculateDamageAmount(other, amount: damage)
 
         other.health = max(0, other.health - damage)
+    }
+    
+    private func canDealDamage(to other: Character) -> Bool {
+        if other === self {
+            return false
+        }
+        
+        for faction in factions {
+            for otherFaction in other.factions {
+                if faction == otherFaction {
+                    return false
+                }
+            }
+        }
+        
+        return true
     }
     
     private func calculateDamageAmount(

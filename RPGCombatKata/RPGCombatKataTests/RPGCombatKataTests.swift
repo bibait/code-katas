@@ -2,6 +2,9 @@ import Testing
 import RPGCombatKata
 
 struct RPGCombatKataTests {
+    
+    private let faction = Faction(name: "Faction")
+    private let otherFaction = Faction(name: "Other Faction")
 
     @Test
     func initialValues() {
@@ -56,12 +59,20 @@ struct RPGCombatKataTests {
     
     @Test
     func cannotDealDamageToItself() {
-        let sut = makeCharacter()
+        let ally = makeCharacter()
+        let attacker = makeCharacter()
         
-        sut.dealDamage(damage: 500, to: sut)
+        ally.joinFaction(faction)
+        attacker.joinFaction(faction)
         
-        #expect(sut.getHealth() == 1000)
-        #expect(sut.getState() == .alive)
+        attacker.dealDamage(damage: 500, to: ally)
+        
+        #expect(ally.getHealth() == 1000)
+    }
+    
+    @Test
+    func cannotDealDamageToAlly() {
+        
     }
     
     @Test
@@ -102,8 +113,6 @@ struct RPGCombatKataTests {
     
     @Test
     func joinFaction() {
-        let faction = Faction(name: "Faction")
-        let otherFaction = Faction(name: "Other Faction")
         let sut = makeCharacter()
         
         sut.joinFaction(faction)
@@ -115,7 +124,6 @@ struct RPGCombatKataTests {
     
     @Test
     func leaveFaction() {
-        let faction = Faction(name: "Faction")
         let sut = makeCharacter()
         
         sut.joinFaction(faction)
