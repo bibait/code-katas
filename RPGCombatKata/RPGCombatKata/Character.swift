@@ -1,8 +1,13 @@
 public class Character {
     private var health: Int
+    private var level: Int
     
-    public init(health: Int = 1000) {
+    public init(
+        health: Int = 1000,
+        level: Int = 1
+    ) {
         self.health = health
+        self.level = level
     }
     
     public enum State {
@@ -30,6 +35,6 @@ public class Character {
     }
     
     public func getLevel() -> Int {
-        1
+        level
     }
 }
