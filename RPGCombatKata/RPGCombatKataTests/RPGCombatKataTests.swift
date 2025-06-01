@@ -40,8 +40,8 @@ struct RPGCombatKataTests {
     
     @Test
     func dealDamageToOtherCharacter() {
-        let otherCharacter = Character()
-        let sut = Character()
+        let otherCharacter = makeCharacter()
+        let sut = makeCharacter()
         
         sut.dealDamage(to: otherCharacter, amount: 100)
         
@@ -50,8 +50,8 @@ struct RPGCombatKataTests {
     
     @Test
     func dealDamageToOtherCharacter_killsOtherCharacter() {
-        let otherCharacter = Character(health: 100)
-        let sut = Character()
+        let otherCharacter = makeCharacter(health: 100)
+        let sut = makeCharacter()
         
         sut.dealDamage(to: otherCharacter, amount: 110)
         
@@ -61,7 +61,7 @@ struct RPGCombatKataTests {
     
     @Test
     func cannotDealDamageToItself() {
-        let sut = Character()
+        let sut = makeCharacter()
         
         sut.dealDamage(to: sut, amount: 500)
         
@@ -71,7 +71,7 @@ struct RPGCombatKataTests {
     
     @Test
     func character_canHealThemself() {
-        let sut = Character()
+        let sut = makeCharacter()
         
         sut.heal(amount: 500)
         
@@ -88,6 +88,10 @@ struct RPGCombatKataTests {
     }
     
     // MARK: - Helpers
+    
+    private func makeCharacter(health: Int = 1000) -> Character {
+        Character(health: health)
+    }
     
     private func makeDeadCharacter() -> Character {
         Character(health: 0)
