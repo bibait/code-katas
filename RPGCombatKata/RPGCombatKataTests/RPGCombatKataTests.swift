@@ -2,11 +2,9 @@ import Testing
 
 class Character {
     private(set) var health: Int
-    private(set) var state: State
     
-    init(health: Int = 1000, state: State = .alive) {
+    init(health: Int = 1000) {
         self.health = health
-        self.state = state
     }
     
     enum State {
