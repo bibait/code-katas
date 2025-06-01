@@ -1,8 +1,8 @@
 import Testing
 
 class Character {
-    var health: Int
-    var state: State
+    private(set) var health: Int
+    private(set) var state: State
     
     init() {
         health = 1000
