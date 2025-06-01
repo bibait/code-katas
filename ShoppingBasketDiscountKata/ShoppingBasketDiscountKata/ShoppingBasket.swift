@@ -14,15 +14,24 @@ public class ShoppingBasket {
         let total = items
             .reduce(0) { $0 + $1.price }
         
-        if total > 200 {
-            let discount = Discount(threshold: 200, discountRate: 0.1)
-            return discount.apply(to: total)
-        } else if total > 100 {
-            let discount = Discount(threshold: 100, discountRate: 0.05)
-            return discount.apply(to: total)
-        }
+        let discounts = DiscountFactory.makeDiscounts()
         
+        for discount in discounts {
+            if discount.doesApply(to: total) {
+                return discount.apply(to: total)
+            }
+        }
+                
         return total
+    }
+}
+
+struct DiscountFactory {
+    static func makeDiscounts() -> [Discount] {
+        [
+            Discount(threshold: 200, discountRate: 0.1),
+            Discount(threshold: 100, discountRate: 0.05)
+        ]
     }
 }
 
@@ -35,11 +44,11 @@ struct Discount {
         self.discountRate = discountRate
     }
     
+    func doesApply(to total: Float) -> Bool {
+        total > threshold
+    }
+    
     func apply(to total: Float) -> Float {
-        if total > threshold {
-            return total - (total * discountRate)
-        }
-        
-        return total
+        return total - (total * discountRate)
     }
 }
