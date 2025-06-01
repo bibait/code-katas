@@ -10,7 +10,7 @@ struct RPGCombatKataTests {
         #expect(sut.getHealth() == 1000)
         #expect(sut.getState() == .alive)
         #expect(sut.getLevel() == 1)
-        #expect(sut.getFaction() == nil)
+        #expect(sut.getFactions().isEmpty)
     }
     
     @Test

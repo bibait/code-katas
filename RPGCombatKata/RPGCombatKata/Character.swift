@@ -30,8 +30,8 @@ public class Character {
         level
     }
     
-    public func getFaction() -> Faction? {
-        nil
+    public func getFactions() -> [Faction] {
+        []
     }
     
     public enum State {
