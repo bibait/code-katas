@@ -7,8 +7,10 @@ public class ShoppingBasket {
     
     private lazy var discounts = DiscountFactory.makeDiscounts()
     
-    public func addItem(_ item: Item) {
-        items.append(item)
+    public func addItem(_ item: Item, quantity: Int = 1) {
+        for _ in 0..<quantity {
+            items.append(item)
+        }
     }
     
     public func getItemQuantity(name: String) -> Int {

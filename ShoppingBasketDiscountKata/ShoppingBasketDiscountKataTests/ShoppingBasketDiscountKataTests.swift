@@ -7,10 +7,10 @@ struct ShoppingBasketDiscountKataTests {
     func addItem() {
         let sut = makeSUT(items: [])
         
-        sut.addItem(makeApple())
+        sut.addItem(makeApple(), quantity: 2)
         sut.addItem(makeBanana())
         
-        #expect(sut.getItemQuantity(name: "Apple") == 1)
+        #expect(sut.getItemQuantity(name: "Apple") == 2)
         #expect(sut.getItemQuantity(name: "Banana") == 1)
     }
 
