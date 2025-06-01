@@ -62,7 +62,7 @@ public class Character {
         health = min(health + amount, maxHealth)
     }
     
-    public func healAlly(amount: Int, ally: Character) {
+    public func heal(ally: Character, amount: Int) {
         guard isInSameFaction(as: ally) else { return }
         
         ally.heal(amount: amount)

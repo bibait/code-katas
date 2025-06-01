@@ -96,8 +96,8 @@ struct RPGCombatKataTests {
         ally.joinFaction(faction)
         attacker.joinFaction(faction)
         
-        attacker.healAlly(amount: 500, ally: ally)
-        attacker.healAlly(amount: 500, ally: foe)
+        attacker.heal(ally: ally, amount: 500)
+        attacker.heal(ally: foe, amount: 500)
         
         #expect(ally.getHealth() == 600)
         #expect(foe.getHealth() == 200)
