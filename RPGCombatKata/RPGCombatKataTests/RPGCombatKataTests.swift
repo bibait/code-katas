@@ -100,6 +100,16 @@ struct RPGCombatKataTests {
         #expect(sut.getHealth() == 1500)
     }
     
+    @Test
+    func joinFaction() {
+        let faction = Faction(name: "Faction")
+        let sut = makeCharacter()
+        
+        sut.joinFaction(faction)
+        
+        #expect(sut.getFactions() == [faction])
+    }
+    
     // MARK: - Helpers
     
     private func makeCharacter(

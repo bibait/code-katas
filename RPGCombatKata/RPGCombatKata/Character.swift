@@ -1,17 +1,24 @@
-public struct Faction {
+public struct Faction: Equatable {
     let name: String
+    
+    public init(name: String) {
+        self.name = name
+    }
 }
 
 public class Character {
     private var health: Int
     private var level: Int
+    private var factions: [Faction]
     
     public init(
         health: Int = 1000,
-        level: Int = 1
+        level: Int = 1,
+        factions: [Faction] = []
     ) {
         self.health = health
         self.level = level
+        self.factions = factions
     }
     
     private var maxHealth: Int {
@@ -31,7 +38,7 @@ public class Character {
     }
     
     public func getFactions() -> [Faction] {
-        []
+        factions
     }
     
     public enum State {
@@ -65,5 +72,9 @@ public class Character {
         }
         
         return amount
+    }
+    
+    public func joinFaction(_ faction: Faction) {
+        factions.append(faction)
     }
 }
