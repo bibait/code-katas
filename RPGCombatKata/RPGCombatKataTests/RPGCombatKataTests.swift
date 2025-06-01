@@ -1,10 +1,22 @@
 import Testing
 
+struct Character {
+    let health: Int = 1000
+    let state: State = .alive
+    
+    enum State {
+        case alive, dead
+    }
+}
+
 struct RPGCombatKataTests {
 
     @Test
-    func zero() {
+    func initialValues() {
+        let sut = Character()
         
+        #expect(sut.health == 1000)
+        #expect(sut.state == .alive)
     }
 
 }
