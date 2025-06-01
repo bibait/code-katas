@@ -23,8 +23,10 @@ struct ShoppingBasketDiscountKataTests {
         ])
         
         sut.removeItem("Apple", quantity: 2)
+        sut.removeItem("Banana", quantity: 10)
         
         #expect(sut.getItemQuantity(name: "Apple") == 1)
+        #expect(sut.getItemQuantity(name: "Banana") == 0)
     }
 
     @Test
