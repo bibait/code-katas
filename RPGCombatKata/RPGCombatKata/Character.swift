@@ -1,4 +1,4 @@
-public struct Faction: Equatable {
+public struct Faction: Equatable, Hashable {
     let name: String
     
     public init(name: String) {
@@ -81,15 +81,7 @@ public class Character {
     }
     
     private func isInSameFaction(as other: Character) -> Bool {
-        for faction in factions {
-            for otherFaction in other.factions {
-                if faction == otherFaction {
-                    return true
-                }
-            }
-        }
-        
-        return false
+        !Set(factions).isDisjoint(with: Set(other.factions))
     }
     
     private func calculateDamageAmount(
