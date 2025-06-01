@@ -12,6 +12,8 @@ class Character {
     }
     
     func dealDamage(to other: Character, amount: Int) {
+        guard other !== self else { return }
+
         other.health = max(0, other.health - amount)
     }
     
@@ -49,6 +51,16 @@ struct RPGCombatKataTests {
         
         #expect(otherCharacter.health == 0)
         #expect(otherCharacter.getState() == .dead)
+    }
+    
+    @Test
+    func cannotDealDamageToItself() {
+        let sut = Character()
+        
+        sut.dealDamage(to: sut, amount: 500)
+        
+        #expect(sut.health == 1000)
+        #expect(sut.getState() == .alive)
     }
 
 }
