@@ -66,19 +66,7 @@ public class Character {
     }
     
     private func canDealDamage(to other: Character) -> Bool {
-        if other === self {
-            return false
-        }
-        
-        for faction in factions {
-            for otherFaction in other.factions {
-                if faction == otherFaction {
-                    return false
-                }
-            }
-        }
-        
-        return true
+        other !== self && !isInSameFaction(as: other)
     }
     
     private func isInSameFaction(as other: Character) -> Bool {
