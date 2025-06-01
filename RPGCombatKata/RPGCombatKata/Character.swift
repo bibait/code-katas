@@ -14,7 +14,7 @@ public class Character {
         level < 6 ? 1000 : 1500
     }
     
-    private func damageAmount(
+    private func calculateDamageAmount(
         _ other: Character,
         amount: Int
     ) -> Int {
@@ -42,7 +42,7 @@ public class Character {
     public func dealDamage(to other: Character, amount: Int) {
         guard other !== self else { return }
         
-        let damage = damageAmount(other, amount: amount)
+        let damage = calculateDamageAmount(other, amount: amount)
 
         other.health = max(0, other.health - damage)
     }
