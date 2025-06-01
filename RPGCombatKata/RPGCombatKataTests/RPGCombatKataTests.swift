@@ -113,6 +113,17 @@ struct RPGCombatKataTests {
         #expect(sut.getFactions() == [faction, otherFaction])
     }
     
+    @Test
+    func leaveFaction() {
+        let faction = Faction(name: "Faction")
+        let sut = makeCharacter()
+        
+        sut.joinFaction(faction)
+        sut.leaveFaction(faction)
+        
+        #expect(sut.getFactions().isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeCharacter(

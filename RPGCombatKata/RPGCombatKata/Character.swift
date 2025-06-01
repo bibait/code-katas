@@ -79,4 +79,8 @@ public class Character {
 
         factions.append(faction)
     }
+    
+    public func leaveFaction(_ faction: Faction) {
+        factions.removeAll { $0 == faction }
+    }
 }
