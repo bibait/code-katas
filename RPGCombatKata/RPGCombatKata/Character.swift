@@ -21,9 +21,9 @@ public class Character {
         let levelDifference = other.getLevel() - level
         
         if levelDifference >= 5 {
-            return amount / 2
+            return amount.decreaseBy(percentage: 50)
         } else if levelDifference <= -5 {
-            return amount + (amount / 2)
+            return amount.increaseBy(percentage: 50)
         }
         
         return amount
@@ -57,5 +57,15 @@ public class Character {
     
     public func getLevel() -> Int {
         level
+    }
+}
+
+extension Int {
+    func increaseBy(percentage: Int) -> Int {
+        self + (self * percentage / 100)
+    }
+    
+    func decreaseBy(percentage: Int) -> Int {
+        self - (self * percentage / 100)
     }
 }
