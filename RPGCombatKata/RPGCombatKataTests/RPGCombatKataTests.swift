@@ -1,8 +1,13 @@
 import Testing
 
 struct Character {
-    let health: Int = 1000
-    let state: State = .alive
+    let health: Int
+    let state: State
+    
+    init() {
+        health = 1000
+        state = .alive
+    }
     
     enum State {
         case alive, dead
