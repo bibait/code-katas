@@ -4,9 +4,9 @@ class Character {
     private(set) var health: Int
     private(set) var state: State
     
-    init() {
-        health = 1000
-        state = .alive
+    init(health: Int = 1000, state: State = .alive) {
+        self.health = health
+        self.state = state
     }
     
     enum State {
