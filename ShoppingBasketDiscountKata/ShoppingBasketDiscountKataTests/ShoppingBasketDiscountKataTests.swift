@@ -2,6 +2,17 @@ import Testing
 import ShoppingBasketDiscountKata
 
 struct ShoppingBasketDiscountKataTests {
+    
+    @Test
+    func addItem() {
+        let sut = makeSUT(items: [])
+        
+        sut.addItem(makeApple())
+        sut.addItem(makeBanana())
+        
+        #expect(sut.getItemQuantity(name: "Apple") == 1)
+        #expect(sut.getItemQuantity(name: "Banana") == 1)
+    }
 
     @Test
     func getItemQuantity_shouldReturnCount() {

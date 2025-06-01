@@ -1,11 +1,15 @@
 public class ShoppingBasket {
-    private let items: [Item]
+    private var items: [Item]
     
     public init(items: [Item]) {
         self.items = items
     }
     
     private lazy var discounts = DiscountFactory.makeDiscounts()
+    
+    public func addItem(_ item: Item) {
+        items.append(item)
+    }
     
     public func getItemQuantity(name: String) -> Int {
         items
