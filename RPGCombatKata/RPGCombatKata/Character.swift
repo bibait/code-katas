@@ -39,10 +39,10 @@ public class Character {
         health = min(health + amount, maxHealth)
     }
     
-    public func dealDamage(to other: Character, amount: Int) {
+    public func dealDamage(damage: Int, to other: Character) {
         guard other !== self else { return }
         
-        let damage = calculateDamageAmount(other, amount: amount)
+        let damage = calculateDamageAmount(other, amount: damage)
 
         other.health = max(0, other.health - damage)
     }

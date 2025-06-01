@@ -17,7 +17,7 @@ struct RPGCombatKataTests {
         let otherCharacter = makeCharacter()
         let sut = makeCharacter()
         
-        sut.dealDamage(to: otherCharacter, amount: 100)
+        sut.dealDamage(damage: 100, to: otherCharacter)
         
         #expect(otherCharacter.getHealth() == 900)
     }
@@ -27,7 +27,7 @@ struct RPGCombatKataTests {
         let otherCharacter = makeCharacter(health: 100)
         let sut = makeCharacter()
         
-        sut.dealDamage(to: otherCharacter, amount: 110)
+        sut.dealDamage(damage: 110, to: otherCharacter)
         
         #expect(otherCharacter.getHealth() == 0)
         #expect(otherCharacter.getState() == .dead)
@@ -38,7 +38,7 @@ struct RPGCombatKataTests {
         let otherCharacter = makeCharacter(level: 5)
         let sut = makeCharacter(level: 10)
         
-        sut.dealDamage(to: otherCharacter, amount: 100)
+        sut.dealDamage(damage: 100, to: otherCharacter)
         
         #expect(otherCharacter.getHealth() == 850)
     }
@@ -48,7 +48,7 @@ struct RPGCombatKataTests {
         let otherCharacter = makeCharacter(level: 10)
         let sut = makeCharacter(level: 5)
         
-        sut.dealDamage(to: otherCharacter, amount: 100)
+        sut.dealDamage(damage: 100, to: otherCharacter)
         
         #expect(otherCharacter.getHealth() == 950)
     }
@@ -57,7 +57,7 @@ struct RPGCombatKataTests {
     func cannotDealDamageToItself() {
         let sut = makeCharacter()
         
-        sut.dealDamage(to: sut, amount: 500)
+        sut.dealDamage(damage: 500, to: sut)
         
         #expect(sut.getHealth() == 1000)
         #expect(sut.getState() == .alive)
