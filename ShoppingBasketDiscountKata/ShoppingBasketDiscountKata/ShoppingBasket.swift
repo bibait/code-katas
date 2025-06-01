@@ -15,9 +15,28 @@ public class ShoppingBasket {
             .reduce(0) { $0 + $1.price }
         
         if total > 200 {
-            return total - (total * 0.1)
+            let discount = Discount(threshold: 200, discountRate: 0.1)
+            return discount.apply(to: total)
         } else if total > 100 {
             return total - (total * 0.05)
+        }
+        
+        return total
+    }
+}
+
+struct Discount {
+    private let threshold: Float
+    private let discountRate: Float
+    
+    init(threshold: Float, discountRate: Float) {
+        self.threshold = threshold
+        self.discountRate = discountRate
+    }
+    
+    func apply(to total: Float) -> Float {
+        if total > threshold {
+            return total - (total * discountRate)
         }
         
         return total
