@@ -1,8 +1,8 @@
 import Testing
 
-struct Character {
-    let health: Int
-    let state: State
+class Character {
+    var health: Int
+    var state: State
     
     init() {
         health = 1000
@@ -11,6 +11,10 @@ struct Character {
     
     enum State {
         case alive, dead
+    }
+    
+    func dealDamage(to other: Character, amount: Int) {
+        other.health -= amount
     }
 }
 
@@ -22,6 +26,16 @@ struct RPGCombatKataTests {
         
         #expect(sut.health == 1000)
         #expect(sut.state == .alive)
+    }
+    
+    @Test
+    func dealDamageToOtherCharacter() {
+        let otherCharacter = Character()
+        let sut = Character()
+        
+        sut.dealDamage(to: otherCharacter, amount: 100)
+        
+        #expect(otherCharacter.health == 900)
     }
 
 }
