@@ -18,7 +18,8 @@ public class ShoppingBasket {
             let discount = Discount(threshold: 200, discountRate: 0.1)
             return discount.apply(to: total)
         } else if total > 100 {
-            return total - (total * 0.05)
+            let discount = Discount(threshold: 100, discountRate: 0.05)
+            return discount.apply(to: total)
         }
         
         return total
