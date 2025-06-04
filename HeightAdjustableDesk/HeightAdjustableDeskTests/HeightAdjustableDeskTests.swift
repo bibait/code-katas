@@ -83,6 +83,24 @@ struct HeightAdjustableDeskTests {
     }
     
     @Test
+    func overridesSavedPosition() {
+        let sut = makeSUT()
+        
+        sut.moveUp() // 101
+        sut.savePosition(number: 1)
+        sut.moveDown() // 100
+        sut.moveDown() // 99
+        sut.moveDown() // 98
+        sut.savePosition(number: 1)
+        sut.moveUp() // 99
+        sut.applySavedPosition(number: 1)
+        
+        #expect(sut.height == 98)
+    }
+    
+    // MARK: - Movement
+    
+    @Test
     func moveUp_increasesHeightByOneCm() {
         let sut = makeSUT(initialHeight: 100)
         
