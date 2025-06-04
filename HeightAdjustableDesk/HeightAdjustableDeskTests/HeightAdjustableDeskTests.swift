@@ -23,6 +23,12 @@ public class HeightAdjustableDesk {
 
         height += 1
     }
+    
+    public func moveDown() {
+        guard height > minHeight else { return }
+
+        height -= 1
+    }
 }
 
 struct HeightAdjustableDeskTests {
@@ -73,6 +79,24 @@ struct HeightAdjustableDeskTests {
         let sut = makeSUT(initialHeight: 100, maxHeight: 100)
         
         sut.moveUp()
+        
+        #expect(sut.height == 100)
+    }
+    
+    @Test
+    func moveDown_decreasesHeightByOneCm() {
+        let sut = makeSUT(initialHeight: 100)
+        
+        sut.moveDown()
+        
+        #expect(sut.height == 99)
+    }
+    
+    @Test
+    func moveDown_doesNotSurpassMinHeight() {
+        let sut = makeSUT(initialHeight: 100, minHeight: 100)
+        
+        sut.moveDown()
         
         #expect(sut.height == 100)
     }
