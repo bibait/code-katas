@@ -29,14 +29,14 @@ struct HeightAdjustableDeskTests {
 
     @Test
     func hasInitialHeightAt100cm() {
-        let sut = HeightAdjustableDesk()
+        let sut = makeSUT()
         
         #expect(sut.height == 100)
     }
     
     @Test
     func hasMaxAndMinHeight() {
-        let sut = HeightAdjustableDesk(minHeight: 50, maxHeight: 150)
+        let sut = makeSUT(minHeight: 50, maxHeight: 150)
         
         #expect(sut.minHeight == 50)
         #expect(sut.maxHeight == 150)
@@ -44,7 +44,7 @@ struct HeightAdjustableDeskTests {
     
     @Test
     func applySavedPosition_withoutSaving_staysAtSamePosition() {
-        let sut = HeightAdjustableDesk()
+        let sut = makeSUT()
         
         sut.applySavedPosition(number: 1)
         #expect(sut.height == 100)
@@ -61,7 +61,7 @@ struct HeightAdjustableDeskTests {
     
     @Test
     func moveUp_increasesHeightByOneCm() {
-        let sut = HeightAdjustableDesk(initialHeight: 100)
+        let sut = makeSUT(initialHeight: 100)
         
         sut.moveUp()
         
@@ -75,6 +75,16 @@ struct HeightAdjustableDeskTests {
         sut.moveUp()
         
         #expect(sut.height == 100)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        initialHeight: Double = 100,
+        minHeight: Double = 50,
+        maxHeight: Double = 150
+    ) -> HeightAdjustableDesk {
+        HeightAdjustableDesk(initialHeight: initialHeight, minHeight: minHeight, maxHeight: maxHeight)
     }
 
 }
