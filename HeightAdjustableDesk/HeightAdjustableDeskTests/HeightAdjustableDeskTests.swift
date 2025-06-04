@@ -1,10 +1,14 @@
 import Testing
 
+public class HeightAdjustableDesk {
+    public init() {}
+}
+
 struct HeightAdjustableDeskTests {
 
     @Test
-    func zero() {
-        
+    func canInit() {
+        let _ = HeightAdjustableDesk()
     }
 
 }
