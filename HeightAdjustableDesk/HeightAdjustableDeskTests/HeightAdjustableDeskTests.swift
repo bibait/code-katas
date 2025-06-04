@@ -70,7 +70,7 @@ struct HeightAdjustableDeskTests {
     
     @Test
     func moveUp_doesNotSurpassMaxHeight() {
-        let sut = HeightAdjustableDesk(initialHeight: 100, maxHeight: 100)
+        let sut = makeSUT(initialHeight: 100, maxHeight: 100)
         
         sut.moveUp()
         
