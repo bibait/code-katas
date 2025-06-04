@@ -14,12 +14,14 @@ struct HeightAdjustableDeskView : View {
                 } label: {
                     Image(systemName: "arrow.down.circle.fill")
                 }
+                .buttonRepeatBehavior(.enabled)
 
                 Button {
                     viewModel.moveDeskUp()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
                 }
+                .buttonRepeatBehavior(.enabled)
             }
             
             HStack {
