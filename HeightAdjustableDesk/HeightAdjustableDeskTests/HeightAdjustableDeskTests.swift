@@ -2,17 +2,17 @@ import Testing
 
 public class HeightAdjustableDesk {
     private(set) public var height: Double
-    private(set) public var maxHeight: Double
     private(set) public var minHeight: Double
+    private(set) public var maxHeight: Double
     
     public init(
         initialHeight: Double = 100,
-        maxHeight: Double = 150,
-        minHeight: Double = 50
+        minHeight: Double = 50,
+        maxHeight: Double = 150
     ) {
         self.height = initialHeight
-        self.maxHeight = maxHeight
         self.minHeight = minHeight
+        self.maxHeight = maxHeight
     }
     
     public func applySavedPosition(number: Int) {
@@ -30,10 +30,10 @@ struct HeightAdjustableDeskTests {
     
     @Test
     func hasMaxAndMinHeight() {
-        let sut = HeightAdjustableDesk(maxHeight: 150, minHeight: 50)
+        let sut = HeightAdjustableDesk(minHeight: 50, maxHeight: 150)
         
-        #expect(sut.maxHeight == 150)
         #expect(sut.minHeight == 50)
+        #expect(sut.maxHeight == 150)
     }
     
     @Test
