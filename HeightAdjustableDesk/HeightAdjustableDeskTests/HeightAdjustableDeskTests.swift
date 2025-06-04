@@ -19,6 +19,8 @@ public class HeightAdjustableDesk {
     }
     
     public func moveUp() {
+        guard height < maxHeight else { return }
+
         height += 1
     }
 }
@@ -64,6 +66,15 @@ struct HeightAdjustableDeskTests {
         sut.moveUp()
         
         #expect(sut.height == 101)
+    }
+    
+    @Test
+    func moveUp_doesNotSurpassMaxHeight() {
+        let sut = HeightAdjustableDesk(initialHeight: 100, maxHeight: 100)
+        
+        sut.moveUp()
+        
+        #expect(sut.height == 100)
     }
 
 }
