@@ -4,22 +4,23 @@ import Foundation
 class HeightAdjustableDeskViewModel {
     private let desk: HeightAdjustableDesk
     
+    var currentHeight: String
+
     init(desk: HeightAdjustableDesk) {
         self.desk = desk
+        self.currentHeight = String(format: "%.0f cm", desk.height)
     }
     
     private var canSave: Bool = false
     
-    var currentHeight: Double {
-        desk.height
-    }
-    
     func moveDeskUp() {
         desk.moveUp()
+        currentHeight = formatHeight()
     }
     
     func moveDeskDown() {
         desk.moveDown()
+        currentHeight = formatHeight()
     }
     
     func initiateSave() {
@@ -35,5 +36,9 @@ class HeightAdjustableDeskViewModel {
     
     func applySavedPosition(_ position: Int) {
         desk.applySavedPosition(number: position)
+    }
+    
+    private func formatHeight() -> String {
+        String(format: "%.0f cm", desk.height)
     }
 }
