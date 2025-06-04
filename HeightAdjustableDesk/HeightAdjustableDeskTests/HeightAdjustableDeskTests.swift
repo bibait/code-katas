@@ -19,9 +19,7 @@ public class HeightAdjustableDesk {
     }
     
     public func moveUp() {
-        guard height < maxHeight else { return }
-
-        height += 1
+        height = min(height + 1, maxHeight)
     }
     
     public func moveDown() {
