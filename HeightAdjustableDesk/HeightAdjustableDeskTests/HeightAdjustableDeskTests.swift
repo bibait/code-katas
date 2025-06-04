@@ -1,14 +1,20 @@
 import Testing
 
 public class HeightAdjustableDesk {
-    public init() {}
+    private(set) var height: Double
+
+    public init(height: Double = 100) {
+        self.height = height
+    }
 }
 
 struct HeightAdjustableDeskTests {
 
     @Test
-    func canInit() {
-        let _ = HeightAdjustableDesk()
+    func hasInitialHeightAt100cm() {
+        let sut = HeightAdjustableDesk()
+        
+        #expect(sut.height == 100)
     }
 
 }
