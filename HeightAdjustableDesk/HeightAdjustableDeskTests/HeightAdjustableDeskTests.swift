@@ -15,7 +15,16 @@ public class HeightAdjustableDesk {
         self.maxHeight = maxHeight
     }
     
+    private var savedPositions: [Int: Double] = [:]
+    
+    public func savePosition(number: Int) {
+        savedPositions[number] = height
+    }
+    
     public func applySavedPosition(number: Int) {
+        if let savedHeight = savedPositions[number] {
+            height = savedHeight
+        }
     }
     
     public func moveUp() {
@@ -59,6 +68,18 @@ struct HeightAdjustableDeskTests {
         
         sut.applySavedPosition(number: 4)
         #expect(sut.height == 100)
+    }
+    
+    @Test
+    func savesPosition() {
+        let sut = makeSUT()
+        
+        sut.moveUp()
+        sut.savePosition(number: 1)
+        sut.moveDown()
+        sut.applySavedPosition(number: 1)
+        
+        #expect(sut.height == 101)
     }
     
     @Test
