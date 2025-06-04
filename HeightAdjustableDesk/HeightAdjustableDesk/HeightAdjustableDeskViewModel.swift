@@ -11,7 +11,7 @@ class HeightAdjustableDeskViewModel {
         self.currentHeight = String(format: "%.0f cm", desk.height)
     }
     
-    private var canSave: Bool = false
+    var canSave: Bool = false
     
     func moveDeskUp() {
         desk.moveUp()
@@ -36,6 +36,7 @@ class HeightAdjustableDeskViewModel {
     
     func applySavedPosition(_ position: Int) {
         desk.applySavedPosition(number: position)
+        currentHeight = formatHeight()
     }
     
     private func formatHeight() -> String {

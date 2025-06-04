@@ -5,9 +5,10 @@ struct HeightAdjustableDeskView : View {
 
     var body: some View {
         VStack {
-            Text("Current Height: \(viewModel.currentHeight)")
-            
             HStack {
+                Text("\(viewModel.currentHeight)")
+                    .contentTransition(.numericText())
+
                 Button {
                     viewModel.moveDeskDown()
                 } label: {
@@ -18,6 +19,28 @@ struct HeightAdjustableDeskView : View {
                     viewModel.moveDeskUp()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
+                }
+            }
+            
+            HStack {
+                Button {
+                    viewModel.initiateSave()
+                } label: {
+                    Text("M")
+                }
+                
+                ForEach(1..<5) { index in
+                    Button {
+                        if viewModel.canSave {
+                            viewModel.save(position: index)
+                        } else {
+                            withAnimation {
+                                viewModel.applySavedPosition(index)
+                            }
+                        }
+                    } label: {
+                        Text("\(index)")
+                    }
                 }
             }
         }
