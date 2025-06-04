@@ -17,6 +17,10 @@ public class HeightAdjustableDesk {
     
     public func applySavedPosition(number: Int) {
     }
+    
+    public func moveUp() {
+        height += 1
+    }
 }
 
 struct HeightAdjustableDeskTests {
@@ -51,6 +55,15 @@ struct HeightAdjustableDeskTests {
         
         sut.applySavedPosition(number: 4)
         #expect(sut.height == 100)
+    }
+    
+    @Test
+    func moveUp_increasesHeightByOneCm() {
+        let sut = HeightAdjustableDesk(initialHeight: 100)
+        
+        sut.moveUp()
+        
+        #expect(sut.height == 101)
     }
 
 }
