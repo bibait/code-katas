@@ -6,11 +6,11 @@ public class HeightAdjustableDesk {
     private(set) public var minHeight: Double
 
     public init(
-        height: Double = 100,
+        initialHeight: Double = 100,
         maxHeight: Double = 150,
         minHeight: Double = 50
     ) {
-        self.height = height
+        self.height = initialHeight
         self.maxHeight = maxHeight
         self.minHeight = minHeight
     }
